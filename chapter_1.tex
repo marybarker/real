@@ -1,0 +1,392 @@
+\chapter{Preliminaries}
+\begin{defn}\label{d:finite}%1
+A set $A$ is \textbf{finite} if there is a 1-1 mapping of some set $\{1, 2, 3, ..., n\}$ 
+of positive integers onto $A$. $A$ is \textbf{countably infinite} if there is a 1-1 
+mapping of the set $\Zp$ of positive integers onto $A$. $A$ is \textbf{countable} 
+if either finite or countably infinite. Otherwise $A$ is \textbf{uncountable}. 
+\end{defn}
+
+\begin{pblm}%2
+	(deMorgan laws) If $\{E_\lambda: \lambda \in \Lambda\}$ is any indexed collection of 
+	subsets of some set $E$, then 
+	\begin{equation*}
+		\left(\bigcup\limits_{\lambda \in \Lambda} E_\lambda\right)^c = 
+		\bigcap\limits_{\lambda \in \Lambda} E_\lambda^c ~~~ \text{ and }~~~
+		\left(\bigcap\limits_{\lambda \in \Lambda} E_\lambda\right)^c = 
+		\bigcup\limits_{\lambda \in \Lambda} E_\lambda^c 
+	\end{equation*}
+	where $A^c$ denotes the complement of $A$ in $E$. 
+\begin{proof}
+	\begin{equation*}
+	\left(\bigcup\limits_{\lambda \in \Lambda} E_\lambda\right)^c = 
+	\{x: x \in E_\lambda \text{ for some } \lambda \in \Lambda\}^c = 
+	\{x: x \in E_\lambda^c \forall \lambda \in \Lambda\} = 
+	\bigcap\limits_{\lambda \in \Lambda} E_\lambda^c
+	\end{equation*}
+	\begin{equation*}
+	\left(\bigcup\limits_{\lambda \in \Lambda} E_\lambda\right)^c = 
+	\{x: x \in E_\lambda \text{ for some } \lambda \in \Lambda\}^c = 
+	\{x: x \in E_\lambda^c \forall \lambda \in \Lambda\} = 
+	\bigcap\limits_{\lambda \in \Lambda} E_\lambda^c
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%3
+	In the previous problem the index set $\Lambda$ need not be countable. One could 
+	imagine indexing a collection of sets by the real numbers, for instance (e.g. 
+	$E_x$ is the interval of length 1 centered at $x$.)
+\end{rmk}
+
+\pagebreak
+\begin{pblm}%4
+	Any countable union of sets of real numbers can be expressed as a disjoint 
+	union: $E \cup F = E \cup (F \setminus E)$ or $\bigcup\limits_{k = 1}^\infty 
+	E_k = \bigcup\limits_{k = 1}^\infty F_k$ where $F_1 = E_1$, 
+	$F_k = E_k \setminus \bigcup \limits_{j = 1}^{k - 1} E_j$. Here $A \setminus B = 
+	A \cap B^c$. 
+\begin{proof}
+	Let $E, F$ be sets of real numbers. 
+	Then for any $x \in E \cup F$, if $x \in E$, then 
+	$x \in E \subset \{E \cup (F \setminus E)\}$. Similarly, if $x \notin E$ but 
+	$x \in F$, then $x \in (F \setminus E) \subset \{E \cup (F \setminus E)\}$. 
+	Thus 
+	\begin{equation*}
+		E \cup F ~\subset~ E \cup (F\setminus E). 
+	\end{equation*}
+
+	On the other hand, for any $x \in E \cup (F \setminus E)$, if $x \in E$ then 
+	$x \in E \cup F$. Also, if $x \in F \setminus E$ then $x \in F \subset (E \cup F)$. 
+	Thus 
+	\begin{equation*}
+		E \cup (F \setminus E) \subset E \cup F. 
+	\end{equation*}
+
+	\begin{equation*}
+		E \cup F ~ \substack{\subset \\ \supset}~ E \cup (F \setminus E) ~~~\implies~~~
+		E \cup F = E \cup (F \setminus E).
+	\end{equation*}
+
+	For the more general case, take any $x \in \bigcup\limits_{j=1}^\infty F_k$, then there is some $F_j$ such that 
+	$x \in F_j$. Since each $F_j \subset E_j$, then 
+	$x \in E_j \subset \bigcup\limits_{j=1}^\infty E_j$. Therefore 
+	$\bigcup\limits_{j=1}^\infty F_j\subset \bigcup\limits_{j=1}^\infty E_j$. 
+
+	On the other hand, for any $x \in \bigcup\limits_{j=1}^\infty E_j$. Then there is 
+	some $k$ such that $x \in E_k$. Let $a$ be the 
+	smallest index such that $x \in E_a$. Then $x \in E_a$ and $\forall b < a$, $x 
+	\notin E_b$. Therefore $x \in F_a$, and so $x \in \bigcup\limits_{j=1}^\infty F_j$. 
+	Therefore, since we have shown subset containment in both directions, 
+
+	\begin{equation*}
+		\bigcup\limits_{j=1}^\infty E_j = \bigcup\limits_{j=1}^\infty F_j. 
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%5
+	If $a$ and $b$ are real numbers, then $a \le b$ iff for every $\epsilon > 0$, 
+	$a \le b + \epsilon$. Similarly, $a \ge b$ iff for every $\epsilon > 0$, 
+	$a \ge b - \epsilon$. 
+\begin{proof}
+	Let $a, b \in \R$ and $a \le b$. Then for every $\epsilon > 0$, 
+	$a \le b < b + \epsilon$, and therefore $a \le b + \epsilon$. 
+	Now, let $a, b \in \R$, and assume that for any 
+	$\epsilon > 0$, $a \le b + \epsilon$. Then if $a > b$, there is some 
+	$\epsilon_1 \ge 0$ such that $a = b + \epsilon_1$. But since $a \le b + \epsilon$ for 
+	all $\epsilon > 0$, we have 
+	$a \le b + \frac{\epsilon}{2} < b + \epsilon_1 = a $ 
+	which is a contradiction. Therefore $a \le b$. 
+
+	Now let $a \ge b$. This can be re-written as $b \le a$. By 
+	the first part of the problem, $b \le a$ iff $\forall \epsilon > 0$, 
+	$b \le a + \epsilon$. This is true iff $b - \epsilon \le a$. 
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%6
+	This problem may seem trivial, but we will use it over and over again during the quarter. 
+	It says that we can give a little something away, and then take it back. 
+\end{rmk}
+
+\begin{defn}\label{d:boundedset}%7
+~
+	\begin{enumerate}[(a)]
+		\item A set $E$ of real numbers is \textbf{bounded above} if there 
+		exists a real number $u$ such that for every $x \in E$, $x \le u$. 
+		we call $u$ an \textbf{upper bound} for $E$. Similarly, $E$ is 
+		\textbf{bounded below} if there exists a real number $w$ such that 
+		for every $x \in E$, $w \le x$, and then $w$ is a \textbf{lower bound} 
+		for $E$. $E$ is \textbf{bounded}, if bounded both above and below. 
+		\item If $E$ is bounded above and nonempty, the \textbf{supremum} 
+		(or least upper bound) of $E$, sup $E$, is the unique real number $s$ 
+		such that (i) $s$ is an upper bound for $E$ and (ii) $s < u$ for any 
+		other upper bound $u$ for $E$. Similarly, if $E$ is bounded below 
+		and nonempty, the \textbf{infimum} (or greatest lower bound) of $E$, 
+		inf $E$, is the unique real number $t$ such that (i) $t$ is a lower 
+		bound for $E$ and (ii) $t > w$ for any other lower bound $w$ for $E$. 
+		(Recall that the Least Upper Bound Axiom guarantees the existence of 
+		the supremum and infimum.) 
+		\item A real number $c$ is a \textbf{cluster point} of a set $E$ of 
+		real numbers if for every $\epsilon > 0$ there is $y \in E$ such that 
+		$0 < |c - y| < \epsilon$. 
+	\end{enumerate}
+\end{defn}
+
+\begin{pblm}%8
+	Let $v$ be a lower bound for a set $E$ of real numbers, where $v \notin E$. Then 
+	$v = \inf E$ iff $v$ is a cluster point of $E$. 
+\begin{proof}
+	Let $v = \inf E$, $v \notin E$. Then for any $\epsilon > 0$, 
+	there is $y \in E$ such that $y < v + \epsilon$, as otherwise $v + \epsilon$ would 
+	be a lower bound of $E$ greater than $v = \inf E$. Now, for any $\epsilon > 0$, we 
+	have $y \in E$ such that 
+	\begin{equation*}
+		v < y < v + \epsilon
+	\end{equation*}
+	Subtracting $v$ from each inequality, this can be re-written as 
+	\begin{equation*}
+		0 < y - v < \epsilon
+	\end{equation*}
+	and since $y > v$, this is 
+	\begin{equation*}
+		0 < |y - v| < \epsilon ~~~ \Leftrightarrow ~~~ 0 < |v - y| < \epsilon 
+	\end{equation*}
+	Thus $v$ is a cluster point of $E$. 
+
+	Now, assume that $v$ is a cluster point of $E$, $v \notin E$, and $v$ is a L.B. for 
+	$E$. 
+
+	For any $w > v$, $w = v + \epsilon$ for some $\epsilon > 0$, there is $y \in E$ such that 
+	$v < y < v + \epsilon$. Therefore $w$ is not a lower bound of $E$. Thus $v = \inf E$. 
+\end{proof}
+\end{pblm}
+
+\pagebreak
+\begin{defn}\label{d:boundedsequence}%9
+	~
+	\begin{enumerate}[(a)]
+		\item A \textbf{sequence} of real numbers $\{a_k\}_{k=1}^\infty$ is 
+		a function from the set of positive integers $\Zp$ into the 
+		real numbers. (More generally, the domain of a sequence can be any set 
+		of the form $\{k: k \ge k_0\}$ for some integer $k_0$.) The sequence is 
+		\textbf{bounded} (or bounded above or ... ) if its range is bounded 
+		(or ... ).
+		\item The sequence $\{a_k\}_{k = 1}^\infty$ \textbf{converges} to the 
+		\textbf{limit} $a$ if for each $\epsilon > 0$ there is a positive 
+		integer $K$ such that $|a_k - a| < \epsilon$ for all $k \ge K$. 
+		\item A \textbf{subsequence} $\{a_{k_j}\}_{j = 1}^\infty$ of a 
+		sequence $\{a_k\}_{k = 1}^\infty$ is the composition of 
+		$\{a_k\}_{k = 1}^\infty$ with an increasing sequence 
+		$\{k_j\}_{j = 1}^\infty$ of integers 
+	\end{enumerate}
+\end{defn}
+
+\begin{pblm}%10
+	Let $\{a_k\}_{k = 1}^\infty$ be a non-decreasing sequence of real numbers. Then 
+	$\{a_k\}_{k = 1}^\infty$ is bounded above iff $\{a_k\}_{k = 1}^\infty$ converges
+	to the least upper bound of the set $\{a_k : k \in \Zp\}$. (Of course 
+	there is a symmetric result for non-increasing sequences.)
+\begin{proof}
+	Let $\{a_k\}_{k=1}^\infty$ be bounded above. Now, let $L$ be the least upper bound of 
+	the set $\{a_k: k \in \Zp\}$. Since $\{a_k\}$ is a non-decreasing sequence, 
+	for each $ k \in \Zp$, $a_k \le a_{k + 1} \le a_{k + 2} \le ... $ 
+	And also, for all $k \in \Zp$, $a_k \le L$ since $L$ is the least upper bound. 
+	Therefore for all $k \in \Zp$, 
+	\begin{equation*}
+		a_k \le a_{k + 1} \le \cdots \le L
+	\end{equation*}
+	For any $\epsilon > 0$, let $a^\ast = L - \epsilon < L$. Then since $L$ is the least 
+	upper bound of the set $\{a_k: k \in \Zp\}$, we know that $a^\ast \le a_j$ for 
+	some $j \in \Zp$. Therefore (using the fact that the sequence is 
+	non-decreasing) for all $k \ge j$, 
+	\begin{equation*}
+		L \ge a_k \ge L - \epsilon 
+	\end{equation*}
+	which can be re-written as 
+	\begin{equation*}
+		0 \le |L - a_k| \le \epsilon
+	\end{equation*}
+	Thus $\{a_k\}_{k=1}^\infty$ converges to the least upper bound 
+	
+
+	Now, if $\{a_k\}_{k=1}^\infty$ converges to the L.U.B $L$ of $\{a_k:k\in\Zp\}$
+	and $a_k \le a_{k+1}$ for all $k \in \Zp$, then for all $k \in \Zp$, 
+	we have 
+	\begin{equation*}
+		a_k \le a_{k + 1} \le \cdots \le L 
+	\end{equation*}
+	Thus $\{a_k\}_{k = 1}^\infty$ is bounded above. 
+\end{proof}
+\end{pblm}
+
+\pagebreak
+\begin{rmk}%11
+~
+\begin{enumerate}
+	\item Note the distinction between the sequence $\{a_k\}_{k = 1}^\infty$, which 
+	as a function is a set of ordered pairs of real numbers, and the set 
+	$\{a_k: k \in \Zp\} \subset \R$ which is the range of that 
+	function. 
+	\item If $\{a_k\}_{k = 1}^\infty$ is non-decreasing and not bounded above, 
+	we often write $\lim\limits_{k\to\infty} a_k = \infty$ and speak as though 
+	$\infty$ were a number ``way out there at the end of the number line.'' We do 
+	not, however, do arithmetic with $\infty$. 
+\end{enumerate}
+\end{rmk}
+
+\begin{defn}\label{d:convergesequence}%12
+~
+\begin{enumerate}
+	\item $\{a_k\}_{k = 1}^\infty$ be a sequence of real numbers. The numbers 
+	$s_n = \sum\limits_{k = 1}^n a_k$ are the \textbf{partial sums of the infinite 
+	series} $\sum\limits_{k = 1}^\infty a_k$. The series \textbf{converges} if 
+	$\lim\limits_{n\to\infty}s_n$ exists (as a real number). Otherwise the series 
+	\textbf{diverges}. If the series converges, the number $s = \lim\limits_{n\to\infty}
+	s_n$ is called the \textbf{sum of the infinite series} and is denoted 
+	$\sum\limits_{k = 1}^\infty a_k$. 
+	\item More generally, if $S$ is any set of positive integers, and for any 
+	positive integer $n$, $S_n = \{k \in \Zp:k\in S \text{ and }k\le n\}$, 
+	we define the finite sums $s_n = \sum\limits_{k \in S_n} a_k$ to be the 
+	\textbf{partial sums} of the series $\sum\limits_{k \in S}a_k$, and say that 
+	the series \textbf{converges} if $\lim\limits_{n\to\infty}s_n$ exists (as a 
+	real number). Otherwise the series \textbf{diverges}. If the series converges, 
+	the number $s = \lim\limits_{n\to\infty}s_n$ is called the \textbf{sum of the 
+	series} and is denoted $\sum\limits_{k \in S}a_k$. 
+\end{enumerate}
+\end{defn}
+
+\begin{pblm}%13
+	Let $\{a_k\}_{k = 1}^\infty$ be a sequence of non-negative reals. Let 
+	$\{F_j\}_{j = 1}^\infty$ be any nested sequence of sets of positive integers 
+	such that $F_1 \subset F_2 \subset ...$ and $\bigcup\limits_{j = 1}^\infty F_j 
+	= \Zp$. For each $j$ let $f_j = \sum\limits_{k \in F_j} a_k$. Then 
+	$\sup_j f_j = \sum\limits_{k = 1}^\infty a_k$. (This means that if either 
+	number is finite, then they both are and and then they are equal. Notice 
+	that it is not assumed that the sets $F_j$ are finite, so the $f_j$ need not 
+	be finite.)\\
+	%\textbf{Remark}: This is a strong form of saying that a series with non-negative 
+	%terms can be summed in any order without affecting the sum. 
+\begin{proof}
+
+$\sum\limits_{k=1}^\infty a_k = \sum\limits_{k \in \cup_{j=1}^\infty F_j}a_k \in \{f_j\}_{j=1}^\infty$
+And so, by definition 
+\begin{equation*}
+	\sum\limits_{k=1}^\infty a_k ~~\le~~ \sup_j f_j
+\end{equation*}
+
+Now, since $\forall j \in \Zp$, $F_j \subset F_{j+1}$, then 
+\begin{equation*}
+f_j = \sum\limits_{k \in F_j}a_k \le \sum\limits_{k\in F_{j+1}} a_k = f_{j+1}
+\end{equation*}
+Now, if the $F_j$ are finite, then 
+using the fact that $\{f_j\}_{j=1}^\infty$ is a sequence of non-decreasing positive 
+real values, we have 
+\begin{equation*}
+	f_j = \sum\limits_{k\in F_j}a_k \le \lim\limits_{n\to\infty}f_n = \sum\limits_{k=1}^\infty a_k ~~~ \forall j \in \Zp
+\end{equation*}
+On the other hand, if the $F_j$ are not necessarily finite, the values can be re-ordered in 
+increasing order, and then each $f_j$ can be written 
+as the limit of a sequence of partial sums 
+$\lim\limits_{n\to\infty}\sum\limits_{k=1}^n a_{j(k)}$ 
+where $F_j = \{j(k)\}_{k=1}^\infty$. Then all of the partial sums are bounded above by 
+$\sum\limits_{k=1}^\infty a_k$, and so $f_j \le \sum\limits_{k=1}^\infty a_k$ for all $j$ 
+and irrespective whether the $F_j$ are finite or infinite. 
+
+Therefore $\sum\limits_{k=1}^\infty a_k$ is an upper bound of $\{f_j\}_{j=1}^\infty$, and so 
+\begin{equation*}
+	\sup_j f_j \le \sum\limits_{k\in F_j}a_k 
+\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%14
+	Consider the double indexed set $\{a_{j,k}\}_{j,k=1}^\infty$ of non-negative 
+	numbers. Set $S_n = \sum\limits_{j,k=1}^na_{j,k}$. (This means the sum of the 
+	$n^2$ terms $a_{j,k}$ where $1 \le j \le n$ and $1 \le k \le n$.) Let 
+	$A_1 = \lim\limits_{n\to\infty}S_n$, 
+	$A_2 = \sum\limits_{j=1}^\infty \sum\limits_{k=1}^\infty a_{j,k}$, 
+	$A_3 = \sum\limits_{k=1}^\infty \sum\limits_{j=1}^\infty a_{j,k}$. 
+	Then $A_1=A_2=A_3$. This means that if any 
+	one of these three numbers is finite, then all of them are and they are 
+	equal. (This is, of course, the equivalent for series of the fact that a 
+	double integral can be evaluated as an iterated integral. For instance, $A_2$ 
+	if it exists, is the limit as $n \to \infty$ of 
+	$\sum\limits_{j=1}^\infty\sum\limits_{k=1}^\infty a_{j,k}$.)
+\begin{proof}
+	Now, as a sum of non-negative numbers for any $n$,
+	\begin{equation*}
+		S_n = \sum\limits_{j=1}^n\sum\limits_{k=1}^na_{j,k}\le
+		\sum\limits_{j=1}^\infty\sum\limits_{k=1}^\infty a_{j,k}=A_2
+	\end{equation*}
+	which implies that, since this is true for any $n$, $A_1 \le A_2$. 
+
+	Now to show that $A_2 \le A_1$, we will consider the sequence 
+	$\{T_n\}_{n=1}^\infty = \{\sum\limits_{j=1}^n\sum\limits_{k=1}^\infty a_{j,k}\}_{n=1}^\infty$. This is a 
+	sequence of non-decreasing positive values with $\lim\limits_{n\to\infty}T_n = A_2$. 
+	Also for all $n \in \Zp$, 
+	\begin{equation*}
+		\sum\limits_{j=1}^n\sum\limits_{k=1}^\infty a_{j,k} \le A_1
+	\end{equation*}
+	And so $A_2 \le A_1$. 
+
+	Note that $S_n = \sum\limits_{j=1}^n\sum\limits_{k=1}^na_{j,k}=\sum\limits_{k=1}^n\sum\limits_{j=1}^na_{j,k}$
+	As a finite sum, and that, since this is true for all $n$, then showing that $A_1 = A_2$ is equivalent to 
+	showing $A_1 = A_3$
+
+\end{proof}
+\end{pblm}
+
+\begin{defn}%15
+~
+	\begin{enumerate}[(a)]
+		\item An \textbf{open ball} about a real number $x$ of radius $r$ 
+		is the set $B_r(x) = (x - r, x + r)$. 
+		\item A set $G$ of real numbers is \textbf{open} if it contains an 
+		open ball about each of its points. 
+		\item A set $F$ of real numbers is \textbf{closed} if every cluster 
+		point of $F$ is contained in $F$. 
+	\end{enumerate}
+\end{defn}
+
+\begin{pblm}%16
+	Every open subset $G$ of real numbers can be expressed as a countable union 
+	of pairwise disjoint open intervals. (Think about the rationals in $G$.)
+\begin{proof}
+Consider all of the the rational numbers in $G$. This is a countable set, so 
+indexing by any subset of this set will also be countable. 
+
+Now, for all rational $x \in G$, let $I_x$ be the largest open interval in $G$ containing 
+$x$. For any $y \in G$ such that $y$ is not rational, Because $G$ is open, we can find 
+$\epsilon > 0$ such that $y \in (x - \epsilon, x + \epsilon)\subset G$ for some rational 
+$x \in G$. Then the set $\{I_x : x \in G \text{ is rational} \}$ is an open cover of $G$. 
+
+To find a subset that are pairwise disjoint and that covers all of $G$, consider any two 
+rational numbers $x, y \in G$. If $I_x \cap I_y \neq \emptyset$, then by the maximality 
+of $I_x$ and $I_y$ $x \in I_x \cup I_y \subset G$, and so $I_x = I_x \cup I_y = I_y$. 
+Thus every pair of intervals
+$I_x, I_y$ is either disjoint or identical intervals. 
+\end{proof}
+\end{pblm}
+
+\begin{defn}\label{d:compact}%17
+	The set $E$ of real numbers is \textbf{compact} if every sequence 
+	$\{a_k\}_{k=1}^\infty$ of elements of $E$ has a subsequence that converges 
+	to an element of $E$. 
+\end{defn}
+
+\begin{fact}%18
+	These properties are equivalent for a set $E$ of real numbers. 
+	\begin{enumerate}[(a)]
+		\item $E$ is compact. 
+		\item $E$ is closed and bounded. 
+		\item Every infinite subset of $E$ has a cluster point in $E$. 
+		\item If $\{G_\lambda: \lambda \in \Lambda\}$ is a collection of open 
+		sets such that $E \subset \bigcup\limits_{\lambda \in \Lambda}G_\lambda$ 
+		(an \textbf{open cover} of $E$), then some finite subcollection is 
+		also an open cover of $E$.
+	\end{enumerate}
+\end{fact}
+
+
+

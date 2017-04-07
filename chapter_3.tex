@@ -1,0 +1,96 @@
+\chapter{Measure on $\R$}
+
+\begin{rmk}%54
+	There are several ways that we could develop a theory of measure on the 
+	entire real line. One is to start over and just repeat the development we 
+	have already been through. (Actually we could just have started that way.) 
+	The only important difference is that now some sets will have infinite 
+	measure ($\R$ itself for instance), so that we would have to keep in mind 
+	that the infinite sums are not guaranteed to converge. What we will 
+	actually do is use our theory on $[0,1]$ to create a theory on $\R$. 
+\end{rmk}
+
+\begin{defn}\label{d:measurableset}%55
+	\begin{enumerate}[(a)] 
+	\item For any real number $x$, let $\M_x$ be the collection of all subsets 
+	$E$ of $[x,x+1]$ such that $E-x$ is a measurable subset of $[0,1]$. For 
+	$E \in \M_x$ we set $m(E) = m(E - x)$. It is apparent that $\M_x$ is a 
+	$\sigma$-algebra of subsets of $[x,x+1]$ on which all the properties of 
+	\#44 hold. 
+	\item For any subset $E$ of $\R$, and each integer $n$, let $E_n = 
+	E \cap [n,n+1)$, We say that $E$ is Lebesgue measurable if $E_n \in \M_n$ 
+	for each $n$. We denote the collection of all Lebesgue measurable subsets 
+	of $\R$ by $\M_\R$. If $E$ is measurable, we define the Lebesgue measure 
+	of $E$ by $m(E) = \sum\limits_{n=-\infty}^\infty m(E_n)$.  
+	\end{enumerate}
+\end{defn}
+
+\begin{rmk}%56
+	It is very easy to verify that the set $\M_\R$ of Lebesgue measurable 
+	subsets of $\R$ is a $\sigma$-algebra of sets containing the Borel sets, 
+	and that the Lebesgue measure $m$ has all the properties of \#44 except 
+	that we may now interpret translation invariance (property 4) as ordinary 
+	translation invariance instead of ``translation invariance mod 1,'' that 
+	is, for any $E \in \M_\R$, and any real number $c$, $E + c \in \M_\R$ and 
+	$m(E) = m(E+c)$. 
+
+	Of course we do now have the possibility that $m(E) = \infty$. For this 
+	purpose we regard $\infty$ as just another number, more or less. It is 
+	necessary however, to avoid expressions like $\infty - \infty$, so at times 
+	we will need to be careful about whether the measure of a set is finite. 
+\end{rmk}
+
+\begin{pblm}%57
+	if $E$ is a measurable set of finite measure, then for any $\epsilon > 0$ 
+	there is a finite collection of open intervals $\{G_k\}_{k=1}^n$ so that 
+	\begin{equation*}
+		m\left(E\setminus\bigcup\limits_{k=1}^nG_k\right) + 
+		m\left(\bigcup\limits_{k=1}^nG_k\setminus E\right) < \epsilon
+	\end{equation*}
+	(Thus, every measurable set is ``almost a finite union of open sets.'')
+\begin{proof}
+	By 53, there is a closed set $F \subset E$ such that 
+	$m(E \setminus F) < \frac{\epsilon}{4}$
+	Now, define $F_n = F \cap [-n,n]$. Then each $F_n$ is compact, bounded by $E$ 
+	and 
+	\begin{equation*}
+		F_1 \subset F_2 \subset \dots
+	\end{equation*}
+	Furthermore, $m(F) = \sum\limits_{n=1}^\infty m(F_n \setminus F_{n-1})$ converges, 
+	so there is $N$ such that 
+	\begin{equation*}
+		\sum\limits_{n=N+1}^\infty m(F_n\setminus F_{n-1}) < \frac{\epsilon}{4}
+	\end{equation*}
+	So $m(E \setminus F_N) = m(E \setminus F) + m(F \setminus F_N) < \frac{\epsilon}{2}$. 
+
+	Since $F_N$ is measurable, there is an open $G$ such that $F_N \subset G$, which 
+	we can write as a union of open intervals $G = \bigcup\limits_{k=1}^\infty G_k$. 
+	Since $F_N$ is compact, there is a finite subcover of $G$ such that 
+	\begin{equation*}
+		F_N \subset \bigcup\limits_{k=1}^nG_k
+	\end{equation*}
+
+	Therefore since $F_N \subset \bigcup\limits_{k=1}^nG_k$, 
+	\begin{equation*}
+		m\left(E \setminus \bigcup\limits_{k=1}^nG_k\right) \le m(E \setminus F_N) < \frac{\epsilon}{2}
+	\end{equation*}
+
+	Also, since $F_N \subset \bigcup\limits_{k=1}^nG_k$, 
+	\begin{equation*}
+		m\left(\bigcup\limits_{k=1}^nG_k\setminus F_N\right) \le 
+		m\left(G\setminus E\right) < \frac{\epsilon}{2}
+	\end{equation*}
+	and since $F_N \subset E$, 
+	\begin{equation*}
+		m\left(\bigcup\limits_{k=1}^n G_k \setminus E\right) < 
+		m\left(G\setminus F_N\right) < \frac{\epsilon}{2}
+	\end{equation*}
+	and so putting the two results together we have 
+	\begin{equation*}
+		m\left(E\setminus\bigcup\limits_{k=1}^nG_k\right) + 
+		m\left(\bigcup\limits_{k=1}^nG_k\setminus E\right) < 
+		\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon
+	\end{equation*}
+\end{proof}
+\end{pblm}
+

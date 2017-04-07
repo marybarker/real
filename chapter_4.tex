@@ -1,0 +1,569 @@
+\chapter{Measurable Functions}
+\begin{pblm}%58
+	A real-valued function $f$ defined on a measurable subset $E$ of $\R$ is 
+	\textbf{measurable} if for every real number $\alpha$, 
+	$\{x \in E: f(x) < \alpha\}$ is measurable. 
+\end{pblm}
+
+\begin{pblm}%59
+	These are equivalent: 
+	\begin{enumerate}[(a)]
+	\item $f$ is measurable %a
+	\item for every $\alpha$, $\{x \in E: f(x) \ge \alpha\}$ is measurable %b
+	\item for every $\alpha$, $\{x \in E: f(x) > \alpha\}$ is measurable %c
+	\item for every $\alpha$, $\{x \in E: f(x) \le \alpha\}$ is measurable %d
+	\item for every open set $G$, $\{x \in E: f(x) \in G\}$ is measurable. %e
+	(Show (a) $\leftrightarrow$ (b) $\Rightarrow$ (c) $\leftrightarrow$ (d) 
+	$\Rightarrow$ (a) and (a) \& (c) $\Rightarrow$ (e), (e) $\Rightarrow$ (a))
+	\end{enumerate}
+\begin{proof}
+	\noindent $(a) \Leftrightarrow (b)$ Let $f$ be a measurable function. Then for 
+	any $\alpha$, the set $\{x \in E: f(x) < \alpha\}$ is measurable. Since the 
+	complement of a measurable set is measurable, this means that $\{x \in E: f(x) \ge \alpha\}$ 
+	is measurable for any $\alpha$. 
+
+	\noindent $(b) \Rightarrow (c)$ 
+	If $f$ is measurable, then for every $\alpha$, 
+	the set $\{x \in E: f(x) \ge \alpha\}$ is measurable. Consider the sets 
+	\begin{equation*}
+		\left\{x \in E: f(x) \ge \alpha + \frac{1}{i}\right\}_{i=1}^\infty
+	\end{equation*}
+	Each of these sets is measurable, and so as the countable union of 
+	measurable sets is measurable, this means that t
+	\begin{equation*}
+		\bigcup\limits_{i=1}^\infty \left\{x \in E : f(x) \ge \alpha + \frac{1}{i}\right\} 
+		= \{x \in E: f(x) > \alpha\}
+	\end{equation*}
+	is measurable.
+
+	\noindent $(c) \Leftrightarrow (d)$ Given that for all $\alpha \in \R$, 
+	$\{x \in E: f(x) > \alpha\}$ is measurable, then we also have the complement 
+	of a measurable set is measurable. Therefore for 
+	all real $\alpha$, $\{x \in E: f(x) \le \alpha\}$ is measurable.  
+
+	\noindent $(d) \Rightarrow (a)$ 
+	Similarly to showing $(b)$ implies $(c)$, consider the sets
+	\begin{equation*}
+		\left\{x \in E: f(x) \le \alpha - \frac{1}{i}\right\}_{i = 1}^\infty
+	\end{equation*}
+	As each set is measurable, the countable union is also, and so 
+	\begin{equation*}
+		\bigcup\limits_{i=1}^\infty\left\{x \in E: f(x) \le \alpha - \frac{1}{i}\right\} = 
+		\{x \in E: f(x) < \alpha\}
+	\end{equation*}
+	is measurable for any $\alpha$. Thus $f$ is a measurable function on $E$.
+
+	\noindent $(a),(c) \Rightarrow (e)$ For any open set $G$, we can write 
+	$G$ as a union of open intervals about each of its points. Say, $G = \bigcup\limits_{i=1}^\infty F_i$ 
+	where each $F_i$ is an open interval. If the number of points in $G$ is some finite $n \in \Zp$, 
+	we can take $F_{n+1}, F_{n+2} ... = \emptyset$. 
+
+	Now, for each $F_k = (a_k, b_k)$, since $f$ is measurable, we know that the intersection of 
+	the sets $\{x \in E: f(x) < b_k\}$ and $\{x \in E: f(x) > a_k\} = \{x \in E: f(x) \in F_k\}$ 
+	is measurable. Therefore, since the countable union of measurable sets (each of which is 
+	the intersection of two measurable sets) is measurable, then
+	\begin{equation*}
+		\{x \in E: f(x) \in G\} = \bigcup\limits_{i=1}^\infty \{x \in E: f(x) \in F_i\}
+	\end{equation*}
+	is measurable. 
+
+	\noindent $(e) \Rightarrow (a)$ Now, assume that for all open $G$, 
+	the set $\{x \in E: f(x) \in G\}$ is measurable. For any $\alpha \in \R$, 
+	we can write 
+	\begin{equation*}
+		\begin{array}{rcl}
+		\{x \in E: f(x) < \alpha\} & = & 
+		\left\{x \in E: f(x) \in \bigcup\limits_{k=1}^\infty (\alpha - k, \alpha - (k - 1))\right\} \\
+		& = & \bigcup\limits_{k=1}^\infty\left\{x \in E: f(x) \in (\alpha - k, \alpha - (k - 1))\right\}
+		\end{array}
+	\end{equation*}
+	which, as a countable union of measurable sets is measurable. Therefore $f$ is measurable. 
+\end{proof}
+\end{pblm}
+
+\begin{ex}%60
+\begin{enumerate}
+	\item if $E$ is a measurable set, the \textbf{characteristic function} 
+	of $E$ is defined by 
+	\begin{equation*}
+		\chi_E (x) = 
+	\left\{ \begin{matrix} 
+		1, & x \in E, \\
+		0, & x \notin E
+	\end{matrix} \right.
+	\end{equation*}
+	is measurable. 
+	\item By part (e) of the previous problem, any continuous function with a 
+	measurable domain is measurable. (What property of continuous functions 
+	does this follow from?) 
+\end{enumerate}
+\end{ex}
+
+\begin{pblm}%61
+	If $f$ is measurable with domain $E$, and $c \in \R$, then $cf$ and 
+	$f + c$ are measurable. 
+\begin{proof}
+	If $c > 0$, then For any $\alpha \in \R$, $\alpha /c \in \R$, and 
+	\begin{equation*}
+		\{x \in E: cf(x) > \alpha\} = \{x \in E: f(x) > \alpha/c\}
+	\end{equation*}
+	is measurable, since $f$ is measurable. Therefore $cf$ is measurable for all 
+	$c > 0$. 
+
+	If $c = 0$, then for any $\alpha \in R$, 
+	the set $\{x \in E: cf(x) > \alpha\}$ is either $\R\cap E$ 
+	(if $\alpha \le 0$), which is measurable, or else $\emptyset$ (if $\alpha > 0$), 
+	which is also measurable. 
+
+	If $c < 0$, then for any $\alpha \in \R$, the set $\{x \in E: cf(x) > \alpha\} = 
+	\{x \in E: f(x) \le \alpha / c\}$ which is measurable, since $f$ is measurable. 
+
+	Thus $cf(x)$ is measurable for all $c \in \R$.
+
+	Now, if $f$ is measurable over $E$, then for any $c \in \R$, for all $\alpha \in \R$, 
+	\begin{equation*}
+		\{x \in E: f(x) + c > \alpha\} = \{x \in E: f(x) > \alpha - c\}
+	\end{equation*}
+	which is measurable, since $f$ is measurable. 
+
+	Therefore $f(x) + c$ is measurable. 
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%62
+	If $f$ and $g$ are measurable with domain $E$, then $f + g$ is measurable. 
+	(Show $\{x \in E: f(x) + g(x) < \alpha\} = \bigcup\limits_{q} 
+	(\{x \in E: f(x) < \alpha - q\} \cap \{x \in E: g(x) < q\})$ where the 
+	union is over all of $q \in \Q$.)
+
+\begin{proof}
+	For each $q \in \Q$, the sets $\{x \in E: f(x) < \alpha - q\}$ and 
+	$\{x \in E: g(x) < q\}$ are both measurable, since $f$ and $g$ are 
+	both measurable functions. Also, as the intersection of two measurable 
+	sets is measurable, for any $\alpha \in \R$ and any $q \in \Q$, 
+	\begin{equation*}
+		\{x \in E: f(x) < \alpha - q\} \cap \{x \in E: g(x) < q\}
+	\end{equation*}
+	is measurable.  Also, since the rationals are countable, the union 
+	\begin{equation*}
+		\bigcup\limits_{q \in \Q}\left\{\{x \in E: f(x) < \alpha - q\} \cap \{x \in E: g(x) < q\}\right\}
+	\end{equation*}
+	is measurable. 
+	And so 
+	\begin{equation*}
+		\{x \in E: f(x) + g(x) < \alpha\} = 
+		\bigcup\limits_{q \in \Q}\{x \in E: f(x) < \alpha - q\} 
+		\cap \{x \in E: g(x) < q\} 
+	\end{equation*}
+	is measurable. 
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%63
+	if $f$ and $g$ are measurable with domain $E$, then $\max\{f,g\}$ and 
+	$\min\{f,g\}$ are measurable.
+\begin{proof}
+	For any $\alpha$, $\{x \in E: max(f, g) > \alpha\}$ is equal to 
+	\begin{equation*}
+		\{x \in E: f(x) > \alpha\} \cup \{x \in E: g(x) > \alpha\}
+	\end{equation*}
+	which, as the union of two measurable sets, is measurable. Therefore 
+	$max(f, g)$ is measurable. 
+
+	Similarly for $min(f, g)$, for any $\alpha$, 
+	\begin{equation*}
+		\{x \in E: min(f, g) < \alpha\} = \{x \in E: f < \alpha \} \cup \{x \in E: g < \alpha\}
+	\end{equation*}
+	is also measurable. 
+\end{proof}
+\end{pblm}
+
+\begin{defn}\label{d:pos_neg_fun}%64
+	If $f$ is measurable with domain $E$, the \textbf{positive part} of $f$ is 
+	the function $f_+ = \max\{f,0\}$, and the \textbf{negative part} of $f$ is 
+	the function $f_- = \max\{-f,0\}$. 
+\end{defn}
+
+\begin{rmk}%65
+	Note that $f = f_+ - f_-$ and $|f| = f_+ + f_-$. It follows from the 
+	previous problems that if $f$ is measurable, then so are all of $f_+, f_-$, 
+	and $|f|$. 
+\end{rmk}
+
+\begin{pblm}%66
+	If $f$ and $g$ are measurable with domain $E$, then $f^2$ and $fg$ are 
+	measurable. \\ (Do $f^2$ first. Then 
+	$fg = \frac{1}{2}\left( (f + g)^2 - f^2 - g^2\right)$.)
+\begin{proof}
+	If $f$ is a measurable function, then for any $\alpha$, if $\alpha \ge 0$, 
+	\begin{equation*}
+		\{x \in E: [f(x)]^2 < \alpha\} = \{x \in E: f(x) < \sqrt{\alpha}\} \cap \{x \in E: f(x) > -\sqrt{\alpha}\}
+	\end{equation*}
+	as the intersection of two measurable sets, is measurable. 
+	If on the other hand, $\alpha < 0$, then $\{x \in E: f^2 < \alpha\} = \emptyset$, which is measurable. 
+	Therefore for any $\alpha$, $\{x \in E: [f(x)]^2 < \alpha\}$ is measurable, and so $f^2$ is measurable. 
+
+	Now, as we have seen, the linear combination of measurable functions is measurable, and the 
+	square of a measurable function is measurable. Therefore 
+	\begin{equation*}
+		fg = \frac{1}{2}\left(f^2 - f^2 + 2fg + g^2 - g^2\right) = 
+		\frac{1}{2}\left((f+g)^2 - f^2 - g^2\right)
+	\end{equation*}
+	is measurable. 
+\end{proof}
+\end{pblm}
+
+\begin{defn}\label{d:ae}%67
+	We say that a property holds \textbf{almost everywhere} (abbreviated 
+	\textbf{a.e.}) if the set where it does not hold has measure zero. In this 
+	context a set of measure zero is often called a \textbf{null set}. We also 
+	say that a property that holds in a set $E$ except on a null set holds for 
+	\textbf{almost all} $x$ in $E$. 
+\end{defn}
+
+\begin{pblm}%68
+	If $f$ and $g$ are defined on a measurable set $E$, $f$ is a measurable 
+	function, and $f = g$ a.e., then $g$ is measurable. 
+\begin{proof}
+	For all $\alpha$, the sets $\{x \in E: f(x) < \alpha\}$ and 
+	$\{x \in E: f(x) \neq g(x)\}^c$ are measurable. Therefore 
+	\begin{equation*}
+		\{x \in E: f(x) < \alpha\} \cap \{x \in E: f(x) \neq g(x)\}^c
+	\end{equation*}
+	is measurable, and 
+	\begin{equation*}
+		\underbrace{ 
+			\overbrace{\{x \in E: f(x) < \alpha\}\cap\{x \in E: f(x) \neq g(x)\}^c}^{\text{measurable}} 
+			\cup \overbrace{\{x \in E: f(x) \neq g(x) \& g(x) < \alpha \}}^{\text{measure }0}
+		}_{\{x \in E: g(x) < \alpha\}}
+	\end{equation*}
+	is measurable. 
+\end{proof}
+\end{pblm}
+
+\begin{defn}\label{d:extendedreals}%69
+	The \textbf{extended real numbers} consist of $\R$ together with $+\infty$ 
+	and $-\infty$. These have the property that $-\infty < r < +\infty$ for 
+	every real number $r$, but we try not to do arithmetic with $\pm\infty$. It 
+	is often convenient to allow measurable functions to have range in the 
+	extended real numbers. The preceding problem shows that as long as 
+	functions take finite values almost everywhere, we can do arithmetic with 
+	them without bothering about what happens on a null set. 
+\end{defn}
+
+\begin{pblm}%70
+	If $f$ is a measurable extended real-valued function defined on a bounded 
+	measurable set $E$ and $f$ is finite a.e., then for any $\epsilon > 0$ 
+	there is $M$ so that $|f| \le M$ except on a set of measure less than 
+	$\epsilon$. (So any measurable function on a bounded set is ``almost 
+	bounded.'') \\ (Remember \ref{p:osouseful})
+\begin{proof}
+	Let $E_k = \{x \in E: |f(x)| > k\}$. Each of these sets is 
+	measurable, and $m(E_{k+1}) \ge m(e_k) \ge ...$ for all $k$. Therefore 
+	for any $\epsilon > 0$, there is some $k$ such that 
+	\begin{equation*}
+		m(E_k) < \epsilon
+	\end{equation*}
+	which implies that for all $x \notin E_k$, 
+	\begin{equation*}
+		|f(x)| \le k
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%71
+	Is it necessary to assume in the previous problem that the set $E$ is 
+	bounded? 
+
+	sort of answer: We need the measure of each of those $E$ not to be infinite 
+	in the previous example, else \ref{p:osouseful}  not apply. 
+\end{pblm}
+
+\begin{pblm}%72
+	If $\{f_n\}_{n=1}^\infty$ is any sequence of real-valued measurable 
+	functions defined on a measurable set $E$, then the function 
+	$F(x) = \sup_n f_n(x)$ is a measurable. (Note, for instance, that 
+	$F(x) = \infty$ if $f_n(x) \rightarrow \infty$ as $n \rightarrow \infty$.)
+\begin{proof}
+	for any $\alpha$, 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\{x \in E: F(x) > \alpha\} &=& \{x \in E: \sup \{f_n(x)\}_{n=1}^\infty > \alpha\}\\
+		&=& \bigcup\limits_{n=1}^\infty\{x\in E: f_n(x) > \alpha\} \in \M
+	\end{array}
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{defn}\label{d:limsup}%73
+	The \textbf{limit superior} of a sequence of real numbers 
+	$\{a_k\}_{k=1}^\infty$ is the extended real number 
+	$E = \inf_n \sum_{k\ge n} a_k$. We write $A = \lim\sup a_k$. \\
+	Note that the sequence $\{\sum_{k\ge n}a_k\}_{n=1}^\infty$ is 
+	non-increasing, so the inf is the same as the limit of this sequence, 
+	keeping in mind that all elements of this sequence may be $\infty$. 
+
+	Similarly the \textbf{limit inferior} of $\{a_k\}_{k=1}^\infty$ is 
+	$B = \sup_n\inf_{k\ge n}a_k$. We write $B = \lim\inf a_k$. The sequence 
+	$\{\inf_{k\ge n}a_k\}_{n=1}^\infty$ is non-increasing, so the sup is the 
+	same as the limit of this sequence. 
+\end{defn}
+
+\begin{pblm}%74
+	For any sequence $\{a_k\}_{k=1}^\infty$ of real numbers, $\lim\sup a_k 
+	\ge \lim\inf a_k$. $\lim\sup a_k = \lim\inf a_k$ if and only if the 
+	sequence $\{a_k\}_{k=1}^\infty$ converges. 
+\begin{proof}
+	$(\Rightarrow)$ Let $\lim\sup\limits_{a_k} = \lim\inf\limits_{a_k}$. Then 
+	for each $a_k$, 
+	\begin{equation*}
+	\begin{array}{rcccl}
+		\inf\limits_{k\ge n}a_k & \le & a_k & \le & \sup\limits_{k\ge n} a_k \\
+		\inf a_k - \inf a_k & \le & a_k - \inf a_k & \le & \sup a_k - \inf a_k\\
+		0 & \le & a_k - \inf a_k & \le & \sup a_k - \inf a_k\\
+		\lim\limits_{n\to\infty}0 & \le & \lim\limits_{n\to\infty}(a_k - \inf a_k ) & \le & \lim\limits_{n\to\infty} \sup a_k - \lim\limits_{n\to\infty}\inf a_k\\
+		0 & \le & \lim\limits_{n\to\infty}(a_k - \inf a_k) & \le & 0. 
+	\end{array}
+	\end{equation*}
+	Therefore, $\lim\limits_{n\to\infty}(a_k - \inf a_k) = 0$, so 
+	$\lim\limits_{n\to\infty}a_k = \lim\limits_{n\to\infty}\inf a_k = 
+	\lim\limits_{n\to\infty} \sup a_k$. Therefore the limit  as $n\to\infty$ of $a_k$ 
+	exists (and is a real number), so the sequence converges. 
+
+	\noindent$(\Leftarrow)$ Assume that $\{a_k\}_{k=1}^\infty$ converges to a limit. 
+	Then all of its subsequences converge to the same limit, nad since both $\sup a_k$ 
+	and $\inf a_k$ are subsequences of $\{a_k\}_{k=1}^\infty$, they must converge to 
+	the same limit. 
+\end{proof}
+\end{pblm}
+
+\begin{pblm}\label{p:ext_real_val_seq}%75
+	If $\{f_n\}_{n=1}^\infty$ is any sequence of extended real-valued 
+	measurable functions defined on a measurable set $E$, and if $f(x) = 
+	\lim\limits_{n\to\infty}f_n(x)$ exists for each $x \in E$, then $f$ is an 
+	extended real-valued measurable function on $E$. 
+\begin{proof}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%76
+	\begin{enumerate}[(i)]
+	\item The conclusion still holds in the previous problem if the sequence 
+	$\{f_n\}_{n=1}^\infty$ converges a.e. on $E$. 
+	\item That the pointwise limit of a sequence of measurable functions is 
+	measurable is essential to the theory of integration that we are about to 
+	create. It is the step that allows us to avoid the difficulty that the 
+	pointwise limit of a sequence of Riemann integrable functions may not be 
+	Riemann integrable. 
+	\end{enumerate}
+\end{rmk}
+
+\begin{defn}\label{d:simplefunction}%77
+	A \textbf{simple function} is a measurable function whose range is a finite 
+	subset of $\R$. A simple function $s$ taking values $a_j$ on measurable 
+	sets $E_j$ can be written 
+	\begin{equation*}
+		s = \sum\limits_{j=1}^n a_j \chi_{E_j}
+	\end{equation*}
+	Of course this representation is not unique. The \textbf{canonical} 
+	representation of a simple function is the sum where $\{E_j\}_{j=1}^n$ 
+	are disjoint and $j \neq k$ implies $a_j \neq a_k$. (In other words, each 
+	$E_j = s^{-1} (a_j)$ for the distinct values $a_j$ in the range of $s$.)
+\end{defn}
+
+\begin{pblm}\label{p:contalmostsimple}%78
+	Let $f$ be an extended real-valued measurable function defined on an 
+	interval $[a,b]$. Let $M > 0$. For any $\epsilon > 0$ there is a simple 
+	function $s$ so that $|f(x) - s(x)| < \epsilon$ on the set where $|f| 
+	\le M$. \\ (Partition $[-M,M]$ into slices and use the sets where $f$ 
+	takes values in a slice to define $s$.)
+\begin{proof}
+	For any $\epsilon > 0$, let $N$ be the smallest integer such that 
+	$N \ge \frac{2M}{\epsilon}$. 
+	We will cover the interval $[-M,M]$ with a family of disjoint intervals 
+	\begin{equation*}
+		\left\{[ -M+(j-1)\epsilon, -M + j\epsilon )\right\}_{j=1}^N
+	\end{equation*} 
+	each of which has length 
+	$\epsilon$. Let $E_j$ denote the $j^{th}$ interval, and $e_j$ the midpoint of that 
+	interval. 
+
+	Let $s(x) = \sum\limits_{j=1}^N e_j\chi_{E_j}(f(x))$. Then for every $x$, 
+	$s(x)$ is the midpoint of an $\epsilon$-length interval containing $f(x)$, so 
+	\begin{equation*}
+		|f(x) - s(x)| \le \epsilon/2,~~\text{ and so }~~|f(x) - s(x)| < \epsilon
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{defn}\label{d:stepfunction}%79
+	A \textbf{step function} $p$ is a simple function whose domain is a closed 
+	bounded interval $[a,b]$ and which can be written in the form 
+	$\sum_{j=1}^n a_j\chi_{\epsilon_j}$ where the $E_j$ are intervals. 
+\end{defn}
+
+\begin{pblm}\label{p:simplealmoststep}%80
+	Let $s$ be a simple function whose domain is a closed bounded interval 
+	$[a,b]$. For every $\epsilon > 0$ there is a step function $p$ so that 
+	$m(\{x \in [a,b]: s(x) \neq p(x)\}) < \epsilon$. \\ (Remember \#57). 
+\begin{proof}
+	As a simple function, we can re-write $s$ as 
+	\begin{equation*}
+		s = \sum\limits_{j=1}^n a_j \chi_{E_j}
+	\end{equation*}
+	for some measurable sets $E_j$ and some $a_j\in \R$ such that $a_j\neq 0$. 
+
+	For each $E_j$, let $\{G_{j_k}\}_{k=1}^{m_j}$ be a finite set of open 
+	intervals such that 
+	\begin{equation*}
+		m^\ast\left(E \setminus \bigcup\limits_{k=1}^{m_j} G_{j_k}\right) + 
+		m^\ast\left(\bigcup\limits_{k=1}^{m_j} G_{j_k} \setminus E\right) <
+		\frac{\epsilon}{n}
+		%\frac{\epsilon}{a_jn}. 
+	\end{equation*}
+	And furthermore, let $G_j = \bigcup\limits_{k=1}^{m_j} G_{j_k}$ for each $j$. Then 
+	\begin{equation*}
+		p = \sum\limits_{j=1}^n a_j \chi_{G_j}
+	\end{equation*}
+	is a step function such that for all $x \in [a, b]$, 
+	\begin{equation*}
+		s(x) \neq p(x)
+	\end{equation*} 
+	implies that 
+	\begin{equation*}
+		x \in N = \left(E_j \setminus G_j\right) \cup\left(G_j \setminus E_j\right)
+	\end{equation*}
+	for at least one $j \in \{1, ... , n\}$, and therefore 
+	\begin{equation*}
+		m(\{x \in [a,b] : s(x) \neq p(x)\}) = 
+		m(N) < \sum\limits_{j=1}^n \frac{\epsilon}{n} = \epsilon
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%81 
+	If $f$ is a measurable extended real-valued function defined on a closed 
+	bounded interval $[a,b]$ and $f$ is finite a.e., then for any 
+	$\epsilon > 0$ there is a step function $p$ and a continuous function $g$ 
+	so that $|f-p|<\epsilon$ except on a set of measure less than $\epsilon$, 
+	(So any measurable function is ``almost continuous.'')\\
+	(This is mostly assembling the information from the previous three 
+	problems.)
+\begin{proof}
+	if $f$ is a measurable extended real-valued function on a closed bounded 
+	interval $[a,b]$ and $f$ is finite a.e., then for any $\epsilon > 0$, we
+	know by \ref{p:contalmostsimple}, there is some simple function $s$ such that 
+	\begin{equation*}
+		|f(x) - s(x)| < \epsilon
+	\end{equation*}
+	And, since $s$ is simple, we know from \ref{p:simplealmoststep} that 
+	there is some step function $p$ such that 
+	$s(x) = p(x)$ except on a set of measure less than $\epsilon$. 
+	Therefore 
+	\begin{equation*}
+		|f(x) - p(x)| = |f(x) - s(x)| < \epsilon
+	\end{equation*}
+	except on a set of measure less than $\epsilon$. 
+\end{proof}
+\end{pblm}
+
+\begin{pblm}\label{p:approxfunwithsteporsimple}%82
+	Let $E$ be a measurable set of finite measure. Suppose that $f$ and 
+	$\{f_n\}_{n=1}^\infty$ are measurable functions defined on $E$ so that 
+	$f_n(x) \rightarrow f(x)$ for each $x \in E$. Then for every $\epsilon > 0$ 
+	and $\delta > 0$ there is a measurable set $A \subset E$ with 
+	$m(A) < \delta$ and an integer $N$ so that for all $x \notin A$ and all 
+	$n \ge N$, 
+	\begin{equation*}
+		|f_n(x) - f(x)| < \epsilon.
+	\end{equation*}
+	(Consider the sets $G_n = \{x: |f_n(x) - f(x)|\ge\epsilon\}$ and the 
+	nested collection 
+	\begin{equation*}
+		E_N = \bigcup\limits_{n=N}^\infty G_n = 
+		\{x: |f_n(x) - f(x)| \ge \epsilon \text{ for some }n \ge N\}. 
+	\end{equation*}
+	Show $\bigcup\limits_{N=1}^\infty E_N = \emptyset$.)
+\begin{proof}
+	since $f_n \rightarrow f$ for all $x$, then for any $\epsilon > 0$ and 
+	any $\delta > 0$, there exist $A \in \M$ and $N \in \Zp$ such that 
+	for all $x \notin A$ and all $n \ge N$, 
+	\begin{equation*}
+		|f_n(x) - f(x)| < \epsilon. 
+	\end{equation*}
+	Consider the sets $G_n = \{x: |f_n(x) - f(x) | \ge \epsilon$ for all $n$.
+	Then 
+	\begin{equation*}
+		E_N = \bigcup\limits_{n=N}^\infty G_n = 
+		\{x : |f_n(x) - f(x)| \ge \epsilon \text{ for some }n \ge N\} 
+	\end{equation*}
+	are a sequence of nested sets that, as countable 
+	unions of measurable sets, are also measurable. 
+	\begin{equation*}
+		E_N \supset E_{N+1} \supset \dots
+	\end{equation*}
+	and $\lim\limits_{n\to\infty}|f_n(x) - f(x)| = 0$ for each $x$, so 
+	\begin{equation*}
+		\bigcap\limits_{N=1}^\infty E_N = \emptyset
+	\end{equation*}
+	and so $\forall \delta > 0$, there is some $N$ such that $m(E_N) < \delta$ 
+	and 
+	\begin{equation*}
+		E_N = \{x: |f_n(x) - f(x)| \ge \epsilon \text{ for some } n \ge N\}
+	\end{equation*}
+	which implies that for all $x \notin E_N$, 
+	\begin{equation*}
+		|f_n(x) - f(x)| < \epsilon ~~\forall n > N.
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%83
+	It is clear that the conclusion of the preceding problem continues to hold 
+	if we assume only that $f_n(x) \rightarrow f(x)$ a.e. on $E$. 
+\end{rmk}
+
+\begin{defn}\label{convergeuniformly}%84
+	A sequence $\{f_n\}_{n=1}^\infty$ of functions \textbf{converges uniformly} 
+	to a function $f$ on a set $E$ if for every $\epsilon > 0$ there is an 
+	integer $N$ so that $|f_n(x) - f(x)| < \epsilon$ for all $n \ge N$ and 
+	all $x \in E$. 
+
+	Of course the ``uniform'' part is that $N$ does not depend on $x$. Note 
+	that the preceding problem has a conclusion that somewhat resembles uniform 
+	convergence, except that the set $A$ may depend on $\epsilon$. We fix this 
+	in the next problem. 
+\end{defn}
+
+\begin{pblm}\label{p:egoroff}%85 
+	Let $E$ be a measurable set of finite measure. Suppose that $f$ and 
+	$\{f_n\}_{n=1}^\infty$ are measurable functions defined on $E$ so that 
+	$f_n(x) \rightarrow f(x)$ a.e. on $E$. Then for each $\alpha > 0$ there is 
+	a set $A \subset E$ with $m(A) < \alpha$ and $f_n \rightarrow f$ uniformly 
+	on $E\setminus A$. \\ (Apply the preceding problem repeatedly with 
+	$\epsilon_n = 1/n$ and $\delta_n = 2^{-n}\alpha$.)
+\begin{proof}
+	Let $\alpha > 0$. Then let $\epsilon_n = \frac{1}{n}$, $\delta_n = \frac{\alpha}{2^n}$. 
+	Using \ref{p:approxfunwithsteporsimple} for each $n$, there exists a measurable 
+	set $A_n \subset E$ such that $m(A_n) < \frac{\alpha}{2^n}$ and a positive 
+	integer $N_n$ such that for all $x \in E\setminus A_n$ and all $j \ge N_n$, 
+	\begin{equation*}
+		|f_j(x) - f(x)| < \frac{1}{n}. 
+	\end{equation*}
+	Let $A = \bigcup\limits_{i=1}^\infty A_i$. Then 
+	\begin{equation*}
+		m(A) \le \sum\limits_{i=1}^\infty A_k < \sum\limits_{i=1}^\infty\frac{\alpha}{2^i} = \alpha \sum\limits_{i=1}^\infty \frac{1}{2^i} = \alpha
+	\end{equation*} 
+	So $m(A) < \alpha$. 
+
+	Let $\epsilon > 0$. Then there exists some $n$ such that $\frac{1}{n} < \epsilon$ 
+	(by the Archimedean property), so there exists some $N_n$ such that 
+	\begin{equation*}
+		|f_j(x) - f(x)| < \epsilon_n < \epsilon ~~\forall j \ge N_n \forall x \in E\setminus A_n. 
+	\end{equation*}
+	This is therefore true for all $x \in E\setminus A$ as $E\setminus A$ is a 
+	subset of $E \setminus A_n$. 
+\end{proof}
+\end{pblm}
+

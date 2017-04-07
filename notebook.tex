@@ -1,0 +1,61 @@
+\documentclass[11pt,rightpage,a4paper]{memoir}
+\usepackage{mathtools,amsthm,amssymb,amsfonts,geometry,multicol,pifont,eufrak, mathrsfs}
+\usepackage{mleftright, hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplots,enumerate}
+
+
+\usetikzlibrary{arrows}
+\semiisopage % Print placement in page
+\chapterstyle{hangnum} % Chapter heading style
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{compat=1.4}
+
+%\newtheoremstyle{thm}{\topsep}{\topsep}{\itshape}{}{\bfseries}{}{\newline}{}
+\newtheoremstyle{problems}{\topsep}{\topsep}{}{}{\bfseries}{}{\newline}{}
+\theoremstyle{thm}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{ex}[thm]{Example}
+\theoremstyle{problems}
+\newtheorem{prblm}[thm]{}
+
+\colorlet{shadecolor}{gray!10}
+\newenvironment{pblm}
+   {\begin{shaded}\begin{prblm}}
+   {\end{prblm}\end{shaded}}
+
+\title{Real Analysis Notebook}
+\author{Mary Barker}
+\date{Spring 2017}
+
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{R}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\Sp}{\mathscr{P}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zp}{\mathbb{Z}^+}
+\newcommand{\Dp}{\dot{+}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\mDref}[1]{Definition \ref{#1}}
+\newcommand{\mPref}[1]{\# \ref{#1}}
+
+\begin{document}
+	\begin{titlingpage}
+		\maketitle
+	\end{titlingpage}
+
+	\include{chapter_1}
+	\include{chapter_2}
+	\include{chapter_3}
+	\include{chapter_4}
+	\include{chapter_5}
+	\include{chapter_6}
+\end{document}

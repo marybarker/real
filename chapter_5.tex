@@ -1,0 +1,621 @@
+\chapter{The Lebesgue Integral}
+\begin{rmk} ~ %86
+	\begin{enumerate}
+	\item Recall that in the Riemann theory of integration, for a bounded 
+	function $f$ on a closed interval $[a,b]$ we define the \textbf{upper 
+	integral}, $U$, and \textbf{lower integral}, $L$ as 
+	\begin{equation*}
+		U = \inf\left\{\int\limits_a^b s(x)dx\right\} ,~~ 
+		L = \sup\left\{\int\limits_a^b r(x)dx\right\}
+	\end{equation*}
+	where the inf and sup are over the set of all step functions $s$ such that 
+	$s \ge f$ and the set of all step functions $r$ such that $r \le f$ 
+	respectively and we define the integral of a step function $s(x) = 
+	\sum\limits_{j=1}^n c_j\chi_{[a_j,b_j]}(x)$ (the canonical representation) 
+	to be $\int_a^b s(x) dx = \sum\limits_{j=1}^nc_j(b_j-a_j)$.(This is the 
+	usual definition expressed in an unusual way. The integrals of the step 
+	functions are usually called upper sums and lower sums.)
+
+	The function $f$ is \textbf{Riemann integrable} if $U = L$. and in that 
+	case we call the common value the \textbf{Riemann integral} of $f$ over 
+	$[a,b]$, denoted $\int_a^bf(x)dx$. 
+	\item Of course one requirement for the Lebesgue integral is that any 
+	Riemann integrable function should also be Lebesgue integrable, and that 
+	the values of the two integrals should be the same. Another practical 
+	requirement is that there should be enough Lebesgue integrable functions 
+	that are not Riemann integrable to make it worthwhile to go to the trouble 
+	of developing the Lebesgue integral. 
+	\end{enumerate}
+\end{rmk}
+
+\begin{defn}\label{d:integral} ~ %87
+\begin{enumerate}
+	\item If $s$ is a simple function with canonical representation 
+	$s = \sum\limits_{j=1}^n c_j\chi_{E_j}$ 
+	(recall Def \mDref{d:simplefunction}) that vanishes outside a set of finite 
+	measure, the integral of $s$ is 
+	\begin{equation*}
+		\int s = \sum\limits_{j=1}^n c_j m(E_j).
+	\end{equation*}
+	\item If $E$ is any measurable set, the integral of $s$ over $E$ is 
+	\begin{equation*}
+		\int_E s = \int s\chi_E. 
+	\end{equation*}
+\end{enumerate}
+\end{defn}
+
+\begin{rmk}%88
+	Of course we think of this as ``the signed area under the curve'' as usual. 
+	One irritating fine point we need to deal with is to check that if we express 
+	the simple function as a linear combination of characteristic functions in a 
+	different way, then $\int s$ is also given by the corresponding sum. 
+\end{rmk}
+
+\begin{pblm}\label{p:simplefuncint}%89 
+	Suppose $s$ is a simple function that vanishes outside a set of finite 
+	measure and $s = \sum\limits_{j=1}^nc_j\chi_{A_j}$ where the sets $\{A_j\}_{j=1}^n$ 
+	are pairwise disjoint (but several different $A_j's$ may carry the same value $c_j$). 
+	Then $\int s = \sum\limits_{j=1}^n c_j m(A_j).$ 
+
+	\noindent (For any $c$ in the range of $s$, the canonical representation of $s$ 
+	includes $E_c = \cup\{A_j: c_j = c\}$. We know $m(E_c) = \sum\limits_{c_j = c} m(A_j).$)
+\begin{proof}
+	For each $c_{j} = s(x)$ for some $x$ in the set of finite measure, let 
+	$E_{j} = \cup\{ A_{i}: c_{i} = c_{j} \}$. 
+	Therefore, there is a canonical representation of $s(x)$: 
+	\begin{equation*}
+		s = \sum\limits_{j=1}^{m} c_{j}\chi_{E_j}
+	\end{equation*}	
+	Where $E_{j} \cap E_{k} = \emptyset$ if $j \neq k$ 
+	(as they are unions of pairwise disjoint sets), 
+	and each $c_{i}$ is distinct.  Then applying the definition of the 
+	integral of a simple function,
+	\begin{equation*}
+		\int s = \sum_{i=1}^{m} c_{i}m(E_{i}) 		
+	\end{equation*}
+	For any individual $E_{i}$, the measure of $E_{i}$ is the sum of the measures 
+	of the $A_{j}$ which make up the union of $E_{i}$.  This is possible because all of 
+	the $A_{j}$'s are pairwise disjoint, so countable subadditivity can be applied here. 
+	Therefore 
+	\begin{equation*}
+		c_{i}m[E_{i}] = c_{i}\sum_{k=1}^{l}m[A_{k}]	.
+	\end{equation*}
+	This turns (5.1) into:
+	\begin{equation*}
+		\int s = \sum_{j=1}^{n}c_{j}m[A_{j}]
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\pagebreak
+
+\begin{pblm}\label{p:simplefuncintislinear}%90
+	Suppose that $r$ and $s$ are simple functions that vanish outside a set of 
+	finite measure and that $a$ and $b$ are real numbers. 
+	\begin{enumerate}
+		\item $\int (ar + bs) = a\int r + b \int s.$
+		\item If $r \ge s$, then $\int r \ge \int s.$ 
+	\end{enumerate}
+	{\scriptsize{(If $s = \sum\limits_{j=1}^n c_j\chi_{E_j}$, $r = \sum\limits_{j=1}^m d_j\chi_{F_j}$ are 
+	the canonical representations, consider the representations using all possible sets 
+	$E_j \cap F_k$. For $(2)$, consider $r - s$.)}}
+\begin{proof}~
+	\begin{enumerate}
+	\item Let $s = \sum\limits_{j=1}^nc_j\chi_{E_j},~ r = \sum\limits_{j=1}^md_j\chi_{F_j}$ be the canonical 
+	representations for $r$ and $s$. Then let $\{G_k\}_{k=1}^{m\times n}$ be given by all of the 
+	intersections  $E_j \cap F_k$ (where some intersections can be empty). 
+	Then we can re-write $s$ and $r$ as 
+	\begin{equation*}
+		s = \sum\limits_{k=1}^{nm}c_j\chi_{G_k}~~~ 
+		r = \sum\limits_{k=1}^{nm}d_j\chi_{G_k}~~~ 
+	\end{equation*}
+	Where, as the $G_k$ are each a subset of one and only one $E_j$, and one $F_j$, so the $c_j$ and $d_j$ 
+	are not necessarily unique, but are the coefficients associated to the supersets $E_j$, $F_j$. 
+	respectively. Then 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\int(ar + bs) &=& \int \left(a\sum\limits_{k=1}^{mn} d_k\chi_{G_k} + 
+					   b\sum\limits_{k=1}^{mn} c_k\chi_{G_k}\right)\\
+			&=& \sum\limits_{k=1}^{mn} (ad_k + bc_k) m(G_k)\\
+			&=& a\sum\limits_{k=1}^{mn} d_k m(G_k) + b\sum\limits_{k=1}^{mn} c_k m(G_k)\\
+			&=& a\int r + b \int s
+	\end{array}
+	\end{equation*}
+	\item If $r \ge s$, then consider $\int (r - s)$. From part (1), we know that this 
+	is equal to $\int r - \int s$, and since $r \ge s$, then $r - s \ge 0$, and so 
+	we can write $r - s$ as a sum of non-negative values, and so 
+	$\int (r - s) = \int r  - \int s \ge 0$, and so $\int r \ge \int s$. 
+	\end{enumerate}
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%91
+	By the preceding problem and induction, if $\{A_j\}_{j=1}^n$ is any collection of 
+	sets of finite measure, not necessarily disjoint, and if 
+	$s = \sum\limits_{j=1}^n c_j\chi_{A_j}$, then $\int s = \sum\limits_{j=1}^n c_j m(A_j)$ 
+	so that the restriction above to pairwise disjoint sets is unnecessary. 
+\end{rmk}
+
+\begin{pblm}\label{p:infinteqsupint}%92
+	Let $f$ be a bounded function defined on a measurable set $E$ with $m(E)$ finite. Then 
+	\begin{equation*}
+		\inf\limits_{s\ge f}\int s = \sup\limits_{r \le f}\int r
+	\end{equation*}
+	if and only if $f$ is measurable. \\
+	{\scriptsize{(If $|f| \le M$ is measurable, partitions the range into $2n$ equal portions and use 
+	this to define simple functions $r$ and $s$ with $r \le f \le s$. For the other 
+	direction, let $\{r_n\}$, $\{s_n\}$ be sequences of simple functions whose integrals 
+	approach the sup and inf. Then $\sup r_n\le f\le\inf s_n$, $\sup r_n$ and $\inf s_n$ 
+	are measurable, and you can show $m\{x: \sup r_n \neq\inf s_n\} = 0$. )}}
+\begin{proof}
+	$(\Rightarrow): $ 
+	Note first that if $m(E) = 0$, then $f$ is measurable, as the set 
+	$\{x \in E: f(x) < \alpha\}$ has measure 0 for any $\alpha$ and so is measurable. 
+
+	Let $\{r_n\}$, $\{s_n\}$ be sequences of step functions such that 
+	\begin{equation*}
+		\lim\limits_{n\to\infty} \int s_n = \inf ~~~ \& ~~~ 
+		\lim\limits_{n\to\infty} \int r_n = \sup 
+	\end{equation*}
+	Now, since $r_n \le f \le s_m$ for all $n$ and $m$, then 
+	\begin{equation*}
+		\sup\limits_{n}r_n \le f \le \inf\limits_{n}s_n
+	\end{equation*}
+	and for all $\epsilon > 0$, there exist integers $N$ and $M$ such that for all 
+	$n \ge N$ and $m \ge M$, 
+	\begin{equation*}
+		\left|\int r_n - \int f\right| < \frac{\epsilon}{2}m(E) ~~~ \text{ and } ~~~ 
+		\left|\int s_m - \int f\right| < \frac{\epsilon}{2}m(E)
+	\end{equation*}
+	So 
+	\begin{equation*}
+		\left|\int s_p - \int r_p\right| < \epsilon \cdot m(E) ~~\forall~ p \ge max(M,N)
+	\end{equation*}
+	and by \ref{p:simplefuncintislinear}, this implies that 
+	\begin{equation*}
+		\left|\int (s_p - r_p)\right| < \epsilon \cdot m(E)
+	\end{equation*}
+	and since $s_p \ge r_p$ for all $p$, this is the same as 
+	\begin{equation*}
+		\int (s_p - r_p) < \epsilon \cdot m(E)
+	\end{equation*}
+	Now, define $\tau - \epsilon ~\chi_E$. Then $\tau$ is a simple function with a 
+	value of $\epsilon$ everywhere on $E$, and $0$ elsewhere. So, by 
+	 \ref{p:simplefuncintislinear}(2), 
+	\begin{equation*}
+		\int (s_p - r_p) < \int \tau =  \epsilon \cdot m(E) ~ \implies ~ (s_p - r_p) < \tau 
+	\end{equation*}
+	Therefore $s_p - r_p < \epsilon$ for all $x \in E$, and so, by \ref{p:ext_real_val_seq}, $f$ is measurable. 
+
+	\noindent $(\Leftarrow): $ let $f$ be measurable and bounded on $E \in \M$ where 
+	$m(E)$ is finite, and let $|f| \le M$ for all $x \in E$. Then partition 
+	$[-M, M]$ into $2n$ equal intervals for any $n$, so that 
+	\begin{equation*}
+		E_j = \left[\left.-M + \frac{M}{n}(j-1), -M + \frac{M}{n}j\right.\right)
+	\end{equation*}
+	From \ref{p:contalmostsimple}, define $r_n, s_n$ as 
+	\begin{equation*}
+	\begin{array}{c}
+		s_n = \sum\limits_{j=1}^{2n} (-M + \frac{M}{n}j) \chi_{E_j}(f(x)) \\
+		r_n = \sum\limits_{j=1}^{2n} (-M + \frac{M}{n}(j-1)) \chi_{E_j}(f(x)) \\
+	\end{array}
+	\end{equation*}
+	Then 
+	\begin{equation*}
+		\int(s_n-r_n) = \sum\limits_{j=1}^{2n}\left[\left(-M+\frac{M}{n}(j-1)\right)\frac{M}{n} + 
+				\left(-M + \frac{M}{n}j\right)\frac{M}{n}\right] 
+				= \frac{M^2}{n}
+	\end{equation*}
+	Now, since $M$ is fixed, as $n$ increases we have 
+	\begin{equation*}
+		\frac{2M^2}{n} \ge \int s_n - \int r_n \ge \inf\limits{s\ge f}\int s - \sup\limits_{r\le f}\int r \ge 0
+	\end{equation*}
+	and so $\inf = \sup$. 
+\end{proof}
+\end{pblm}
+
+\begin{rmk} %93
+	The moral of the preceding problem is that, unlike the situation with the Riemann 
+	integral, we do not need to consider both upper integrals and lower integrals because 
+	we already have the correct class of functinos, the measurable functions. Thus we can 
+	say, forget about lower integrals and just approximate from above. (This is analagous 
+	to not needing inner measure to help define Lebesgue measure.)
+\end{rmk}
+
+\begin{defn}\label{d:lebesgueintegral}%94
+	If $f$ is a bounded measurable function defined on a measurable set $E$ with $m(E)$ 
+	finite, then the (Lebesgue) integral of $f$ is 
+	\begin{equation*}
+		\int f = \inf\limits_{s \ge f}\int s
+	\end{equation*}
+	where the inf is over the class of all simple functions $s$ with $s \ge f$. We sometimes 
+	write $\int_E f$. If $E = [a, b]$, we write $\int_a^b f$.\\ 
+	If $A$ is a measurable subset of $E$, we define $\int_A f = \int f\chi_A$. 
+\end{defn}
+
+\begin{pblm}%95
+	Let $f$ be a bounded function defined on $[a,b]$. If $f$ is Riemann integrable 
+	on $[a,b]$, then $f$ is measurable and the Riemann integral $R\int_a^b f =\int_a^b f$. \\
+	(A step function is a simple function.)
+\begin{proof}
+	%%%%%%%%%%%%%%%%%%%%%%
+\end{proof}
+\end{pblm}
+
+\begin{pblm}\label{p:lebesguelotsofuseful}%96
+	The Lebesgue integral has the following properties for bounded measurable functions defined 
+	on a set $E$ of finite measure. 
+	\begin{enumerate}
+	\item $\int_E (af + bg) = a\int_E f + b\int_E g$, 
+	\item If $f \le g$ a.e., then $\int_E f \le \int_E g$, 
+	\item If $f = g$ a.e., then $\int_E f = \int_E g$, 
+	\item If $\alpha \le f(x) \le \beta$ for almost all $x \in E$, then 
+		$\alpha ~m(E) \le \int_E f \le \beta~ m(E)$, 
+	\item If $A$ and $B$ are disjoint measurable subsets of $E$, then 
+		$\int_{A\cup B} f = \int_A f + \int_B$. 
+	\end{enumerate}
+	{\scriptsize{(For (1) show $\int af = a\int f$ (easy) and $\int(f+g) = \int f + \int g$ (Requires some 
+	manipulation of infs. You may also find \mPref{p:infinteqsupint} useful.) For (2) you can 
+	show $f \le 0$ a.e. implies $\int_E f \le 0.$ (3), (4), and (5) follow from previous parts.)}}
+\begin{proof}
+	%%%%%%%%%%%%%%%%%%%%%%
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%97
+	It follows from part (3) and the previous prbolem about measurability of functions equal 
+	almost everywhere that changing the values of a function in a bounded way on a countable 
+	subset of $E$ does not affect $\int_E f$. Thus the Dirichlet example of a non-Riemann 
+	integrable function (the characteristic function of the set $\Q_0$ of rationals in $[0,1]$) 
+	is not a problem here. We have $\int_0^1 \chi_{\Q_0} = 0$. 
+\end{rmk}
+
+\begin{pblm}\label{p:intofsequenceeqlimint}%98
+	Let $\{f_n\}_{n=1}^\infty$ be a sequence of measurable functions on a measurable set $E$ of 
+	finite measure such that for some $M > 0$, $|f_n|\le M$ a.e. for each $n$. If 
+	$\lim\limits_{n\to\infty}f_n(x)$ exists a.e. on $E$, then the function defined by 
+	$\lim\limits_{n\to\infty}f_n(x)$ is equal almost everywhere on $E$ to a bounded measurable 
+	function $f$ and 
+	\begin{equation*}
+		\int_E f = \lim\limits_{n\to\infty}\int_E f_n.
+	\end{equation*}
+	(Use \mPref{p:approxfunwithsteporsimple} or Egoroff's Thm \mPref{p:egoroff}). 
+\begin{proof}
+	If $\lim\limits_{n\to\infty}f_n$ exists a.e. on $E$, then $f = \lim\limits_{n\to\infty} f_n$ 
+	is measurable by \ref{p:ext_real_val_seq}, and $|f| \le M$ a.e. 
+
+	Then by \ref{p:egoroff}, for any $\epsilon > 0$, there is $A \subset E$ with $m(A) < \epsilon/4M$ and 
+	$f_n \rightarrow f$ uniformly on $E \setminus A$. So 
+	\begin{equation*}
+		\int_E (f - f_n) \le \int_E |f - f_n| = \int_{E \setminus A} |f-f_n| + \int_A|f-f_n|
+	\end{equation*}
+	and since $f_n\rightarrow f$ uniformly on $E \setminus A$, there is $N \in \Z$ such that 
+	for all $n \ge N$, 
+	\begin{equation*}
+		\int_E (f - f_n) < \int_E|f-f_n|\le \int_{E \setminus A} \epsilon/2m(E\setminus A) + \int_A|f-f_n|
+	\end{equation*}
+	and so 
+	\begin{equation*}
+	\begin{array}{rclr}
+		 \int_E(f-f_n) & < & \frac{\epsilon}{2m(E\setminus A)} \cdot m(E\setminus A) + \int_A|f-f_n| & \forall n \ge N\\
+		 & < & \frac{\epsilon}{2} + \int_A 2M & \forall n \ge N\\
+		 & < & \frac{\epsilon}{2} + m(A) ~ 2M & \forall n \ge N\\
+		 & < & \frac{\epsilon}{2} + \frac{\epsilon}{4M} 2M & \forall n \ge N\\
+		 \int_E(f-f_n) & < & \frac{\epsilon}{2} + \frac{\epsilon}{2} & \forall n \ge N\\
+		 \int_Ef-\int_Ef_n & < & \epsilon  & \forall n \ge N\\
+		 \int_Ef-\lim\limits_{n\to\infty}\int_Ef_n & < & \epsilon  & \\
+	\Rightarrow~~~  \int_E f & = & \lim\limits_{n\to\infty}\int_Ef_n
+	\end{array}
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{rmk}~ %99
+\begin{enumerate}
+	\item The preceding problem is a form of the Bounded Convergence Theorem-the first of 
+	the important convergence theorems. It asks more than pointwise convergence (the 
+	uniform boundedness of the functions), but much less than uniform convergence. 
+	\item Now we'll extend things by dropping our conditions that the functions be bounded 
+	and defined on a set of finite measure. We'll start by defining the integral for non-negative 
+	functions only, and then writing an arbitrary function as a linear combination of these. The 
+	idea for non-negative functions is to take the sup over all bounded functions non-zero on a set 
+	of finite measure that are below the given function.
+\end{enumerate}
+\end{rmk}
+
+\begin{defn}\label{d:thehundred}%100
+	Let $f$ be a non-negative measurable function on a measurable set $E$. Then we define 
+	\begin{equation*}
+		\int_E f = \sup\limits_{h\le f}\int_E h
+	\end{equation*}
+	where the sup is over all bounded non-negative measurable functions $h \le f$ such that 
+	$m\{x \in E: h(x) \neq 0\} < \infty$ and we interpret $\int_E h$ as 
+	$\int_{\{x\in E:h(x)\neq0\}}h$. 
+\end{defn}
+
+\begin{pblm}\label{p:conditionsnonnegmeasu}%101
+	If $f$ and $g$ are non-negative measurable functions defined on a measurable set $E$, then 
+	\begin{enumerate}
+		\item $\int_E \alpha f = \alpha \int_E f$ for any $\alpha \ge 0$, 
+		\item $\int_E(f+g) = \int_E f + \int_E g$, 
+		\item If $f \ge g$ a.e. then $\int_E f \ge \int_E$. In particular, if 
+		$f \ge 0$ a.e. then $\int_E f \ge 0$. 
+	\end{enumerate}
+\begin{proof}
+	%%%%%%%%%%%%%%%%%
+\end{proof}
+\end{pblm}
+
+\begin{pblm}\label{p:inteqliminf}%102
+	Let $\{f_n\}_{n=1}^\infty$ be a sequence of non-negative measurable functions on a 
+	measurable set $E$ such that $f(x) = \lim\limits_{n\to\infty}f_n(x)$ exists for almost 
+	all $x \in E$. Then $f$ is measurable and 
+	\begin{equation*}
+		\int_E f \le \lim\inf\int_E f_n.
+	\end{equation*}
+\begin{proof}
+	%%%%%%%%%%%%%%%%%
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%103
+	The preceding problem is known as Fatou's Lemma. You should be sure that you know of an 
+	example where equality does not hold. 
+\end{rmk}
+
+\begin{pblm}\label{p:mct}%104
+	Let $\{f_n\}_{n=1}^\infty$ be a non-decreasing sequence of non-negative measurable functions 
+	on a measurable set $E$, and let $f(x) = \lim\limits_{n\to\infty}f_n(x)$ for each $x \in E$. 
+	($f(x) = \infty$ is allowed.) Then 
+	\begin{equation*}
+		\int_E f = \lim\limits_{n\to\infty}\int_Ef_n 
+	\end{equation*}
+	where it is possible that both sides of the equation are $+\infty$. 
+\begin{proof}
+	consider $g = f - f_n$. Then $g$ is positive and $ g \le f$. 
+
+	WTS:
+	$\lim\limits_{n\to\infty}\int_E f_n \le \int_E f$ and $\lim\limits_{n\to\infty}\int_E f_n \ge \int_E f$. 
+
+	$f_n \le f$ for all $n$, and so 
+	\begin{equation*}
+		\lim\limits_{n\to\infty}\int_E f_n \le \int_E f
+	\end{equation*}
+
+	On the other hand, using Fatou's Lemma, we have 
+	\begin{equation*}
+		\int_E f \le \lim\inf \int_E f_n = \lim\limits_{n\to\infty} \int_E f_n
+	\end{equation*}
+	and so 
+	\begin{equation*}
+		\int_E f = \lim\limits_{n\to\infty}\int_E f_n
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%105
+	This is the monotone Convergence Theorem. It and Fatou's Lemma are the principal convergence 
+	theorems for non-negative functions. 
+\end{rmk}
+
+\begin{pblm}\label{p:veryuseful}%106
+~
+	\begin{enumerate}[(a)]
+	\item Let $\{f_k\}_{k=1}^\infty$ be a sequence of non-negative measurable functions on a 
+	measurable set $E$. Then 
+	\begin{equation*}
+		\int_E\left(\sum\limits_{k=1}^\infty f_k\right) = 
+		\sum\limits_{k=1}^\infty\left(\int_Ef_k\right).
+	\end{equation*}
+	\item Let $f$ be a non-negative measurable function on a measurable set $E$, and let 
+	$\{A_n\}_{n=1}^\infty$ be a sequence of mutually disjoint measurable subsets of $E$. 
+	Then 
+	\begin{equation*}
+		\int_{\bigcup\limits_{n=1}^\infty A_n}f = \sum\limits_{n=1}^\infty\int_{A_n}f.
+	\end{equation*}
+	\end{enumerate}
+\begin{proof}~
+	\begin{enumerate}[(a)]
+	\item Define $g_n = \sum\limits_{k=1}^nf_k$. Then $\{g_n\}$ is a nondecreasing 
+		sequence and so by \ref{p:mct}, 
+		\begin{equation*}
+			\int_E\lim\limits_{n\to\infty}g_n = \lim\limits_{n\to\infty}\int_Eg_n
+		\end{equation*}
+		and now, we will show that $\int_E\sum\limits_{k=1}^nf_k = \sum\limits_{k=1}^n\int_Ef_k$ 
+		by induction. 
+
+		\noindent Base case: $\int_E (f + g) = \int_Ef + \int_Eg$ by \ref{p:lebesguelotsofuseful}
+
+		\noindent Induction step: Assume that the hypothesis is true for some $n-1$, and then 
+		\begin{equation*}
+		\begin{array}{rcl}
+			\int_E\sum\limits_{k=1}^nf_k &=& \int_E\left[\sum\limits_{k=1}^{n-1}f_k + f_n\right] \\
+						&=& \int_E\sum\limits_{k=1}^{n-1}f_k+\int_Ef_n
+		\end{array}
+		\end{equation*}
+		So 
+		\begin{equation*}
+			\int_E\sum\limits_{k=1}^\infty f_k = \sum\limits_{k=1}^\infty\int_Ef_k
+		\end{equation*}
+	\item Let $A = \bigcup\limits_{n=1}^\infty A_n$. Then 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\int_Af & = \int_A\sum\limits_{n=1}^\infty f\chi_{A_n} = & \sum\limits_{n=1}^\infty\int_Af\chi_{A_n}\\
+		\int_{\bigcup\limits_{n=1}^\infty}f & = & \sum\limits_{n=1}^\infty\int_{A_n}f.
+	\end{array}
+	\end{equation*}
+	\end{enumerate}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}\label{p:nonnegmeas_infty}%107
+	Let $f$ and $g$ be non-negative measurable functions on a measurable set $E$ such that 
+	$f(x) \ge g(x)$ on $E$. If $\int_E f < \infty$, then $\int_E g < \infty$, 
+	$\int_E(f-g) < \infty$, and 
+	\begin{equation*}
+		\int_E(f-g) = \int_Ef - \int_Eg. 
+	\end{equation*}
+\begin{proof}~
+	\begin{itemize}
+	\item If $\int_E f < \infty$, then by \ref{p:conditionsnonnegmeasu}, 
+		\begin{equation*}
+			\int_Eg \le \int_E f < \infty ~~ \Rightarrow ~~ \int_Eg < \infty
+		\end{equation*}
+	\item Since $f \ge g$ on $E$, then $0 \le f - g \le f$ on $E$, and so 
+		\begin{equation*}
+			\int_E (f - g) \le \int_E f < \infty
+		\end{equation*}
+	\item 
+		\begin{equation*}
+		\begin{array}{rcl}
+			\underbrace{\int_E (f + g) + \int_Eg}_{\text{both non-negative}} = 
+			\int_E\left[(f - g) + g\right] = \int_Ef & \Rightarrow & \int_Ef = 
+			\int_E(f-g)+\int_Eg\\
+			& \Rightarrow & \int_Ef - \int_Eg = \int_E(f - g)
+		\end{array}
+		\end{equation*}
+	\end{itemize}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%108
+	Let $f$ be a non-negative measurable function on a mesaurable set $E$ such that 
+	$\int_E f < \infty$. Then for each $\epsilon > 0$ there is $\delta > 0$ so that 
+	for every $A \subset E$ with $m(A) < \delta$, it is the case that $\int_Af<\epsilon$. 
+\begin{proof}
+	%%%%%%%%%%%%%%%%%
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%109
+	This looks like a sort fo continuity condition. As the proof demonstrates, it 
+	really says that an integrable function cannot have ``delta function'' 
+	parts-places of size zero but positive area (or positive mass if you prefer to 
+	think of $f$ as representing density). 
+\end{rmk}
+
+\begin{rmk}%110
+	Let $f$ be an extended real-valued function. The positive and negative parts of 
+	$f$, $f_+ = max\{f, 0\}$ and $f_- = max\{-f, 0\}$ can be defined as extended 
+	real-valued functions just as in \ref{d:pos_neg_fun} with the properties already 
+	developed. Notice that for nay $x$< at most one of $f_+$ and $f_-$ is different 
+	from 0, and that, as before, $f = f_+ - f_-$ and $|f| = f_+ + f_-$. 
+\end{rmk}
+
+
+\begin{defn} %111
+	\begin{enumerate}
+	\item A non-negative extended real-valued measurable function $f$ defined on a 
+	measurable function $f$ defined on a measurable set $E$ is \textbf{integrable over} 
+	$E$ if $\int_Ef<\infty$. 
+	\item An extended real-valued measurable function $f$ defined on a measurable 
+	set $E$ is \textbf{integrable over} $E$ if both its positive part and its 
+	negative part, $f_+$ and $f_-$, are integrable over $E$. In that case, we define 
+	\begin{equation*}
+		\int_E f = \int_Ef_+-\int_Ef_-.
+	\end{equation*}
+	We denote the set of all functions integrable over $E$ by $L^1(E)$. 
+	\end{enumerate}
+\end{defn}
+
+\begin{rmk}%112
+\begin{enumerate}
+	\item An integrable extended real-valued function $f$ must have finite values 
+	almost everywhere. 
+	\item A measurable function $f$ on $E$ is integrable over $E$ if and only if 
+	$|f| = f_++f_-$ is integrable over $E$. Thus $L^1(E)$ is usually defined as the 
+	set of all measurable functions on $E$ such that $\int_E|f|<\infty$. 
+\end{enumerate}
+\end{rmk}
+
+\begin{pblm}\label{p:conditionsmeasu}%113
+	If $f$ and $g$ are integrable on $E$, and if $\alpha$, $\beta$ are real 
+	numbers, then 
+	\begin{enumerate}[(a)]
+	\item $\int_E(\alpha f + \beta g) = \alpha \int_Ef + \beta\int_Eg$. 
+	\item if $f \le g$, then $\int_Ef \le \int_Eg$, 
+	\item if $A$ and $B$ are disjoint measurable subsets of $E$, then 
+	$\int_{A\cup B}f = \int_Af + \int_Bf$. 
+	\end{enumerate}
+\begin{proof} ~
+	\begin{enumerate}[(a)]
+	\item if $|f|=f_++f_-$, then, if $\alpha >= 0$,
+	\begin{equation*}
+		\int_E\alpha f = \int_E\alpha(f_+-f_-) = \int_E[\alpha f_+ - \alpha f_-] 
+	\end{equation*}
+	and by \ref{p:nonnegmeas_infty}, this is 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\int_E\alpha f = \int_E[\alpha f_+ - \alpha f_-] & = & \int_E\alpha f_+ - \int_E \alpha f_- \\
+			& = & \alpha\int_E f_+ - \alpha\int_E f_- \\ 
+			& = & \alpha\left[\int_Ef_+ - \int_Ef_-\right]\\
+			& = & \alpha\int_Ef. 
+	\end{array}
+	\end{equation*}
+	If on the other hand, $\alpha < 0$, then 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\int_E \alpha f = \int_E (-\alpha) (-f) & = & (-\alpha) \int_E (-f) \\
+			& = & -\alpha \left[\int_E f_- - \int_E f_+\right]\\
+			& = & -\alpha \int_E f_- + \alpha \int_E f_+\\
+			& = & \alpha \int_E f_+ - \alpha \int_E f_-\\
+			& = & \alpha \int_E f. 
+	\end{array}
+	\end{equation*}
+	Now, to show that $\int_E(f+g) = \int_Ef+\int_Eg$, 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\int_E(f+g) = \int_E[f_++g_+-f_--g_-] &=& \int_Ef_++\int_Eg_+-\int_Ef_--\int_Eg_- \\ 	
+			& = & \int_Ef_+-\int_Ef_-+\int_Eg_+-\int_Eg_- \\ 	
+			& = & \int_E(f_+-f_-) + \int_E(g_+-g_-) \\
+			& = & \int_Ef + \int_Eg. 
+	\end{array}
+	\end{equation*}
+	\item If $g \ge f$, then $g - f \ge 0$, which (using the first part of this problem) implies that 
+		\begin{equation*}
+			0 \le \int_E(g - f) = \int_Eg - \int_E f ~~\Rightarrow~~ \int_Eg \ge \int_Ef 
+		\end{equation*}
+	\item 
+	\begin{equation*}
+		\int_{A\cup B} f = \int_{A\cup B} \left(f \chi_A + f\chi_B\right) = 
+		\int_{A\cup B} f\chi_A + \int_{A\cup B} f\chi_B = \int_A f + \int_B f
+	\end{equation*}
+	\end{enumerate}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}\label{p:lebesguedominatedconvergence}%114
+	Let $g$ be a non-negative integrable function on $E$, and let $\{f_n\}_{n=1}^\infty$ 
+	be a sequence of measurable functions such that $|f_n| \le g$ a.e. on $E$ for each 
+	$n$. If $f_n(x) \rightarrow f(x)$ for almost all of $x \in E$, then 
+	\begin{equation*}
+		\lim\limits_{n\to\infty}\int_Ef_n = \int_Ef. 
+	\end{equation*}
+\begin{proof}
+	If $|f_n| \le g$ a.e. for all $n$, then 
+	$\{g - f_n\}_{n=1}^\infty$ and $\{g + f_n\}_{n=1}^\infty$ are both non-negative a.e. 
+	%and so by \ref{p:inteqliminf}, 
+	%%%%%%%%%%%%%%%%%
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%115
+	The preceeding result is the Lebesgue Dominated Convergence Theorem. It is perhaps the 
+	most often used of the convergence theorems. Note that our first convergence theorem 
+	\ref{p:intofsequenceeqlimint}, is a special case. 
+\end{rmk}
+
+\begin{rmk}%116
+	Note that $f$ being Lebesgue integrable over a set $E$ is not the same as $f$ having an 
+	improper Riemann integral over $E$. For instance, $\int_0^\infty \frac{\sin x}{x}dx$ 
+	exists, as you may see by observing that if we set $a_n = \int_{(n-1)\pi}^{n\pi}\frac{\sin x}{x}dx$ 
+	then $\int_0^\infty\frac{\sin x}{x}dx = \sum\limits_{n=1}^\infty a_n$ converges by the 
+	Alternating Series Test. However the integral of the positive part of $\frac{\sin x}{x}$ is 
+	infinite (and the integral of the negative part also) since $|a_n|\approx \frac{k}{n}$. 
+	In other words, $\sum\limits_{n=1}^\infty a_n$ converges conditionally, but not absolutely. 
+	$f$ being Lebesgue integrable corresponds to absolute convergence-convergence via cancellation 
+	is not allowed. This makes working with Lebesgue integrable functions much simpler, at the 
+	expense of making the class of integrable functions somewhat smaller. 
+\end{rmk}
+
+

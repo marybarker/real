@@ -1,0 +1,985 @@
+\chapter{Measure on $[0, 1]$}
+
+\begin{defn}\label{d:outermeasure}%19
+	For any subset $E$ of $[0,1]$, the \textbf{outer measure} 
+	of $E$ is 
+	\begin{equation*}
+		m^\ast(E) = \inf\left\{\sum\limits_{j=1}^\infty \ell(G_j) 
+		: E \subset \bigcup\limits_{j=1}^\infty G_j\right\}
+	\end{equation*}
+	where each $G_j = (a_j,b_j)$ is an open interval in $\R$ and 
+	$\ell(G_j) = b_j - a_j$. (Note: this includes finite sums by 
+	setting all $G_j = \emptyset$ from some point on. Also note the $G_j$ 
+	need not be contained in $[0,1]$, e.g. in considering $m^\ast(\{1\})$). 
+\end{defn}
+
+\begin{rmk}~ %20
+	\begin{enumerate}[(a)]
+		\item We could use coverings by closed intervals and get the same 
+		result. It is clear that we could get numbers not larger than we 
+		have. (Replace $G_j = (a_j, b_j)$ by $F_j = [a_j, b_j]$.) To 
+		see not smaller, replace closed $F_j$ by open $G_j$ where 
+		$\ell(G_j) = \ell(F_j) + \epsilon / 2^j$. 
+		\item There is also something called inner measure. But it is not 
+		needed, so we won't use it. 
+	\end{enumerate}
+\end{rmk}
+
+\begin{pblm}%21
+	For any subset $E$ of $[0,1]$, 
+	\begin{enumerate}[(a)]
+		\item $0 \le m^\ast(E) \le 1$.
+		\item $E \subset F \Rightarrow m^\ast(E) \le m^\ast(F)$. 
+		\item $m^\ast(\emptyset) = m^\ast(\text{one point})=0$.
+	\end{enumerate}
+\begin{proof}
+~
+\begin{enumerate}[(a)]
+	\item For any $\epsilon > 0$, consider the open interval $(-\frac{\epsilon}{2}, 1 + \frac{\epsilon}{2})$ 
+	that has length $1 + \epsilon$. This is an open cover of $[0,1]$, and so it is also an open 
+	cover of $E \subset [0,1]$. Now, since $\epsilon$ was arbitrarily chosen, $m^\ast(E) \le 1$. 
+
+	Also, since $m^\ast(E)$ is the infimum of a set of non-negative numbers, $m^\ast(E) \ge 0$. 
+
+	So $0\le m^\ast(E)\le 1$ for all $E \subset [0,1]$. 
+
+	\item Let $H=\left\{\sum\limits_{j=1}^\infty\ell(G_j):F\subset\bigcup\limits_{j=1}^\infty G_j\right\}$  
+	and let $G=\left\{\sum\limits_{j=1}^\infty\ell(G_j):E\subset\bigcup\limits_{j=1}^\infty G_j\right\}$. 
+	Since $E\subset F$, we know that $H\subset G$. Therefore $\inf(G)\le\inf(H)$. 
+
+	\item For any $x \in [0,1]$, consider $(x - \epsilon / 2, x + \epsilon / 2)$ for any 
+	$\epsilon > 0$. This is an open cover of $\{x\}$ with length $\epsilon$. Using the 
+	fact that $\epsilon$ was arbitrarily chosen, the infimum of sums of lengths of intervals 
+	must be less than or equal to $\epsilon$, which implies that $m^\ast(\{x\}) \le 0$. 
+
+	Now, since $\emptyset \subset \{x\}$, we can use part (b), which gives 
+	$m^\ast(\emptyset) \le m^\ast(\{x\}) \le 0$. 
+\end{enumerate}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%22
+	If $E$ is a countable set, then $m^\ast(E) = 0$. In particular, 
+	$m^\ast(\Q_0) = 0$ where $\Q_0 = \Q \cap [0,1]$ 
+	is the set of all rational numbers in $[0,1]$.
+
+ 	(Given $\epsilon > 0$ cover $E = \{x_k\}_{k=1}^\infty$ with 
+	$\bigcup\limits_{j=1}^\infty G_j$ where $\ell(G_j) = \epsilon / 2^j$.)
+\begin{proof}
+	Suppose $E$ is countable. Then we can write $E = \{x_i\}_{i=1}^\infty$. Then 
+	for any $\epsilon > 0$, define $G_i = (x_i - \frac{\epsilon}{2^{i+1}}, x_i + \frac{\epsilon}{2^{i+1}})$. 
+	Then $\ell(G_i) = 2\frac{\epsilon}{2^{i+1}}=\frac{\epsilon}{2^i}$. 
+	Therefore $\bigcup\limits_{i=1}^\infty G_i$ is an open cover of $E$, and 
+	\begin{equation*}
+		\sum\limits_{i=1}^\infty\ell(G_i) = \sum\limits_{i=1}^\infty\frac{\epsilon}{2^i} = \epsilon. 
+	\end{equation*}
+	Therefore 
+	\begin{equation*}
+		m^\ast(E)\le\inf\left\{\sum\limits_{i=1}^\infty\ell(G_i):E\subset\bigcup\limits_{i=1}^\infty G_i\right\} = 0. 
+	\end{equation*}
+	and so $m^\ast(E) = 0$. 
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%23
+	This is the first evidence that covering $E$ with countably infinite 
+	unions rather than finite unions makes a big difference. This is, in 
+	fact exactly the innovation that will allow us to deal much more 
+	efficiently with infinite processes and with irregular sets. 
+\end{rmk}
+
+\begin{pblm}%24
+	If $F = [a,b]$ is a closed interval in $[0,1]$, then $m^\ast(F)=b-a$. 
+	($m^\ast(F) \le b - a$ is clear from $G = (a - \epsilon, b + \epsilon)$. 
+	$F$ is compact, so any cover has a finite subcover $\bigcup\limits_{j=1}^n
+	G_j$. May assume that no element of this subcover can be omitted (Explain 
+	why.) Order them by their left endpoints and show $\sum\limits_{j=1}^n 
+	\ell(G_j) > b - a.$)
+\begin{proof}
+	First we will show that $m^\ast(F) \le (b - a)$ and then that $m^\ast(F) \ge (b-a)$. 
+
+	Now, $m^\ast(F) = \inf\left\{\sum\limits_{j=1}^\infty\ell(G_j):F\subset\bigcup\limits_{j=1}^\infty G_j\right\}$, and 
+	so if we consider an arbitrary open cover $\{G_j\}_{j=1}^\infty$ of $F$, 
+	$m^\ast(F) \le \sum\limits_{j=1}^\infty\ell(G_j)$. 
+	In particular, Let us consider the open cover $(a - \epsilon / 2, b + \epsilon / 2)$ for 
+	any $\epsilon > 0$. This has length $ (b - a) + \epsilon$. Thus 
+	$m^\ast(F) \le (b - a) + \epsilon$ for all $\epsilon > 0$, and so 
+	\begin{equation*}
+		m^\ast(F) \le b - a
+	\end{equation*}
+
+	Now, let $\{G_j\}_{j = 1}^n$ be any finite subcover of $F$. Then if there are 
+	$G_k = (a_k, b_k), G_l = (a_l, b_l) \in [0,1]$ such that $G_k \subset G_l$, 
+	then we can throw out $G_k$. 
+
+	Thus we can remove all extraneous $G_k$, and so if we reorder the elements 
+	of $\{G_j\}_{j=1}^n$ in increasing order such that $a_0 < a $ and $b < b_n$. 
+	With the increasing order for all $j$, $a_j < a_{j+1}$ and 
+	$a_{j+1} < b_j < b_{j+1}$, since otherwise we would have 
+	$(a_j,b_j) \subset (a_{j+1},b_{j+1})$. Then
+	\begin{equation*}
+		\sum\limits_{j=1}^n\ell(G_j) = \sum\limits_{j=1}^n (b_j-a_j)
+	\end{equation*}
+	This can be re-written as 
+	\begin{equation*}
+		\sum\limits_{j=1}^n(b_j-a_j) = (b_n - a_1) + (b_{n-1} - a_n) + (b_{n-2} - a_{n-1}) + \cdots
+	\end{equation*}
+	Now, since for all $j$, $b_j > a_{j+1}$, this is 
+	\begin{equation*}
+		b_n - a_1 + \epsilon
+	\end{equation*}
+	for some $\epsilon > 0$. Now, since $b = b_n + \epsilon_b$ and 
+	$a_1 = a - \epsilon_b$ for some $\epsilon_a, \epsilon_b  > 0$, 
+	we have 
+	\begin{equation*}
+		b_n + a_1 + \epsilon \ge b_n + a_1 = b - a + (\epsilon_b + \epsilon_a) \ge b - a. 
+	\end{equation*}
+	Continuing this with $\sum\limits_{j=1}^n\ell(G_j)$, we end with 
+	\begin{equation*}
+		\sum\limits_{j=1}^n \ell(G_j) \ge b - a
+	\end{equation*}
+
+	Since this open cover was arbitrarily chosen, $(b - a)$ is a lower bound, which means that since $m^\ast(F)$ is 
+	the infimum, 
+	\begin{equation*}
+		m^\ast(F) = \inf\left\{\sum\limits_{j=1}^\infty\ell(G_j):F\subset\sum\limits_{j=1}^\infty G_j\right\} \ge (b - a)
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%25
+	If $E,F \subset [0,1]$, $m^\ast(E\cup F) \le m^\ast(E) + m^\ast(F)$. 
+\begin{proof}
+	Since the outer measure of any set $m^\ast$ is an infimum, it is a cluster 
+	point. Therefore for any $\epsilon > 0$, there are open covers $\{G_j\}_{j=1}^\infty$ 
+	and $\{H_j\}_{j=1}^\infty$ such that 
+	\begin{equation*}
+		\sum\limits_{j=1}^\infty\ell(G_j) = m^\ast(E) + \frac{\epsilon}{2} ~~~\text{ and }~~~ 
+		\sum\limits_{j=1}^\infty\ell(H_j) = m^\ast(F) + \frac{\epsilon}{2}
+	\end{equation*}
+	Now, since $E \subset \bigcup\limits_{j=1}^\infty G_j$ and $F \subset \bigcup\limits_{j=1}^\infty H_j$, 
+	$ E \cup F \subset \left(\bigcup\limits_{j=1}^\infty G_j\right) \cup \left(\bigcup\limits_{j=1}^\infty H_j\right)$ 
+	and so 
+	\begin{equation*}
+		\begin{array}{rcccl}
+			m^\ast(E \cup F) & \le & \sum\limits_{j=1}^\infty\ell(G_j) + \sum\limits_{j=1}^\infty\ell(H_j) 
+					& = & m^\ast(E) + \frac{\epsilon}{2} + m^\ast(F) + \frac{\epsilon}{2}\\
+					& & & = & m^\ast(E) + m^\ast(F) + \epsilon
+		\end{array}
+	\end{equation*}
+	Thus $m^\ast(E\cup F) \le m^\ast(E) + m^\ast(F)$. 
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%26
+	For any subsets $\{E_j\}_{j=1}^\infty$ of $[0,1]$, 
+	$m^\ast\left(\bigcup\limits_{j=1}^\infty E_j\right) \le 
+	\sum\limits_{j=1}^\infty m^\ast (E_j).$
+	We refer to this property of outer measure as 
+	\textbf{countable subadditivity}.
+\begin{proof}
+	Note that for any set of open covers of all of the $E_j$ is an open cover of $\cup E_j$. That is, for 
+	$\left\{ \{I_{j_k}\}_{k=1}^\infty: E_j \subset \bigcup\limits_{k=1}^\infty I_{j_k}\right\}$, 
+	$\bigcup\limits_{j=1}^\infty E_j \subset \bigcup\limits_{j=1}^\infty\bigcup\limits_{k=1}^\infty I_{j_k}.$ 
+
+	For any $\{E_j\}_{j=1}^\infty$, consider any open covers $\{I_{j_k}\}_{k=1}^\infty$ 
+	of each $E_j$. Then since each $m^\ast(E_j)$ is a cluster point, then for any $\epsilon > 0$ 
+	there is $\{I_{j_k}\}_{k=1}^\infty$ such that 
+	\begin{equation*}
+		\sum\limits_{k=1}^\infty \ell(I_{j_k}) \le m^\ast(E_j) + \frac{\epsilon}{2^j}
+	\end{equation*}
+	And so for any $\epsilon > 0$, we can choose open covers of each of the $E_j$ such that 
+	\begin{equation*}
+		m^\ast\left(\bigcup\limits_{j=1}^\infty E_j\right) \le 
+		\sum\limits_{j=1}^\infty\sum\limits_{k=1}^\infty \ell(I_{j_k}) \le 
+		\sum\limits_{j=1}^\infty \left(m^\ast(E_j)+ \frac{\epsilon}{2^j}\right) = 
+		\sum\limits_{j=1}^\infty m^\ast(E_j) + \epsilon
+	\end{equation*}
+	Therefore by (5), 
+	\begin{equation*}
+		m^\ast\left(\bigcup\limits_{j=1}^\infty E_j\right) \le \sum\limits_{j=1}^\infty m^\ast(E_j)
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{defn}\label{d:measurable}%27
+	A subset $E$ of $[0,1]$ is \textbf{measurable} if for 
+	each $A \subset [0,1]$, 
+	\begin{equation*}
+		m^\ast(A) = m^\ast(A\cap E) + m^\ast(A\cap E^c). 
+	\end{equation*}
+\end{defn}
+
+\begin{notation}%28
+	If $E$ is measurable, we write $m(E)$ for $m^\ast(E)$ and refer to 
+	this number as the \textbf{Lebesgue measure} of $E$. 
+\end{notation}
+
+\begin{rmk}~ %29
+	\begin{enumerate}[(a)]
+		\item From the previous problem, to show that $E$ is measurable 
+		one need only prove 
+		$m^\ast(A) \ge m^\ast(A\cap E) + m^\ast(A\cap E^c)$ since the other 
+		direction is automatic. 
+		\item In particular, taking $A = [0,1], 1 = m^\ast(E)+m^\ast(E^c)$ 
+		is a necessary condition for measurability. It turns out that this 
+		special case of the definition is also sufficient. The definition 
+		is the way it is (rather than this simpler version) just because 
+		it is a little more convenient to use.
+	\end{enumerate}
+\end{rmk}
+
+\begin{pblm}%30
+{\color{gray!10}{thing}}
+\begin{enumerate}[(a)]
+	\item $\emptyset$ is measurable. $[0,1]$ is measurable.
+	\item $m^\ast(E) = 0 \Rightarrow E$ is measurable. 
+\end{enumerate}
+\begin{proof}
+{\color{gray!10}{thing}}
+\begin{enumerate}[(a)]
+	\item In $[0,1]$, $\emptyset^c = [0,1]$, and $[0,1]^c = \emptyset$. Therefore 
+	for any $A \subset [0,1]$, 
+	\begin{equation*}
+		\begin{array}{rcccl}
+		m^\ast(A) & = & m^\ast(A \cap [0,1]) & = & m^\ast(A \cap [0,1]) + 0\\
+			 & = & m^\ast(A \cap [0,1]) + m^\ast(\emptyset) & = & m^\ast(A \cap [0,1]) + m^\ast(A \cap \emptyset)
+		\end{array}
+	\end{equation*}
+	Thus $[0,1]$ is measurable. 
+	Similarly, 
+	\begin{equation*}
+		\begin{array}{rcl}
+		m^\ast(A) & = & 0 + m^\ast(A \cap [0,1])\\
+			 & = & m^\ast(\emptyset)         + m^\ast(A \cap [0,1]) \\
+			 & = & m^\ast(A \cap \emptyset)  + m^\ast(A \cap [0,1]) 
+		\end{array}
+	\end{equation*}
+	Thus $\emptyset$ is measurable. 
+	\item If $m^\ast(E) = 0$, then for any set $A$, $A \cap E \subset E$, and 
+	since $A \cap E^c \subset A$, we have (by 21 (b)): 
+	\begin{equation*}
+		\begin{array}{rcl}
+		m^\ast(A\cap E^c) & \le & m^\ast (A)\\
+		0 + m^\ast(A\cap E^c) & \le & m^\ast (A)\\
+		m^\ast(A \cap E) + m^\ast(A\cap E^c) & \le & m^\ast (A)
+		\end{array}
+	\end{equation*}
+	Therefore, using the observation in 29(a), $E$ is measurable. 
+\end{enumerate}
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%31
+	In particular, every subset of a set of outer measure 0 is measurable. 
+\end{rmk}
+
+\begin{pblm}%32
+	$E$ is measurable $\Leftrightarrow E^c$ is measurable. 
+\begin{proof}
+\begin{equation*}
+	\begin{array}{rcl}
+	E ~\text{ is measurable }~ & \Leftrightarrow & ~ \forall A \subset [0,1], m^\ast(A) = m^\ast(A \cap E) + m^\ast(A \cap E^c)\\
+				& \Leftrightarrow & ~ \forall A \subset [0,1], m^\ast(A) = m^\ast(A \cap E^c) + m^\ast(A \cap E)\\
+				& \Leftrightarrow & ~ \forall A \subset [0,1], m^\ast(A) = m^\ast(A \cap E^c) + m^\ast(A \cap (E^c)^c)\\
+				& \Leftrightarrow & E^c ~\text{ is measurable}
+	\end{array}
+\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%33
+	A closed interval $[a,b]$ is measurable with measure $b-a$. 
+
+	(Show $m^\ast(A) \ge m^\ast(A\cap[a,b])+m^\ast(A\cap[a,b]^c)-\epsilon$ 
+	for every $\epsilon$. If $\bigcup\limits_{j=1}^\infty G_j$ covers $A$ 
+	with $\bigcup\limits_{j=1}^\infty \ell(G_j)$ near $m^\ast(A)$, then the 
+	$G_j\cap[a,b]$ are nearly an open cover of $A\cap[a,b]$ by open intervals 
+	and similarly for $G_j\cap[a,b]^c$.)
+\vspace{.25cm}
+
+\begin{proof}
+	Let $A \subset [0,1]$. Then 
+	for any $\epsilon > 0$, choose an open cover $\{G_j\}_{j=1}^\infty$ of $A$ 
+	such that $\sum\limits_{j=1}^\infty \ell(G_j) \le m^\ast(A) + \frac{\epsilon}{2}$. 
+
+	Define $F_1 = \left\{G_k \cap (a, b) \right\}
+		\cup (a-\frac{\epsilon}{8},a+\frac{\epsilon}{8})
+		\cup (b-\frac{\epsilon}{8},b+\frac{\epsilon}{8})$, 
+	$F_2 = \left\{G_k \cap [a, b]^c\right\}$, 
+
+	Then $A \cap [a, b] \subset F_1$ and $A \cap [a, b]^c \subset F_2$. 
+	(note that the elements of $F_2$ are either open intervals or else 
+	sets of the form $(x, a) \cup (b, y)$ for some $x, y \in \R$.
+	Therefore the notion of length is still well-defined on $F_2$ and $F_2$ 
+	is still a collection of open intervals, and thus an open cover) 
+
+	Since $\{O: O \subset F_1\}$ is an open cover of $A \cap [a, b]$ and 
+	$\{O: O \subset F_2\}$ is an open cover of $A \cap [a, b]^c$, 
+	Therefore, 
+	$m^\ast(A \cap [a,b]) \le \sum\limits_{O \in F_1}\ell(O)$ and 
+	$m^\ast(A \cap [a,b]^c) \le \sum\limits_{O \in F_2}\ell(O)$. 
+	Also, since the only intersection of $F_1$ and $F_2$ is in the 
+	$(a - \frac{\epsilon}{8}, a + \frac{\epsilon}{8})$, $(b - \frac{\epsilon}{8}, b + \frac{\epsilon}{8})$ 
+	terms, then 
+	\begin{equation*}
+		\sum\limits_{O \in F_1 \cup F_2} \ell(O) 
+		\le \sum\limits_{j = 1}^\infty \ell(G_j) + 
+		\ell(a-\frac{\epsilon}{8},a+\frac{\epsilon}{8}) + \ell(b-\frac{\epsilon}{8},b+\frac{\epsilon}{8}) 
+		= \sum\limits_{j=1}^\infty\ell(G_j)+\frac{\epsilon}{2}
+	\end{equation*}
+	Putting this together with the upper bounds for measures of $A \cap [a, b]$ and $A \cap [a, b]^c$, we get 
+	\begin{equation*}
+	m^\ast(A \cap [a,b]) + m^\ast(A \cap [a,b]^c) \le 
+	\sum\limits_{O \in F_1 \cup F_2} \ell(O) = 
+	\sum\limits_{k=1}^\infty \ell(G_k) + \frac{\epsilon}{2} 
+	\end{equation*}
+	And since $\sum\limits_{j=1}^\infty\ell(G_j) \le m^\ast(A) + \frac{\epsilon}{2}$, adding $\frac{\epsilon}{2}$ to 
+	both sides of the inequality gives 
+	$\sum\limits_{j=1}^\infty\ell(G_j) + \frac{\epsilon}{2} \le m^\ast(A) + \epsilon$, which we can substitute 
+	into the previous equation to yield 
+	\begin{equation*}
+	m^\ast(A \cap [a,b]) + m^\ast(A \cap [a,b]^c) \le 
+	\sum\limits_{k=1}^\infty \ell(G_k) + \frac{\epsilon}{2} 
+	\le m^\ast(A) + \epsilon
+	\end{equation*}
+
+	and so $m^\ast(A \cap [a,b]) + m^\ast(A\cap[a,b]^c) \le m^\ast(A) + \epsilon$, which 
+	can be re-written 
+	\begin{equation*}
+		m^\ast(A \cap [a,b]) + m^\ast(A\cap[a,b]^c) - \epsilon \le m^\ast(A)
+	\end{equation*}
+	For any $A \subset [0,1]$ for all $\epsilon > 0$. 
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%34
+	If $E$ and $F$ are measurable, then so are $E \cap F$, $E \cap F^c$, 
+	$E^c \cap F$, and $E^c \cap F^c$. 
+
+	(To show $m^\ast(A) \ge m^\ast(A\cap E\cap F)+m^\ast(A\cap(E\cap F)^c)$ 
+	use the measurability of $F$ with test set $A \cap E$. It is not 
+	necessary to go back to the level of open covers.)
+\begin{proof}
+	Note first that For any sets $A, B, C$, 
+	\begin{equation*}
+		\{A \cap B \cap C^c \}
+		\cup 
+		\{A \cap B^c \cap C\}
+		\cup 
+		\{A \cap B^c \cap C^c\} = A \cap (B^c \cup C^c) = A \cap (B \cap C)^c
+	\end{equation*}
+	Now, since $E$ is measurable, for any $A \subset [0,1]$, 
+	\begin{equation*}
+	\begin{array}{rcl}
+		m^\ast(A) & = & m^\ast(A \cap E) + m^\ast(A \cap E^c) \\
+		& = & m^\ast(A \cap E \cap F) + m^\ast(A \cap E \cap F^c) \\
+		& & + m^\ast(A \cap E^c \cap F) + m^\ast(A \cap E^c \cap F^c) \\
+		& \ge & m^\ast(A \cap E \cap F) + m^\ast((A\cap E\cap F^c)
+		{\scriptstyle \cup}(A\cap E^c\cap F){\scriptstyle \cup}(A\cap E^c\cap F^c)) \\
+		& = & m^\ast(A \cap E \cap F) + m^\ast(A \cap (E \cap F)^c)  
+	\end{array}
+	\end{equation*}
+
+	Now, since $E$ is measurable, $E^c$ is measurable, and similarly for $F^c$. Also, 
+	Since the intersection of two arbitrary measurable sets is measurable (just shown), 
+	then $E^c \cap F$, $E \cap F^c$ and $E^c \cap F^c$ are all measurable given that 
+	$E$ and $F$ are. 
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%35
+	If $E$ and $F$ are measurable, then so is $E \cup F$. If $E$ and $F$ are disjoint, 
+	then $m(E \cup F) = m(E) + m(F)$. 
+\begin{proof}
+	if $E$ and $F$ are measurable, then so are $E^c$ and $F^c$, and so 
+	$E^c \cap F^c$ is also. Therefore $E^c \cap F^c = (E \cup F)^c$ is also 
+	measurable, so $E \cup F$ is also measurable. 
+
+	Now, if $E$ and $F$ are measurable and disjoint, then taking the set $E \cup F$ 
+	together with the measurability of $E$, (and given that $E \cup F$ is measurable also)
+	\begin{equation*}
+	\begin{array}{rcl}
+		m(E \cup F) &=& m( (E \cup F) \cap E) + m( (E \cup F) \cap E^c)\\
+			&=& m(E) + m(F)\\
+	\end{array}
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%36
+	Any interval $\langle a,b\rangle$ with any choice of endpoints is 
+	measurable with measure $b-a$. 
+\begin{proof}
+	From problem 33, $[a, b]$ is measurable with measure $b - a$. 
+	On the other hand, if we consider the set $(a, b)$, 
+	$m^\ast((a, b)) \le m^\ast([a,b]) = b - a$
+
+	Now, from problem 21 (c), $m^\ast(\{a\}) = m^\ast(\{b\}) = 0$, and so 
+	by 30(b), $\{a\}$ and $\{b\}$ are both measurable sets with measure 
+	$0$. Therefore, since (by 35) $(a, b) \cap \{a\} = (a, b) \cap \{b\} = \emptyset$, and 
+	\begin{equation*}
+	\begin{array}{c}
+		m^\ast((a, b)) = m^\ast( (a, b) \cup \{a\} \cup \{b\}) = m^\ast([a, b]) = b - a\\
+			\\
+		m^\ast(\left[\right.a, b\left.\right)) = m^\ast((a, b) \cup \{a\}) = m^\ast((a, b)) + m^\ast(\{a\})= m(a, b) = b - a\\
+		\\
+		m^\ast(\left(\right.a, b\left.\right]) = m^\ast((a, b) \cup \{b\}) = m^\ast((a, b)) + m^\ast(\{b\})= m(a, b) = b - a\\
+	\end{array}
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%37
+	Any finite union or intersection of measurable sets is measurable. 
+	If $\{E_k\}_{k=1}^n$ are measurable and disjoint, then 
+	$m\left(\bigcup\limits_{k=1}^n E_k\right) = \sum\limits_{k=1}^nm(E_k)$. 
+	(Induction).
+\begin{proof}
+
+\begin{itemize}
+	\item Base case: proven in problem 35
+
+	\item Induction step: Given that $m\left(\bigcup\limits_{k=1}^nE_k\right) = \sum\limits_{k=1}^nm(E_k)$, 
+	and given that $E_{n+1}$ is measurable, then let $F = \bigcup\limits_{k=1}^nE_k$. 
+	Since $E_{n+1}$ and $F$ are both measurable, then by 35, $\bigcup\limits_{k=1}^{n+1}E_k = E \cup F$ is also measurable. 
+	If $E_{n+1}$ and $F$ are disjoint, then by 35, 
+	\begin{equation*}
+		m\left(\bigcup\limits_{k=1}^{n+1}E_k\right) = 
+		m(E \cup F) = m(E) + m(F)
+		= \sum\limits_{k=1}^{n+1}m(E_k)
+	\end{equation*}
+\end{itemize}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%38 
+	Let $E_1, E_2, ... , E_n$ be pairwise disjoint and measurable. Then 
+	for any $A$, 
+	\begin{equation*}
+		m^\ast(A) = \sum\limits_{k=1}^nm^\ast(A\cap E_k)+m^\ast
+		\left(A\cap\left(\bigcup\limits_{k=1}^nE_k\right)^c\right).
+	\end{equation*}
+\begin{proof}
+	Base Case: Let $E_1, E_2$ be pairwise disjoint and measurable. Then for any $A$, 
+	\begin{equation*}
+	\begin{array}{rcccc}
+		m^\ast(A) & = & m^\ast(A \cap (E_1 \cup E_2)) &+& m^\ast(A\cap(E_1\cup E_2)^c)\\
+			& = & m^\ast\left((A \cap E_1)\cup (A \cap E_2)\right) & + & m^\ast(A \cap (E_1 \cup E_2)^c)\\
+			& = & m^\ast(A \cap E_1) + m^\ast(A \cap E_2) & + & m^\ast(A\cap (E_1\cup E_2)^c)
+	\end{array}
+	\end{equation*}
+	Now, assume that $E_1, E_2, ... , E_n$ are pairwise disjoint and measurable, and also 
+	that $E_{n+1}$ is measurable and $E_i \cap E_{n+1} = \emptyset$ for all $i \in \{1, ... , n\}$. 
+	Assume furthermore that for all $A$, 
+	\begin{equation*}
+		m^\ast(A) = \sum\limits_{k=1}^nm^\ast(A\cap E_k)+m^\ast
+		\left(A\cap\left(\bigcup\limits_{k=1}^nE_k\right)^c\right).
+	\end{equation*}
+	Then $F = \bigcup\limits_{k=1}^nE_k$ is a measurable set that is disjoint from $E_{n+1}$, and therefore 
+	for all $A$, 
+	\begin{equation*}
+	\begin{array}{rcl}
+		m^\ast(A) &=& m^\ast(A \cap F) + m^\ast(A\cap E_{n+1}) + m^\ast(A \cap (F \cup E_{n+1})^c)\\
+			&=&\sum\limits_{j=1}^nm^\ast(A\cap E_j) + m^\ast(A\cap E_{n+1}) + 
+				m^\ast\left(A \cap \left(\bigcup\limits_{j=1}^nE_j \cup E_{n+1}\right)^c\right)\\
+			&=&\sum\limits_{j=1}^{n+1}m^\ast(A\cap E_j) + m^\ast\left(A\cap\left(\bigcup\limits_{j=1}^{n+1}E_j\right)^c\right)
+	\end{array}
+	\end{equation*}
+	Note that the expansion of $m^\ast(A\cap F)$ into a sum of measures from the first to second line 
+	is due to the fact that all of the $E_j$ are disjoint, and so the $A \cap E_j$ are also, and so 
+	37 states that the measure of the union is therefore equal to the sum of the measures. 
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%39
+	Let $\{E_k\}_{k=1}^\infty$ be pairwise disjoint and measurable. Then 
+	for any $A$, 
+	\begin{equation*}
+		m^\ast(A) = \sum\limits_{k=1}^nm^\ast(A\cap E_k)+m^\ast
+		\left(A\cap\left(\sum\limits_{k=1}^nE_k\right)^c\right).
+	\end{equation*}
+	($\left\{\sum\limits_{k=1}^n m^\ast(A\cap E_k)\right\}_{n=1}^\infty$ 
+	is a non-decreasing sequence that converges to 
+	$\sum\limits_{k=1}^\infty m^\ast(A\cap E_k)$.  
+	$\{s_n\}_{n=1}^\infty = 
+	\left\{
+		m^\ast \left(A\cap\left(\sum\limits_{k=1}^nE_k\right)^c\right)
+	\right\}_{n=1}^\infty$ 
+	is a non-increasing sequence all of whose terms are at least 
+	$m^\ast \left(A\cap\left(\sum\limits_{k=1}^nE_k\right)^c\right).$ These 
+	imply $m^\ast (A) \ge \sum\limits_{k=1}^\infty m^\ast(A\cap E_k) + 
+	m^\ast \left(A\cap\left(\sum\limits_{k=1}^nE_k\right)^c\right).$ )
+\begin{proof}
+	First note that for every $n \in \Zp$, 
+	\begin{equation*}
+		m^\ast\left(\bigcup\limits_{j=1}^n(A\cap E_j)\right) = \sum\limits_{j=1}^n m^\ast(A \cap E_j)
+	\end{equation*}
+	Therefore, when we consider the sequence 
+	$\left\{m^\ast\left(\bigcup\limits_{j=1}^n(A\cap E_j)\right)\right\}_{n=1}^\infty$, 
+	this is equivalently written as $\left\{\sum\limits_{j=1}^nm^\ast(A\cap E_j)\right\}_{n=1}^\infty$. 
+
+	Since $\left\{\sum\limits_{j=1}^nm^\ast(A\cap E_j)\right\}_{n=1}^\infty$ is a sequence of 
+	non-decreasing partial sums each of which is bounded by $[0,1]$, we know the limit of this 
+	sequence is bounded, and therefore (by 12)
+	\begin{equation*}
+		\lim\limits_{n\to\infty} m^\ast\left(\bigcup\limits_{j=1}^n(A\cap E_j)\right) = 
+		\lim\limits_{n\to\infty} \sum\limits_{j=1}^nm^\ast(A\cap E_j) = \sum\limits_{j=1}^\infty m^\ast(A \cap E_j)
+	\end{equation*}
+
+	Now, since $\{S_n\}_{n=1}^\infty = 
+	\left\{m^\ast\left(A \cap \left(\cup_{j=1}^n E_j\right)^c\right)\right\}_{n=1}^\infty$ 
+	is a non-increasing sequence, all of whose terms are at least 
+	$m^\ast\left(A\cap\left(\cup_{j=1}^\infty E_j\right)^c\right)$, then for every $n \in \Zp$, 
+	\begin{equation*}
+		\sum\limits_{j=1}^\infty m^\ast(A \cap E_j) + 
+		m^\ast\left(A \cap \left(\bigcup\limits_{j=1}^n E_j\right)^c\right) 
+		\ge 
+		\sum\limits_{j=1}^\infty m^\ast(A \cap E_j) + 
+		m^\ast\left(A \cap \left(\bigcup\limits_{j=1}^\infty E_j\right)^c\right)
+	\end{equation*}
+	and so 
+	\begin{equation*}
+	\begin{array}{l}
+		\lim\limits_{n\to\infty} 
+		\left\{
+			m^\ast\left(\bigcup\limits_{j=1}^n(A\cap E_j)\right) +  
+			m^\ast\left(A \cap \left(\bigcup\limits_{j=1}^n E_j\right)^c\right) 
+		\right\} \\
+			=  
+			m^\ast\left(\bigcup\limits_{j=1}^\infty(A\cap E_j)\right) +  
+			\lim\limits_{n\to\infty}
+			m^\ast\left(A \cap \left(\bigcup\limits_{j=1}^n E_j\right)^c\right) \\ 
+			=  
+			\sum\limits_{j=1}^\infty m^\ast(A \cap E_j) + 
+			\lim\limits_{n\to\infty}
+			m^\ast\left(A \cap \left(\bigcup\limits_{j=1}^n E_j\right)^c\right) \\ 
+			\ge  
+			\sum\limits_{j=1}^\infty m^\ast(A \cap E_j) + 
+			m^\ast\left(A \cap \left(\bigcup\limits_{j=1}^\infty E_j\right)^c\right)
+	\end{array}
+	\end{equation*}
+	Therefore 
+	\begin{equation*}
+		m^\ast(A) \ge \sum\limits_{j=1}^\infty m^\ast(A \cap E_j) + m^\ast\left(A \cap \left(\bigcup\limits_{j=1}^\infty E_j\right)^c\right)
+	\end{equation*}
+	and so by the criterion in (25)
+	\begin{equation*}
+		m^\ast(A) = \sum\limits_{j=1}^\infty m^\ast(A \cap E_j) + m^\ast\left(A \cap \left(\bigcup\limits_{j=1}^\infty E_j\right)^c\right)
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}%40
+	Let $\{E_k\}_{k=1}^\infty$ be measurable. Then 
+	$\bigcup\limits_{k=1}^\infty E_k$ is measurable. If the $E_k$ are 
+	pairwise disjoint, then 
+	\begin{equation*}
+		m\left(\bigcup\limits_{k=1}^\infty E_k\right)
+		= \sum\limits_{k=1}^\infty m(E_k).
+	\end{equation*}
+	(Unions can be written as disjoint unions.) This property is called 
+	\textbf{countable additivity}. 
+\begin{proof}
+	Let $\{E_j\}_{j=1}^\infty$ be measurable. Then by (4), we can define 
+	\begin{equation*}
+	\begin{array}{rcl}
+		F_1 = E_1 & & F_k = E_k \setminus \bigcup\limits_{j=1}^{k-1}E_j \\
+		\text{ where }~~ F\bigcup\limits_{j=1}^\infty F_j & = & \bigcup\limits_{j=1}^\infty E_j
+	\end{array}
+	\end{equation*}
+	and since for all $n$, $F_n$ is a finite intersection of measurable sets, $F_n$ 
+	is measurable. Therefore $\{F_j\}_{j=1}^\infty$ is a sequence of measurable sets 
+	that are pairwise disjoint, so by (39), for any $A$, 
+	\begin{equation*}
+	\begin{array}{rcl}
+		m^\ast(A) & = & \sum\limits_{k=1}^\infty m^\ast(A\cap F_k) + 
+				m^\ast\left(A\cap\left(\bigcup\limits_{k=1}^\infty F_k\right)^c\right)\\
+			 & = & m^\ast\left(\bigcup\limits_{k=1}^\infty (A\cap F_k)\right) + 
+				m^\ast\left(A\cap\left(\bigcup\limits_{k=1}^\infty F_k\right)^c\right)\\
+			 & = & m^\ast\left(A\cap\bigcup\limits_{k=1}^\infty F_k\right) + 
+				m^\ast\left(A\cap\left(\bigcup\limits_{k=1}^\infty F_k\right)^c\right)\\
+			 & = & m^\ast\left(A\cap\bigcup\limits_{k=1}^\infty E_k\right) + 
+				m^\ast\left(A\cap\left(\bigcup\limits_{k=1}^\infty E_k\right)^c\right)\\
+	\end{array}
+	\end{equation*}
+	So $\bigcup\limits_{k=1}^\infty E_k$ is measurable. 
+
+	Now, assume that the $E_j$ are pairwise disjoint. Then letting 
+	$F = \bigcup\limits_{k=1}^\infty E_k$, we can use the fact just proven that 
+	$\bigcup\limits_{k=1}^\infty E_k$ is measurable together with the test set $F$ and by (39), 
+	\begin{equation*}
+	\begin{array}{rcl}
+		m^\ast(F) &=& \sum\limits_{k=1}^\infty m^\ast(F\cap E_k) + 
+				m^\ast\left(F\cap\left(\bigcup\limits_{k=1}^\infty E_k\right)^c\right)\\
+		m^\ast(F) &=& \sum\limits_{k=1}^\infty m^\ast(F\cap E_k) + 
+				m^\ast\left(F\cap(F)^c\right)\\
+		m^\ast(F) &=& \sum\limits_{k=1}^\infty m^\ast(F\cap E_k) + m^\ast(\emptyset)\\
+		m^\ast(F) &=& \sum\limits_{k=1}^\infty m^\ast(F\cap E_k) \\
+		m^\ast\left(\bigcup\limits_{k=1}^\infty E_k\right) &=& 
+			\sum\limits_{k=1}^\infty m^\ast\left(\left[\bigcup\limits_{j=1}^\infty E_j\right] \cap E_k\right) \\
+		m^\ast\left(\bigcup\limits_{k=1}^\infty E_k\right) &=& 
+			\sum\limits_{k=1}^\infty m^\ast(E_k) 
+	\end{array}
+	\end{equation*}
+\end{proof}
+\end{pblm}
+
+\begin{pblm}\label{p:osouseful}%41
+	Let $\{E_k\}_{k=1}^\infty$ be measurable and nested: $E_1 \subset E_2 
+	\subset ... $ If $\bigcap\limits_{k=1}^\infty E_k = \emptyset$, then 
+	$\lim\limits_{k\to\infty} m(E_k) = 0$. 
+
+	($E_1$ is a disjoint union $\bigcup\limits_{k=1}^\infty F_k$ where 
+	$F_1 = E_1 \setminus E_2$, $F_2 = E_2 \setminus E_3$ etc. 
+	$m(E_n) = \sum\limits_{k=n}^\infty m(F_k)$.)
+\begin{proof}
+	Since these sets are nested, 
+	\begin{equation*}
+		m(E_1)= m(\bigcup_{k=1}^\infty E_k). 
+	\end{equation*}
+	Since $\{E_k\}_{k=1}^\infty$ is countable, let $F_k = E_k\setminus E_{k+1}$. 
+	Then by problem 40, 
+	\begin{equation*}
+	m(E_1)=m(\bigcup_{k=1}^\infty E_k)=m(\bigcup_{k=1}^\infty F_k) = \sum_{k=1}^\infty F_k
+	\end{equation*}
+	Now, let $\bigcap _{k=1}^\infty E_k =\emptyset$.
+	\begin{equation*}
+		E_1\setminus E_k = \bigcup_{j=1}^{k-1} F_j
+	\end{equation*}
+	and since the $F_k$ are disjoint, 
+	\begin{equation*}
+		\bigcup_{j=1}^k E_j\setminus\bigcap_{j=1}^{k}E_j = \bigcup_{j=1}^{k-1} F_j=\bigcup_{j=1}^{k} F_j\setminus F_k
+	\end{equation*}
+	After rearranging the terms, we get 
+	\begin{equation*}
+		\bigcap_{j=1}^{k}E_j = \bigcup_{j=1}^k E_j\setminus\left(\bigcup_{j=1}^{k} F_j\setminus F_k \right)
+	\end{equation*}
+	Since these are countable unions and intersections of measurable sets, we have 
+	\begin{equation*}
+		m\left(\bigcap_{j=1}^{k}E_j\right) = m\left(\bigcup_{j=1}^k E_j\setminus\left(\bigcup_{j=1}^{k} F_j\setminus F_k \right)\right)
+	\end{equation*}
+	Taking the limit as $k$ goes to infinity, we have 
+	\begin{equation*}
+	\begin{array}{rcl}
+		m(\emptyset) &=& m(E_1) - m(E_1) + \lim\limits_{k\to\infty}m(F_k)\\
+		0 &=& \lim\limits_{k\to\infty}m(F_k)  \\
+		& = & \lim\limits_{k\to\infty}m(E_k\setminus E_{k+1})
+	\end{array}
+	\end{equation*}
+	Since $\bigcap _{k=1}^\infty E_k =\emptyset, \lim\limits_{k\to\infty}m(E_k\setminus E_{k+1}) =0$ 
+	can only be true if $\lim\limits_{k\to\infty}m(E_k) = 0$ 
+	therefore if $\{E_k\}_{k=1}^\infty$ are measurable and nested, then 
+	\begin{equation*}
+		E_1 \supset E_2 \cdots \textnormal{ and }\bigcap _{k=1}^\infty E_k =\emptyset
+	\end{equation*} 
+	then $\lim\limits_{k\to \infty} m(E_k) = 0$
+\end{proof}
+\end{pblm}
+
+\begin{defn}\label{d:dotplus}%42
+	If $E \subset [0,1]$ and $r$ is a real number, the n $E \Dp r$ is the set of 
+	$\left[\left.0,1\right)\right.$ consisting of all fractional parts of the set 
+	$\{x+r:x\in E\}$. Geometrically, add $r$ to each element of $E$ and then translate 
+	the elements by an integer so that they land back in $\left[\left.0,1\right)\right.$. 
+	(This can mean ``breaking the set into two parts.'' For instance $[0,.4] \Dp 
+	\frac{3}{4} = [0,.15] \cup [3/4, 1).$)
+\end{defn}
+
+\begin{pblm}%43
+	If $E$ is measurable and $r$ is a real number, then $E \Dp r$ is 
+	measurable and $m(E\Dp r) = m(E)$. \\ (I found it helpful (i) to 
+	show that if $A$ is any subset of $[0,1]$, (not necessarily measurable) 
+	and $r \in \R$ is such that $A + r \subset[0,1]$, then 
+	$m^\ast(A) = m^\ast(A + r)$ and (ii) to remember that we have already 
+	seen in a previous problem that if $A$ is any subset of $[0,1]$ and 
+	$s \in (0,1)$ then $m^\ast(A) = m^\ast(a \cap [0,s]) + m^\ast(A\cap(s,1])$.)
+\begin{proof}
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%44
+	We can sum up what we have done so far like this. \\
+	The set $\M$ of Lebesgue measurable subsets of $[0,1]$ has the following 
+	properties
+	\begin{enumerate}
+		\item $\emptyset \in \M$
+		\item Every interval is in $\M$ with $m\left(\langle a, b\rangle\right) = b - a$. 
+		Moreover every open subset of $[0,1]$ is in $\M$. 
+		\item $E \in \M \Rightarrow E^c \in \M$. 
+		\item $E \in \M \Rightarrow E\Dp r \in \M$ and $m(E \Dp r) = m(E)$. 
+		\item If $\{E_k\}_{k=1}^\infty$ are in $\M$, then $\bigcup\limits_{k=1}^\infty E_k \in 
+		\M$. 
+		\item If, in addition, the $E_k$ are pairwise disjoint, then $m\left(\bigcup\limits_{k=1}^\infty 
+		E_k \right) = \sum\limits_{k=1}^\infty m(E_k)$
+	\end{enumerate}
+\end{rmk}
+
+\begin{ex}%45
+	ince the set $\Q_0$ of rational numbers in $[0,1]$ is countable, $\Q_0$ 
+	is measurable and $m(\Q_0) = 0$. Then $\Q_0^c$-the set of irrational 
+	numbers in $[0,1]$-is also measurable, and 
+	$m(\Z_0^c) = m([0,1]) - m(\Q_0) = 1$. Thus the ``length'' of the 
+	irrationals is 1, while the ``length'' of the rationals is 0. This is connected to the fact 
+	that $\Q_0$ is countable while $\Q_0^c$ is uncountable, but it would 
+	be wrong to assume that all uncountable subsets of $[0,1]$ have measure 1, or even 
+	nonzero measure. See the next example. 
+\end{ex}
+
+\begin{ex}%46
+	Recall that the Cantor set $C$ is the subset of $[0,1]$ that remains after removing 
+	$\bigcup\limits_{k=1}^\infty I_k$ where $I_1 = \left(\frac{1}{3},\frac{2}{3}\right)$, 
+	$I_2 = \left(\frac{1}{9},\frac{2}{9}\right) \cup \left(\frac{7}{9},\frac{8}{9}\right)$ 
+	and in general $I_k$ is the union of the $2^k$ open middle thirds of the closed intervals 
+	remaining after $I_{k-1}$ has been removed. Furthermore, $m(I_k) = \frac{1}{3}\left(\frac{2}{3}\right)^{k-1}$ 
+	so that $m\left(\bigcup\limits_{k=1}^\infty I_k\right) = \frac{1}{3}\sum\limits_{k=0}^\infty 
+	\left(\frac{2}{3}\right)^k = 1$ and $m(C) = 0$. 
+\end{ex}
+
+\begin{rmk}%47
+	It is not immediately obvious from the construction above that $C$ is uncountable. 
+	Some of you at least have seen an alternative characterization of $C$ as the set 
+	of all numbers in $[0,1]$ with a ternary expansion containing only 0's and 2's. 
+	Since this set can be put in 1-1 correspondence with the set of all binary expansions 
+	of numbers in $[0,1]$, that is, with $[0,1]$, it is true that $C$ is uncountable. Thus 
+	the Lebesgue measure of a set is not particularly connected to the cardinality of 
+	the set. These are two rather different versions of the ``size'' of an infinite set. 
+\end{rmk}
+
+\begin{pblm}%48
+	By altering the lengths of the removed intervals, construct a ``fat Cantor set''-a 
+	Cantor set of positive measure. Ideally, show how to construct a Cantor set of 
+	measure $\alpha$ for any $\alpha < 1$. \\
+	(You can check that if you try to imitate the Cantor set construction by 
+	removing a constant fraction of what remains at each stage, the total length of 
+	removed intervals will be 1 no matter what the fraction removed is, so you will 
+	have to be a little cleverer than that. Try to make choices so that your 
+	calculations are reasonably easy.)
+
+\begin{proof}
+	For any $\alpha < 1$, let $\beta = 1 - \alpha$. We will construct the 
+	complement $C_f^c$ of a ``fat Cantor set $C_f$'' that has measure $\beta$ 
+	so that the measure of $C_f$ is $1 - \beta = \alpha$. 
+
+	To construct this set, as with the Cantor set, we will use the intervals 
+	that are discarded from the center of a given interval at each step. 
+
+	For the first step, remove the interval of length $\frac{\beta}{2}$ from 
+	the center of the interval $[0,1]$. Then at each successive step, remove the 
+	intervals of length $\frac{\beta}{2^{2n}}$ from the center of each remaining 
+	open interval. 
+
+	\begin{center}
+	\begin{tikzpicture}
+	\draw (0,0) -- (10,0);
+	\node at (0.0, 0) {$($};
+	\node at (10., 0) {$)$};
+	\node at ( 0, .5) {0};
+	\node at (10, .5) {1};
+	\draw [thick] (4,0) -- (6,0);
+	\node at (4.0, 0) {$($};
+	\node at (6.0, 0) {$)$};
+	\node at (5,1) {$\frac{\beta}{2}$};
+	\draw [thick] (1.5, 0) -- (2.5, 0);
+	\node at (1.5, 0) {$($};
+	\node at (2.5, 0) {$)$};
+	\node at (2,1){$\frac{\beta}{2^2}$};
+	\draw [thick] (7.5, 0) -- (8.5, 0);
+	\node at (7.5, 0) {$($};
+	\node at (8.5, 0) {$)$};
+	\node at (8,1){$\frac{\beta}{2^2}$};
+	\end{tikzpicture}
+	\end{center}
+	The intervals removed form a set that has a sum length of intervals of 
+	\begin{equation*}
+		\frac{\beta}{2} + 2\frac{\beta}{4^2} + \dots = \beta\sum\limits_{i=1}^\infty \frac{1}{2^i} = \beta
+	\end{equation*}
+	which means that the complement of this set has measure $1 - \beta = \alpha$. 
+\end{proof}
+\end{pblm}
+
+\begin{rmk}%49
+	Properties (1),(3),(5) of \#44 are really structural properties of the collection 
+	$\M$ of measurable subsets of $[0,1]$. How interesting they are depends 
+	on whether $\M$ is just the set of all subsets of $[0,1]$ (sometimes 
+	called the \textbf{power set} $\Sp([0,1])$) or some proper collection of 
+	$\Sp([0,1])$. We ``construct'' some non-measurable sets in order to see 
+	that $\M \neq \Sp([0,1])$. This makes the structural properties 
+	much more interesting. 
+
+	Given $x \in [0,1]$, let $A_x = \{y \in [0,1] : x - y \in \Q\}$. 
+	Each $A_x$ is a countable set. Clearly $y \in A_x \Leftrightarrow 
+	x \in A_y$. If $x \in A_y$ and $y \in A_z$, then $x - z = (x + y) 
+	+ (y - z)$ is rational so $z \in A_x$. It follows that the relation 
+	$x \sim y$ if $y \in A_x$ is reflexive, symmetric and transitive, 
+	that is, it is an \textbf{equivalence relation}. Each distinct set 
+	$A_x$ is an \textbf{equivalence class}. As you have probably 
+	verified somewhere else, distinct equivalence classes are disjoint, 
+	that is, if $x \neq y$ then either $A_x = A_y$ or $A_x$ and $A_y$ 
+	are disjoint. (Easy if you haven't done it before.)
+
+	Now choose one element from each distinct equivalence class, and 
+	let $E$ be the set of all such elements. $E$ is an uncountable set; 
+	otherwise $[0,1]$ would be a countable union of countable sets, and 
+	so countable. See the remark below about hte choice process. 
+
+	Let $\{q_k\}_{k=1}^\infty$ be an enumeration of the set $\Q_0$ of 
+	rationals in $[0,1]$, I claim the sets $\{E \Dp q_k : k = 1, 2, 3\}$ 
+	are disjoint and that their union is $[0,1]$. First note that for 
+	any $x \in [0,1]$, $x \in E \Dp q_k$ if for some $e \in E$, either 
+	$x = e + q_k$ (if $e + q_k < 1$) or $x = e + q_k - 1$ (in case 
+	$e + q_k \ge 1$). Now $x$ is in the same equivalence class $A_x$ as 
+	some element $e$ of $E$. Thus $|x - e| = q_k$ for some $k$ and we 
+	see that either $x \in E \Dp q_k$ (if $x \ge e$) or $x \in E \Dp 
+	(1 - q_k)$ (if $x < e$). Next we see that the $\{E \Dp q_k\}$ are 
+	pairwise disjoint. If $x = e + q_k = e^t + q_j$, then $e - e^t = 
+	q_j - q_k$, that is, $e$ and $e^t$ are in the same equivalence 
+	class. This is a contradiciton. 
+
+	To summarize, $[0,1] = \bigcup\limits_{k=1}^\infty (E \Dp q_k)$ as 
+	a disjoint union. Further, by property 4 of \#44, either all these 
+	sets are measurable with the same measure, or all are non - 
+	measurable. But the first alternative is impossible by property 6 
+	of \#44. Thus we have a countably infinite collection of non-measurable 
+	sets. 
+\end{rmk}
+
+\begin{rmk}%50
+	The construction of $E$ in the preceding example used the property 
+	that I can make a set by choosing one element out of a collection of 
+	non-empty sets. The assertion that one can do this is called the 
+	\textbf{Axiom of Choice}. In the early twentieth century when 
+	mathematicians and logicians were trying to construct all of 
+	mathematics from a precisely defined set of axioms, and to show that 
+	the mathematics so obtained would be consistent (no possibility that 
+	legal arguments would produce a contradiction), the relationship 
+	between the Axiom of Choice and other ``usual axioms'' was much studied, 
+	because the Axiom of Choice has surprising consequences (e.g. that it 
+	is possible to order the set of real numbers so that each subset of 
+	reals has a least element in the ordering-just like the positive integers 
+	with the usual ordering. This is called a Well-Ordering.) However in 
+	1963 Paul Cohen completed the proof that AofC is independent of the other 
+	axioms of set theory. This marked the very end of the interest that most 
+	mathematicians have in the foundations of mathematics. (Most feel that it 
+	is new ideas and connections that are of interest, and Cohen's result 
+	showed that AofC, which is often very convenient, can't ``make things 
+	worse'' (introduce contradictions where there were none before.)).
+\end{rmk}
+
+\begin{defn}\label{d:sigmaalgebra}%51
+	A collection $\A$ of subsets of a non-empty set $X$ is a 
+	$\sigma-$\textbf{algebra} of subsets if $\A$ has the properties 
+	\begin{enumerate}[(i)]
+		\item $\emptyset \in \A$, 
+		\item $E \in \A \Leftrightarrow E^c \in \A$
+		\item if $\{E_k\}_{k=1}^\infty$ are in $\A$, then 
+			$\bigcup\limits_{k=1}^\infty E_k \in \A$
+	\end{enumerate}
+\end{defn}
+
+\begin{rmk}%52
+	Thus $\M$ is a proper $\sigma$-algebra of subsets of $\Sp([0,1])$, 
+	the power set of $[0,1]$. Another $\sigma-$algebra of subsets of 
+	$\Sp([0,1])$ is the collection $\B$ of all \textbf{Borel subsets} of 
+	$[0,1]$. $\B$ is defined to be the smallest $\sigma-$algebra of subsets 
+	of $\Sp([0,1])$ that contains the open sets. (Take the intersection of all 
+	such $\sigma-$algebras.) Clearly $\B\subset\M$. It can be shown that $\B$ 
+	and $\M$ are different by a cardinality argument-Since the Cantor set $C$ 
+	can be put into 1-1 correspondence with $\Sp([0,1])$. All elements in 
+	$\Sp(C)$ are measurable, since they are subsets of a set of measure 0, 
+	thus $\M$ has the same cardinality as $\Sp([0,1])$. On the other hand, $\B$ 
+	can also be generated in a countable fashion from the set of open intervals 
+	with rational endpoints. Thus its cardinality is the same as that of 
+	$[0,1]$ and so strictly less than that of $\Sp([0,1])$. 
+
+	On the other hand, every measurable set is ``nearly'' an open set, and 
+	also ``nearly'' a closed set. This is the content of the next problem. 
+\end{rmk}
+
+\pagebreak
+\begin{pblm}%53
+	The following properties are equivalent for a subset $E$ of $[0,1]$
+	\begin{enumerate}[(i)]
+		\item $E \in \M$
+		\item for each $\epsilon > 0$ there is an open set $G$ such that 
+		$E \subset G$ and $m^\ast(G\setminus E) < \epsilon$. 
+		\item there is a $G_\delta$ set $H$ such that $E \subset H$ and 
+		$m^\ast(H\setminus E) = 0$. \\
+		(A $G_\delta$ set is a countable intersection of open sets. A 
+		$G_\delta$ is a Borel set but not open in general, for instance 
+		any closed interval is a $G_\delta$. (Proof?-but not a problem))
+		\item for each $\epsilon > 0$ there is a closed set $F$ such that 
+		$F \subset E$ and $m^\ast(E\setminus F) < \epsilon$. 
+		\item there is an $F_\sigma$ set $K$ (a countable union of closed 
+		sets, e.g. $\Q_0$) such that $K \subset E$ and 
+		$m^\ast(E\setminus K) = 0$. 
+
+		(We will split this into two parts, from two different people, 
+		first (i) $\Rightarrow$ (ii) $\Rightarrow$ (iii) $\Rightarrow$ (i), 
+		second (ii) $\Rightarrow$ (iv) $\Rightarrow$ (v) $\Rightarrow$ (i).)
+	\end{enumerate}
+\begin{proof}
+\noindent $(i) \Rightarrow (ii)$: If $E$ is a measurable set, then for each 
+	$\epsilon > 0$ there is an open cover $\{G_j\}_{j=1}^\infty$ of $E$ such that 
+	\begin{equation*}
+		m(E) < \sum\limits_{j=1}^\infty \ell(G_j) < m(E) + \epsilon
+	\end{equation*}
+	Now, let $G = \bigcup\limits_{i=1}^\infty G_j$. Then 
+	$G$, as a union of open sets, is itself open. Also, since the $G_j$ were 
+	chosen as an open cover of $E$,  $E \subset G$, and so (since $G\setminus E$ 
+	and $E$ are mutually disjoint), 
+	\begin{equation*}
+		m^\ast(G \setminus E) + m^\ast(E) \le m^\ast(G) \le m^\ast(E) + \epsilon
+	\end{equation*}
+	which can be re-written 
+	\begin{equation*}
+		m^\ast(G \setminus E) + m^\ast(E) \le m^\ast(E) + \epsilon ~~ \Rightarrow ~~ m^\ast(G \setminus E) \le \epsilon
+	\end{equation*}
+
+\noindent $(ii) \Rightarrow (iii)$: 
+	Let $H=\bigcup\limits_{k=1}^\infty H_i$ where $E\subset H_i,\,\forall i$ and (from part (ii)): 
+	\begin{equation*}
+		m^\ast(H_i\setminus E) = \frac{1}{i}
+	\end{equation*}
+
+	Then $E\subset H$ and $H = \bigcup_{k=1}^\infty H_i$ is a $G_\delta$ set such that 
+	$ m^\ast(H\setminus E) = \lim\limits_{i\to\infty} \frac{1}{i} = 0. $
+
+\noindent $(iii) \Rightarrow (i)$: 
+	Given a $G_\delta$ set $H$, such that $E \subset H$, and $m^\ast(H\setminus E) = 0$, 
+	Then $H$ is measurable since $\M$ is a $\sigma$-algebra. 
+	\begin{equation*}
+		E = (H\setminus E)^c \cap H.
+	\end{equation*}
+	Notice all the constituent sets are measurable, thus $E\in\M$.  
+
+\noindent $(ii) \Rightarrow (iv)$: 
+	Let $\epsilon > 0$. Then there is an open set $G$ such that 
+	$E\subset G$ and $m^\ast(G\setminus E) < \epsilon$.
+
+	 Then $E^c$ is also measurable 
+	and so there is an open set $F^c$ such that $E^c\subset F^c$ and 
+	$m^\ast(F^c\setminus E) \le \epsilon$. This implies $F\subset E$. 
+
+	Then $m^\ast(F^c\setminus E^c)=m^\ast(F^c\cap E) = m^\ast(E\cap F^c) < \epsilon$.
+
+\noindent $(iv) \Rightarrow (v)$: 
+	Let $K\subset E$ such that $K=\bigcup_{k=1}^\infty F_i$, and each $F_i\in E$  
+	$m^\ast(E\cap F_i^c) < \frac{\epsilon}{2^k}$. Then $E\setminus K \subset F_i$. 
+	Furthermore, 
+	\begin{equation*}
+		m^\ast(E\setminus K) < m^\ast(E\setminus F_i) < \frac{\epsilon}{2^k} < \epsilon 
+	\end{equation*}
+	for all $1 \le k \le \infty$ 
+
+\noindent $(v) \Rightarrow (i)$: 
+	Let $K$ be an $F_\sigma$ set such that $K\subset E$ and $m^\ast(E\setminus K)= 0$. 
+	Then $m^\ast(E\setminus K)$ is measurable. Also, since $K$ is an $F_\sigma$ set, 
+	it is a countable union of closed sets and is therefore measurable. 
+	Then $E = K\cup E\setminus K$ is the union of measurable sets. 
+	Thus $E$ is measurable. 
+
+\end{proof}
+\end{pblm}
+
+
