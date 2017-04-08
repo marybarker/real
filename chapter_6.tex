@@ -158,13 +158,13 @@
 			major grid style={line width=.2pt, draw=gray!60} 
 		]
 		\addplot[name path=xaxis, domain=0:26,samples=10]{0};
-		\addplot[name path=yaxis] coordinates{(0.0, 0.0) (0.0, 25.0)};
+		\addplot[name path=yaxis] coordinates{(0.0, 8.0) (5.5, 8.0)};
 		\addplot[name path=phi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=red]{2.0 * sqrt(x)};
 		\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
 		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
 		\draw (axis cs:7,15.0) node[color=blue] {$\varPsi$};
 		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:5}];
-		\addplot[fill=blue,opacity=0.3]fill  between[of=psi and yaxis, soft clip={domain=0:15}];
+		\addplot[fill=blue,opacity=0.3]fill  between[of=psi and yaxis, soft clip={domain=0:5.5}];
 	\end{axis}
 	\end{tikzpicture}
 	\end{center}
