@@ -60,11 +60,11 @@
 		$|f(x)-g(x)|$ is actually a max.) Convergence with respect to this distance 
 		is uniform convergence. The theorem that the limit of a uniformly convergent 
 		sequence of continuous functions is continuous translates in this terminology 
-		to the statement that $C[01,]$ with this metric is a complete metric space. 
+		to the statement that $C[0,1]$ with this metric is a complete metric space. 
 		However for the set $C[0,1]$ it is easy to define other distance functions 
 		which are essentially different in the sense that they produce a form of 
 		convergence that is not equivalent to uniform convergence and with repsect to 
-		which $C[01,]$ is not a complete metric space. We will do this shortly. 
+		which $C[0,1]$ is not a complete metric space. We will do this shortly. 
 	\end{enumerate}
 \end{ex}
 
@@ -132,7 +132,7 @@
 
 \begin{pblm} %129
 	Let $\phi$ be a continuous, increasing, real-valued function defined on $[0,\infty)$ 
-	such that $\phi(0) = 9$ and $\lim\limits_{x\to\infty}\phi(x) = \infty$. Let 
+	such that $\phi(0) = 0$ and $\lim\limits_{x\to\infty}\phi(x) = \infty$. Let 
 	$\varPsi$ be the inverse of $\phi$. Let 
 	$\Phi(x) = \int_0^x\phi$ and $\Psi(x) = \int_0^x\varPsi$. Then for any positive real 
 	numbers $a$ and $b$, 
@@ -200,7 +200,8 @@
 	\end{tikzpicture}
 	}
 	\end{center}
-	Case 2: $b > a$:
+	Case 2: $a > b$:
+	$b^2 + (a - b) b + $ some top part of the integral. 
 	\begin{center}
 	\resizebox{0.3\textwidth}{!}{
 	\begin{tikzpicture}
@@ -219,9 +220,9 @@
 		\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
 		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
 		\draw (axis cs:7,15.0) node[color=blue] {$\varPsi$};
-		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:10}];
+		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:12}];
 		\addplot[fill=blue,opacity=0.3]fill  between[of=psi and yaxis, soft clip={domain=0:6.0}];
-		\draw (axis cs:10,-.6) node[color=red] {$a$};
+		\draw (axis cs:12,-.6) node[color=red] {$a$};
 		\draw (axis cs:6,-.5) node[color=blue] {$b$};
 	\end{axis}
 	\end{tikzpicture}

@@ -346,7 +346,7 @@
 \end{proof}
 \end{pblm}
 
-\begin{pblm}\label{p:inteqliminf}%102
+\begin{pblm}\label{p:fatou}%102
 	Let $\{f_n\}_{n=1}^\infty$ be a sequence of non-negative measurable functions on a 
 	measurable set $E$ such that $f(x) = \lim\limits_{n\to\infty}f_n(x)$ exists for almost 
 	all $x \in E$. Then $f$ is measurable and 
@@ -483,6 +483,19 @@
 	$\int_E f < \infty$. Then for each $\epsilon > 0$ there is $\delta > 0$ so that 
 	for every $A \subset E$ with $m(A) < \delta$, it is the case that $\int_Af<\epsilon$. 
 \begin{proof}
+	Assume not, then for some $\epsilon > 0$, $\forall \delta > 0$ there are 
+	$A \subset E$ with $m(A) \le \delta$ such that 
+	\begin{equation*}
+		\int_A f \ge \epsilon.
+	\end{equation*}
+	Let this $\epsilon > 0$, then there is a sequence $\{A_n\}$ with 
+	$m(A_n) < \frac{1}{2^n}$ and $\int_{A_n} f \ge \epsilon$. 
+
+	Let $B_n =\bigcup\limits_{k=n}^\infty A_k$, and define $f_n = f - f\chi_{B_n}$. 
+
+	Then $f_n \rightarrow f$ (obv), and so 
+	then $f_n$ is a non-decreasing sequence of non-negative ftns (that are measurable), 
+
 	%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
@@ -498,7 +511,7 @@
 	Let $f$ be an extended real-valued function. The positive and negative parts of 
 	$f$, $f_+ = max\{f, 0\}$ and $f_- = max\{-f, 0\}$ can be defined as extended 
 	real-valued functions just as in \ref{d:pos_neg_fun} with the properties already 
-	developed. Notice that for nay $x$< at most one of $f_+$ and $f_-$ is different 
+	developed. Notice that for nay $x$, at most one of $f_+$ and $f_-$ is different 
 	from 0, and that, as before, $f = f_+ - f_-$ and $|f| = f_+ + f_-$. 
 \end{rmk}
 
@@ -594,8 +607,25 @@
 \begin{proof}
 	If $|f_n| \le g$ a.e. for all $n$, then 
 	$\{g - f_n\}_{n=1}^\infty$ and $\{g + f_n\}_{n=1}^\infty$ are both non-negative a.e. 
-	%and so by \ref{p:inteqliminf}, 
-	%%%%%%%%%%%%%%%%%
+	and so by Fatou's Lemma (\ref{p:fatou}), 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\int_E(g+f) & \le & \lim\inf\int_E(g+f_n) \\ 
+		\int_Eg + \int_E f & \le & \lim\limits_{n\to\infty}\int_E(g+f_n)\\
+		\int_Eg + \int_Ef & \le & \int_Eg + \lim\limits_{n\to\infty}\int_Ef_n\\
+		\int_Ef & \le & \lim\limits_{n\to\infty}\int_Ef_n
+	\end{array}
+	\end{equation*}
+	and similarly, 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\int_E(g-f) & \le & \lim\inf\int_E(g-f_n) \\ 
+		\int_Eg - \int_E f & \le & \lim\limits_{n\to\infty}\int_E(g-f_n)\\
+		\int_Eg - \int_Ef & \le & \int_Eg - \lim\limits_{n\to\infty}\int_Ef_n\\
+		-\int_Ef & \le & -\lim\limits_{n\to\infty}\int_Ef_n\\
+		\int_Ef & \ge & \lim\limits_{n\to\infty}\int_Ef_n
+	\end{array}
+	\end{equation*}
 \end{proof}
 \end{pblm}
 
