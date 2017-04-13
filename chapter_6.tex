@@ -130,7 +130,7 @@
 	with the Euclidean norm or, for that matter, any other reasonable norm. 
 \end{ex}
 
-\begin{pblm} %129
+\begin{pblm} \label{p:129} %129
 	Let $\phi$ be a continuous, increasing, real-valued function defined on $[0,\infty)$ 
 	such that $\phi(0) = 0$ and $\lim\limits_{x\to\infty}\phi(x) = \infty$. Let 
 	$\varPsi$ be the inverse of $\phi$. Let 
@@ -145,8 +145,8 @@
 	``mirror image'' of the graph of $\phi$, so you can find $\Psi(b)$ as an area between 
 	the $y$-axis and the graph of $\phi$. This result is called Young's Inequality.)}}
 \begin{proof}
-	(not yet, but pretty pictures anyway)\\
-	Case 1: $a \le b$: 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Case 1: 
 	\begin{center}
 	\resizebox{0.3\textwidth}{!}{
 	\begin{tikzpicture}
@@ -165,9 +165,9 @@
 		\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
 		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
 		\draw (axis cs:7,15.0) node[color=blue] {$\varPsi$};
-		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:5}];
+		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:4}];
 		\addplot[fill=blue,opacity=0.3]fill  between[of=psi and yaxis, soft clip={domain=0:6.0}];
-		\draw (axis cs:5,-.6) node[color=red] {$a$};
+		\draw (axis cs:4,-.6) node[color=red] {$a$};
 		\draw (axis cs:6,-.5) node[color=blue] {$b$};
 	\end{axis}
 	\end{tikzpicture}
@@ -190,18 +190,17 @@
 		\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
 		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
 		\draw (axis cs:7,15.0) node[color=blue] {$\varPsi$};
-		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:5}];
+		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:4}];
 		\addplot[fill=blue,opacity=0.3]fill  between[of=phi and yaxis, soft clip={domain=0:9.0}];
-		\draw (axis cs:5,-.6) node[color=red] {$a$};
+		\draw (axis cs:4,-.6) node[color=red] {$a$};
 		\draw (axis cs:-.5,6) node[color=blue] {$b$};
-		\draw[fill, pattern=north east lines, pattern color=gray, draw=none,opacity=0.5] (axis cs:0,0) rectangle (axis cs:5,6);
-		\draw (axis cs:2.5,3) node[color=gray,opacity=0.8] {$ab$};
+		\draw[fill, pattern=north east lines, pattern color=black, draw=none,opacity=0.5] (axis cs:0,0) rectangle (axis cs:4,6);
+		\draw (axis cs:2.5,3) node[color=black,opacity=0.8] {$ab$};
 	\end{axis}
 	\end{tikzpicture}
 	}
 	\end{center}
-	Case 2: $a > b$:
-	$b^2 + (a - b) b + $ some top part of the integral. 
+	Case 2: 
 	\begin{center}
 	\resizebox{0.3\textwidth}{!}{
 	\begin{tikzpicture}
@@ -249,8 +248,8 @@
 		\addplot[fill=blue,opacity=0.3]fill  between[of=phi and yaxis, soft clip={domain=0:9.0}];
 		\draw (axis cs:12,-.6) node[color=red] {$a$};
 		\draw (axis cs:-.5,6) node[color=blue] {$b$};
-		\draw[fill, pattern=north east lines, pattern color=gray, draw=none,opacity=0.5] (axis cs:0,0) rectangle (axis cs:12,6);
-		\draw (axis cs:6,3) node[color=gray,opacity=0.8] {$ab$};
+		\draw[fill, pattern=north east lines, pattern color=black, draw=none,opacity=0.5] (axis cs:0,0) rectangle (axis cs:12,6);
+		\draw (axis cs:6,3) node[color=black,opacity=0.8] {$ab$};
 	\end{axis}
 	\end{tikzpicture}
 	}
@@ -259,7 +258,7 @@
 \end{proof}
 \end{pblm}
 
-\begin{pblm}%130 
+\begin{pblm}\label{p:130}%130 
 	Let $p > 1$. If $\phi(x) = x^{p-1}$, then the preceding inequality takes the form 
 	\begin{equation*}
 		ab \le \frac{1}{p}a^p + \frac{1}{q}b^q
@@ -267,7 +266,19 @@
 	where $q$ is the number such that $\frac{1}{p} + \frac{1}{q} = 1$. Equality holds if 
 	and only if $b = a^{p-1}$ or equivalently iff $b^q = a^p$. 
 \begin{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Let $\Phi(a) = \int_0^ax^{p-1}$, $\Psi(a) = \int_0^ax^{\frac{1}{p-1}}$. Then by \mPref{p:129},
+	\begin{equation*}
+	\begin{array}{rcl}
+		ab & \le & \Phi(a) + \Psi(b) \\
+		& = & \int_0^a x^{p-1} + \int_0^b x^\frac{1}{p-1} \\ 
+		& = & \frac{1}{p}a^p + \frac{p-1}{p}b^\frac{p-1}{p}
+	\end{array}
+	\end{equation*}
+	Let $q = \frac{p}{p-1}$. Then 
+	\begin{equation*}
+		\frac{1}{p} + \frac{p-1}{p} = \frac{p}{p} = 1
+	\end{equation*}
+	Then $\phi(a) = b \Leftrightarrow a^{p-1} = b$
 \end{proof}
 \end{pblm}
 
@@ -285,6 +296,33 @@
 	consider $F = f/(\int_E|f|^p)^{1/p},~G=g/(\int_E|g|^q)^{1/q}$. This is H\"{o}lder's 
 	Inequality. For $p = q = 2$ it is usually called the Cauchy or Cauchy-Schwarz Inequality.)}}
 \begin{proof}
+	Let $a = |f(x)|$, $b = |g(x)|$. Then by \mPref{p:130}, 
+	$ab \le \frac{1}{p}a^p + \frac{1}{q}b^q$, and so 
+	\begin{equation*}
+		|fg| \le \frac{|f|^p}{p} + \frac{|g|^q}{q}
+	\end{equation*}
+	and so 
+	\begin{equation*}
+	\begin{array}{c}
+		\int |fg| \le \int \frac{|f|^p}{p} + \int \frac{|g|^q}{q}\\
+		\int |fg| \le \frac{1}{p}\int |f|^p + \frac{1}{q}\int |g|^q
+	\end{array}
+	\end{equation*}
+
+	Now suppose that $\int |f|^p + \int|g|^q = 1$, then let 
+	$F = \frac{|f|}{\left(\int_E|f|^p\right)^\frac{1}{p}}$, 
+	$G = \frac{|g|}{\left(\int_E|g|^q\right)^\frac{1}{q}}$.  
+
+	\begin{equation*}
+	\begin{array}{rcl}
+		FG  = \frac{|fg|}{\left(\int|f|^p\right)^\frac{1}{p}\left(\int|g|^q\right)^\frac{1}{q}} & \le & 
+			\frac{|f|^p}{p\int|f|^p} + \frac{|g|^q}{q\int|g|^q} = \frac{F^p}{p} + \frac{G^q}{q}\\
+		\frac{1}{\left(\int|f|^p\right)\frac{1}{p}\left(\int|g|^q\right)^\frac{1}{q}}\int |fg| & \le & 
+			\frac{1}{p\int|f|^p}\int|f|^p + \frac{1}{q\int|g|^q}\int |g|^q
+	\end{array}
+	\end{equation*}
+
+	To show that equality happens iff: 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
@@ -308,7 +346,24 @@
 	where you use $q(p - 1) = p$. The result of this problem is called Minkowski's Inequality.)
 	}}
 \begin{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	First of all,  $|f+g|^p = |f+g|^p|f+g|^{p-1} \le |f||f+g|^{p-1} + |g||f+g|^{p-1}$ 
+	and so for $q = \frac{p}{p - 1}$ (which gives $q(p-1) = p$), 
+	\begin{equation*}
+	\begin{array}{rcccc}
+		|f+g|^p  & \le & |f||f+g|^{p-1} & + & |g||f+g|^{p-1}\\
+		\int |f+g|^p  & \le & \underbrace{\int|f+g|^{p-1}\int|f|}_{\vertle} & + & 
+					\underbrace{\int|f+g|^{p-1}\int|g|}_{\vertle}\\
+			&  & \left(\int(|f+g|^{p-1})^q\right)^\frac{1}{q}\left(\int|f|^p\right)^\frac{1}{p} & + & 
+			     \left(\int(|f+g|^{p-1})^q\right)^\frac{1}{q}\left(\int|g|^p\right)^\frac{1}{p}\\
+			& & \verteq & & ~~ \verteq \\
+			&  & \left(\int(|f+g|^p\right)^\frac{1}{q}\left(\int|f|^p\right)^\frac{1}{p} & + & 
+			     \left(\int(|f+g|^p\right)^\frac{1}{q}\left(\int|g|^p\right)^\frac{1}{p}\\
+		\left(\int|f+g|^p\right)^{1-\frac{1}{q}} & \le & 
+				\left(\int|f|^p\right)^\frac{1}{p} & + & \left(\int|g|^p\right)^\frac{1}{p}\\
+		\left(\int|f+g|^p\right)^{\frac{1}{p}} & \le & 
+				\left(\int|f|^p\right)^\frac{1}{p} & + & \left(\int|g|^p\right)^\frac{1}{p}
+	\end{array}
+	\end{equation*}
 \end{proof}
 \end{pblm}
 
@@ -318,17 +373,22 @@
 	\begin{equation*}
 		\|f\|_\infty = \inf\{M: |f(x)| \le M a.e.\}
 	\end{equation*}
-	is finite. Note that if $f$ is continuous on $E$, then $\|f\|_\infty=\sup\{|f(x)|:x\in E$ . 
+	is finite. Note that if $f$ is continuous on $E$, then $\|f\|_\infty=\sup\{|f(x)|:x\in E\}$ . 
 \end{defn}
 
 \begin{pblm}%134
 	If $f$ is a measurable function on a set $E$ such that $\|f\|_\infty$ is finite, then 
 	there is a subset $A$ of $E$ such that $m(A) = 0$ and $|f(x)| \le \|f\|_\infty$ for all 
 	$x \in E\setminus A$. \\
-	(If not, then for some $n$, there is $B, m(B) > 0$ and $|f(x)|\ge\|f\|_\infty + \frac{1}{n}$ 
-	on $B$.)
+	{\scriptsize{(If not, then for some $n$, there is $B, m(B) > 0$ and $|f(x)|\ge\|f\|_\infty + \frac{1}{n}$ 
+	on $B$.)}}
 \begin{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Assume otherwise. Then there is some $B$ such that $|f| > \|f\|_\infty$ on $B$ and 
+	$m(B) > 0$. So for some $\frac{1}{n}$, 
+	\begin{equation*}
+		|f| \ge \|f\|_\infty + \frac{1}{n}
+	\end{equation*}
+	so 
 \end{proof}
 \end{pblm}
 
@@ -336,14 +396,18 @@
 	If $\|f\|_\infty$ and $\|g\|_\infty$ are finite, then $\|f+g\|_\infty$ is finite and 
 	$\|f+g\|_\infty \le \|f\|_\infty+\|g\|_\infty$. 
 \begin{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Since for all real $f$, $g$, $|f + g| \le |f|+|g|$, 
+	\begin{equation*}
+		\inf\{M: |f(x) + g(x)| \le M ~ a.e.\} \le \inf\{M:|f(x)| \le M ~ a.e.\} + \inf\{M: |g(x)| \le M ~ a.e.\} 
+	\end{equation*}
+	and since $\|f\|_\infty < \infty$ and $\|g\| < \infty$, $\|f + g\|_\infty \le \|f\|_\infty + \|g\|_\infty < \infty$. 
 \end{proof}
 \end{pblm}
 
 \begin{pblm}%136
 	If $\int_E|f|<\infty$ and $\int_E|g|<\infty$, then $\int_E|f+g|\le\int_E|f|+\int_E|g|$. 
 \begin{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	For all real $f$, $g$,  $|f + g| \le |f| + |g|$, so $\int_E|f + g|\le \int_E|f| + \int_E|g|$
 \end{proof}
 \end{pblm}
 
@@ -397,6 +461,47 @@
 			Justify your conclusion. 
 	\end{enumerate}
 \begin{proof}
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{axis}[legend pos=north west]
+		\addplot[color=black, forget plot] coordinates{
+			(0,0)
+			(.5, 0.0)
+			(.5, 1.0)
+			(1,1)
+		};%\addlegendentry{$n \rightarrow \infty$}
+		\addplot[color=brown] coordinates{
+			(0,0)
+			(.3333, 0.0)
+			(.6666, 1.0)
+			(1,1)
+		};\addlegendentry{$n = 6$};
+		\addplot[color=green] coordinates{
+			(0,0)
+			(.3, 0.0)
+			(.7, 1.0)
+			(1,1)
+		};\addlegendentry{$n = 5$};
+		\addplot[color=blue] coordinates{
+			(0,0)
+			(.25, 0.0)
+			(.75, 1.0)
+			(1,1)
+		};\addlegendentry{$n = 4$};
+		\addplot[color=red] coordinates{
+			(0,0)
+			(.166666, 0.0)
+			(.833333, 1.0)
+			(1,1)
+		};\addlegendentry{$n = 3$};
+		\draw (axis cs:0.44, 0.15) node {$\dots$};
+		\draw (axis cs:0.57, 0.85) node {$\dots$};
+	\end{axis}
+	\end{tikzpicture}
+	\end{center}
+	\begin{enumerate}[(a)]
+		\item 
+	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}

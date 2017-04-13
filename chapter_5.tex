@@ -171,7 +171,7 @@
 	\begin{equation*}
 		\left|\int s_p - \int r_p\right| < \epsilon \cdot m(E) ~~\forall~ p \ge max(M,N)
 	\end{equation*}
-	and by \ref{p:simplefuncintislinear}, this implies that 
+	and by \mPref{p:simplefuncintislinear}, this implies that 
 	\begin{equation*}
 		\left|\int (s_p - r_p)\right| < \epsilon \cdot m(E)
 	\end{equation*}
@@ -181,11 +181,11 @@
 	\end{equation*}
 	Now, define $\tau - \epsilon ~\chi_E$. Then $\tau$ is a simple function with a 
 	value of $\epsilon$ everywhere on $E$, and $0$ elsewhere. So, by 
-	 \ref{p:simplefuncintislinear}(2), 
+	 \mPref{p:simplefuncintislinear}(2), 
 	\begin{equation*}
 		\int (s_p - r_p) < \int \tau =  \epsilon \cdot m(E) ~ \implies ~ (s_p - r_p) < \tau 
 	\end{equation*}
-	Therefore $s_p - r_p < \epsilon$ for all $x \in E$, and so, by \ref{p:ext_real_val_seq}, $f$ is measurable. 
+	Therefore $s_p - r_p < \epsilon$ for all $x \in E$, and so, by \mPref{p:ext_real_val_seq}, $f$ is measurable. 
 
 	\noindent $(\Leftarrow): $ let $f$ be measurable and bounded on $E \in \M$ where 
 	$m(E)$ is finite, and let $|f| \le M$ for all $x \in E$. Then partition 
@@ -193,7 +193,7 @@
 	\begin{equation*}
 		E_j = \left[\left.-M + \frac{M}{n}(j-1), -M + \frac{M}{n}j\right.\right)
 	\end{equation*}
-	From \ref{p:contalmostsimple}, define $r_n, s_n$ as 
+	From \mPref{p:contalmostsimple}, define $r_n, s_n$ as 
 	\begin{equation*}
 	\begin{array}{c}
 		s_n = \sum\limits_{j=1}^{2n} (-M + \frac{M}{n}j) \chi_{E_j}(f(x)) \\
@@ -238,7 +238,7 @@
 	on $[a,b]$, then $f$ is measurable and the Riemann integral $R\int_a^b f =\int_a^b f$. \\
 	(A step function is a simple function.)
 \begin{proof}
-	%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
 
@@ -258,7 +258,7 @@
 	manipulation of infs. You may also find \mPref{p:infinteqsupint} useful.) For (2) you can 
 	show $f \le 0$ a.e. implies $\int_E f \le 0.$ (3), (4), and (5) follow from previous parts.)}}
 \begin{proof}
-	%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
 
@@ -282,9 +282,9 @@
 	(Use \mPref{p:approxfunwithsteporsimple} or Egoroff's Thm \mPref{p:egoroff}). 
 \begin{proof}
 	If $\lim\limits_{n\to\infty}f_n$ exists a.e. on $E$, then $f = \lim\limits_{n\to\infty} f_n$ 
-	is measurable by \ref{p:ext_real_val_seq}, and $|f| \le M$ a.e. 
+	is measurable by \mPref{p:ext_real_val_seq}, and $|f| \le M$ a.e. 
 
-	Then by \ref{p:egoroff}, for any $\epsilon > 0$, there is $A \subset E$ with $m(A) < \epsilon/4M$ and 
+	Then by \mPref{p:egoroff}, for any $\epsilon > 0$, there is $A \subset E$ with $m(A) < \epsilon/4M$ and 
 	$f_n \rightarrow f$ uniformly on $E \setminus A$. So 
 	\begin{equation*}
 		\int_E (f - f_n) \le \int_E |f - f_n| = \int_{E \setminus A} |f-f_n| + \int_A|f-f_n|
@@ -342,7 +342,7 @@
 		$f \ge 0$ a.e. then $\int_E f \ge 0$. 
 	\end{enumerate}
 \begin{proof}
-	%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
 
@@ -354,7 +354,7 @@
 		\int_E f \le \lim\inf\int_E f_n.
 	\end{equation*}
 \begin{proof}
-	%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
 
@@ -417,14 +417,14 @@
 \begin{proof}~
 	\begin{enumerate}[(a)]
 	\item Define $g_n = \sum\limits_{k=1}^nf_k$. Then $\{g_n\}$ is a nondecreasing 
-		sequence and so by \ref{p:mct}, 
+		sequence and so by \mPref{p:mct}, 
 		\begin{equation*}
 			\int_E\lim\limits_{n\to\infty}g_n = \lim\limits_{n\to\infty}\int_Eg_n
 		\end{equation*}
 		and now, we will show that $\int_E\sum\limits_{k=1}^nf_k = \sum\limits_{k=1}^n\int_Ef_k$ 
 		by induction. 
 
-		\noindent Base case: $\int_E (f + g) = \int_Ef + \int_Eg$ by \ref{p:lebesguelotsofuseful}
+		\noindent Base case: $\int_E (f + g) = \int_Ef + \int_Eg$ by \mPref{p:lebesguelotsofuseful}
 
 		\noindent Induction step: Assume that the hypothesis is true for some $n-1$, and then 
 		\begin{equation*}
@@ -438,12 +438,13 @@
 			\int_E\sum\limits_{k=1}^\infty f_k = \sum\limits_{k=1}^\infty\int_Ef_k
 		\end{equation*}
 	\item Let $A = \bigcup\limits_{n=1}^\infty A_n$. Then 
-	\begin{equation*}
-	\begin{array}{rcl}
-		\int_Af & = \int_A\sum\limits_{n=1}^\infty f\chi_{A_n} = & \sum\limits_{n=1}^\infty\int_Af\chi_{A_n}\\
-		\int_{\bigcup\limits_{n=1}^\infty}f & = & \sum\limits_{n=1}^\infty\int_{A_n}f.
-	\end{array}
-	\end{equation*}
+		\begin{equation*}
+		\begin{array}{ccc}
+			\int_Af & = \int_A\sum\limits_{n=1}^\infty f\chi_{A_n} = & \sum\limits_{n=1}^\infty\int_Af\chi_{A_n}\\
+			\verteq & & \verteq \\
+			\int_{\bigcup\limits_{n=1}^\infty A_n}f & = & \sum\limits_{n=1}^\infty\int_{A_n}f.
+		\end{array}
+		\end{equation*}
 	\end{enumerate}
 \end{proof}
 \end{pblm}
@@ -457,7 +458,7 @@
 	\end{equation*}
 \begin{proof}~
 	\begin{itemize}
-	\item If $\int_E f < \infty$, then by \ref{p:conditionsnonnegmeasu}, 
+	\item If $\int_E f < \infty$, then by \mPref{p:conditionsnonnegmeasu}, 
 		\begin{equation*}
 			\int_Eg \le \int_E f < \infty ~~ \Rightarrow ~~ \int_Eg < \infty
 		\end{equation*}
@@ -496,12 +497,26 @@
 	Then $f_n \rightarrow f$ (obv), and so 
 	then $f_n$ is a non-decreasing sequence of non-negative ftns (that are measurable), 
 
-	%%%%%%%%%%%%%%%%%
+	Now, 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\int_E (f - f_n) & = & \int_E f - \int_E f_n \\
+		& = & \int_E f - \int_E (f - f\chi_{B_n}) \\
+		& = & \int_E f - \int_E f + \int_E f\chi_{B_n}\\
+		& = & \int_E f\chi_{B_n} \\
+		& = & \int_{B_n} f
+	\end{array}
+	\end{equation*}
+	and so 
+	\begin{equation*}
+		\lim\limits_{n\to\infty} \int_E (f - f_n) = \lim\limits_{n\to\infty} \int_{B_n} f \ge \epsilon > 0
+	\end{equation*}
+	Which is a contradiction, as $f_n \rightarrow f$. 
 \end{proof}
 \end{pblm}
 
 \begin{rmk}%109
-	This looks like a sort fo continuity condition. As the proof demonstrates, it 
+	This looks like a sort of continuity condition. As the proof demonstrates, it 
 	really says that an integrable function cannot have ``delta function'' 
 	parts-places of size zero but positive area (or positive mass if you prefer to 
 	think of $f$ as representing density). 
@@ -510,13 +525,12 @@
 \begin{rmk}%110
 	Let $f$ be an extended real-valued function. The positive and negative parts of 
 	$f$, $f_+ = max\{f, 0\}$ and $f_- = max\{-f, 0\}$ can be defined as extended 
-	real-valued functions just as in \ref{d:pos_neg_fun} with the properties already 
+	real-valued functions just as in \mDref{d:pos_neg_fun} with the properties already 
 	developed. Notice that for nay $x$, at most one of $f_+$ and $f_-$ is different 
 	from 0, and that, as before, $f = f_+ - f_-$ and $|f| = f_+ + f_-$. 
 \end{rmk}
 
-
-\begin{defn} %111
+\begin{defn}%111
 	\begin{enumerate}
 	\item A non-negative extended real-valued measurable function $f$ defined on a 
 	measurable function $f$ defined on a measurable set $E$ is \textbf{integrable over} 
@@ -556,7 +570,7 @@
 	\begin{equation*}
 		\int_E\alpha f = \int_E\alpha(f_+-f_-) = \int_E[\alpha f_+ - \alpha f_-] 
 	\end{equation*}
-	and by \ref{p:nonnegmeas_infty}, this is 
+	and by \mPref{p:nonnegmeas_infty}, this is 
 	\begin{equation*}
 	\begin{array}{rcl}
 		\int_E\alpha f = \int_E[\alpha f_+ - \alpha f_-] & = & \int_E\alpha f_+ - \int_E \alpha f_- \\
@@ -607,7 +621,7 @@
 \begin{proof}
 	If $|f_n| \le g$ a.e. for all $n$, then 
 	$\{g - f_n\}_{n=1}^\infty$ and $\{g + f_n\}_{n=1}^\infty$ are both non-negative a.e. 
-	and so by Fatou's Lemma (\ref{p:fatou}), 
+	and so by Fatou's Lemma (\mPref{p:fatou}), 
 	\begin{equation*}
 	\begin{array}{rcl}
 		\int_E(g+f) & \le & \lim\inf\int_E(g+f_n) \\ 
@@ -632,7 +646,7 @@
 \begin{rmk}%115
 	The preceeding result is the Lebesgue Dominated Convergence Theorem. It is perhaps the 
 	most often used of the convergence theorems. Note that our first convergence theorem 
-	\ref{p:intofsequenceeqlimint}, is a special case. 
+	\mPref{p:intofsequenceeqlimint}, is a special case. 
 \end{rmk}
 
 \begin{rmk}%116

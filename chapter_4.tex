@@ -1,9 +1,9 @@
 \chapter{Measurable Functions}
-\begin{pblm}%58
+\begin{defn}%58
 	A real-valued function $f$ defined on a measurable subset $E$ of $\R$ is 
 	\textbf{measurable} if for every real number $\alpha$, 
 	$\{x \in E: f(x) < \alpha\}$ is measurable. 
-\end{pblm}
+\end{defn}
 
 \begin{pblm}%59
 	These are equivalent: 
@@ -82,6 +82,7 @@
 \end{pblm}
 
 \begin{ex}%60
+~
 \begin{enumerate}
 	\item if $E$ is a measurable set, the \textbf{characteristic function} 
 	of $E$ is defined by 
@@ -99,6 +100,7 @@
 \end{enumerate}
 \end{ex}
 
+\pagebreak
 \begin{pblm}%61
 	If $f$ is measurable with domain $E$, and $c \in \R$, then $cf$ and 
 	$f + c$ are measurable. 
@@ -256,7 +258,7 @@
 	measurable set $E$ and $f$ is finite a.e., then for any $\epsilon > 0$ 
 	there is $M$ so that $|f| \le M$ except on a set of measure less than 
 	$\epsilon$. (So any measurable function on a bounded set is ``almost 
-	bounded.'') \\ (Remember \ref{p:osouseful})
+	bounded.'') \\ (Remember \mPref{p:osouseful})
 \begin{proof}
 	Let $E_k = \{x \in E: |f(x)| > k\}$. Each of these sets is 
 	measurable, and $m(E_{k+1}) \ge m(e_k) \ge ...$ for all $k$. Therefore 
@@ -276,7 +278,7 @@
 	bounded? 
 
 	sort of answer: We need the measure of each of those $E$ not to be infinite 
-	in the previous example, else \ref{p:osouseful}  not apply. 
+	in the previous example, else \mPref{p:osouseful}  not apply. 
 \end{pblm}
 
 \begin{pblm}%72
@@ -321,7 +323,8 @@
 		\inf\limits_{k\ge n}a_k & \le & a_k & \le & \sup\limits_{k\ge n} a_k \\
 		\inf a_k - \inf a_k & \le & a_k - \inf a_k & \le & \sup a_k - \inf a_k\\
 		0 & \le & a_k - \inf a_k & \le & \sup a_k - \inf a_k\\
-		\lim\limits_{n\to\infty}0 & \le & \lim\limits_{n\to\infty}(a_k - \inf a_k ) & \le & \lim\limits_{n\to\infty} \sup a_k - \lim\limits_{n\to\infty}\inf a_k\\
+		\lim\limits_{n\to\infty}0 & \le & \lim\limits_{n\to\infty}(a_k - \inf a_k ) 
+		& \le & \lim\limits_{n\to\infty} \sup a_k - \lim\limits_{n\to\infty}\inf a_k\\
 		0 & \le & \lim\limits_{n\to\infty}(a_k - \inf a_k) & \le & 0. 
 	\end{array}
 	\end{equation*}
@@ -331,7 +334,7 @@
 	exists (and is a real number), so the sequence converges. 
 
 	\noindent$(\Leftarrow)$ Assume that $\{a_k\}_{k=1}^\infty$ converges to a limit. 
-	Then all of its subsequences converge to the same limit, nad since both $\sup a_k$ 
+	Then all of its subsequences converge to the same limit, and since both $\sup a_k$ 
 	and $\inf a_k$ are subsequences of $\{a_k\}_{k=1}^\infty$, they must converge to 
 	the same limit. 
 \end{proof}
@@ -343,11 +346,13 @@
 	\lim\limits_{n\to\infty}f_n(x)$ exists for each $x \in E$, then $f$ is an 
 	extended real-valued measurable function on $E$. 
 \begin{proof}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	For any $\alpha \in \R$, $\{x: f_n(x) < \alpha\}_{n=1}^\infty$ is a sequence of 
+	measurable sets. 
 \end{proof}
 \end{pblm}
 
 \begin{rmk}%76
+	~
 	\begin{enumerate}[(i)]
 	\item The conclusion still holds in the previous problem if the sequence 
 	$\{f_n\}_{n=1}^\infty$ converges a.e. on $E$. 
@@ -453,11 +458,11 @@
 \begin{proof}
 	if $f$ is a measurable extended real-valued function on a closed bounded 
 	interval $[a,b]$ and $f$ is finite a.e., then for any $\epsilon > 0$, we
-	know by \ref{p:contalmostsimple}, there is some simple function $s$ such that 
+	know by \mPref{p:contalmostsimple}, there is some simple function $s$ such that 
 	\begin{equation*}
 		|f(x) - s(x)| < \epsilon
 	\end{equation*}
-	And, since $s$ is simple, we know from \ref{p:simplealmoststep} that 
+	And, since $s$ is simple, we know from \mPref{p:simplealmoststep} that 
 	there is some step function $p$ such that 
 	$s(x) = p(x)$ except on a set of measure less than $\epsilon$. 
 	Therefore 
@@ -545,7 +550,7 @@
 	$\epsilon_n = 1/n$ and $\delta_n = 2^{-n}\alpha$.)
 \begin{proof}
 	Let $\alpha > 0$. Then let $\epsilon_n = \frac{1}{n}$, $\delta_n = \frac{\alpha}{2^n}$. 
-	Using \ref{p:approxfunwithsteporsimple} for each $n$, there exists a measurable 
+	Using \mPref{p:approxfunwithsteporsimple} for each $n$, there exists a measurable 
 	set $A_n \subset E$ such that $m(A_n) < \frac{\alpha}{2^n}$ and a positive 
 	integer $N_n$ such that for all $x \in E\setminus A_n$ and all $j \ge N_n$, 
 	\begin{equation*}
