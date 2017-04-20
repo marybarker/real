@@ -146,7 +146,12 @@
 	the $y$-axis and the graph of $\phi$. This result is called Young's Inequality.)}}
 \begin{proof}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	Case 1: 
+	Note first that since $\phi$ is non-decreasing, and is a well-defined function such 
+	that its inverse is $\psi$, then $\psi$ is also non-decreasing. 
+
+	Case 1: $ a \le b$ or $\phi(a) \le \phi(b)$
+
+	$ab = a^2 + (b - a) a = \Phi(a) + \Psi(\phi(a)) + a(b - \phi(a) )$
 	\begin{center}
 	\resizebox{0.3\textwidth}{!}{
 	\begin{tikzpicture}
@@ -240,15 +245,15 @@
 		]
 		\addplot[name path=xaxis, draw=none, domain=0:26,samples=10]{0};
 		\addplot[name path=yaxis, draw=none, ] coordinates{(0.0, 6.0) (9.0, 6.0)};
-		\addplot[name path=phi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=red]{2.0 * sqrt(x)};
-		\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
+		\addplot[name path=phi,line width=0.5pt,domain=0.0:25.5,samples=500,mark=none,color=red]{2.0 * sqrt(x)};
+		\addplot[name path=psi,line width=0.5pt,domain=0.0:25.5,samples=500,mark=none,color=blue]{ 0.25 * x*x };
 		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
 		\draw (axis cs:7,15.0) node[color=blue] {$\varPsi$};
-		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:12}];
-		\addplot[fill=blue,opacity=0.3]fill  between[of=phi and yaxis, soft clip={domain=0:9.0}];
+		\addplot[fill=red ,opacity=0.3]fill between[of=phi and xaxis,soft clip={domain=0:12}];
+		\addplot[fill=blue,opacity=0.3]fill between[of=phi and yaxis,soft clip={domain=0:9.0}];
 		\draw (axis cs:12,-.6) node[color=red] {$a$};
 		\draw (axis cs:-.5,6) node[color=blue] {$b$};
-		\draw[fill, pattern=north east lines, pattern color=black, draw=none,opacity=0.5] (axis cs:0,0) rectangle (axis cs:12,6);
+		\draw[fill,pattern=north east lines,pattern color=black,draw=none,opacity=0.5] (axis cs:0,0) rectangle (axis cs:12,6);
 		\draw (axis cs:6,3) node[color=black,opacity=0.8] {$ab$};
 	\end{axis}
 	\end{tikzpicture}
@@ -289,8 +294,8 @@
 	\begin{equation*}
 		\int_E|fg|\le\left(\int_E|f|^p\right)^{1/p}\left(\int_E|g|^q\right)^{1/q}. 
 	\end{equation*}
-	In particular, the left side of the inequality is finite. Equality holds iff 
-	$|f|^p = |g|^q$ a.e. on $E$ or $f = 0$ a.e. or $g=0$ a.e. \\
+	In particular, the left side of the inequality is finite. Equality holds iff for some $\alpha, \beta$, 
+	$\alpha|f|^p = \beta|g|^q$ a.e. on $E$ or $f = 0$ a.e. or $g=0$ a.e. \\
 	{\scriptsize{(Suppose first that $\int_E|f|^p = \int_E|g|^q=1$. Apply the preceding 
 	problem with $a=|f(x)|,~b=|g(x)|,~x\in E$ and integrate. For arbitrary $f$ and $g$, 
 	consider $F = f/(\int_E|f|^p)^{1/p},~G=g/(\int_E|g|^q)^{1/q}$. This is H\"{o}lder's 
@@ -317,12 +322,49 @@
 	\begin{array}{rcl}
 		FG  = \frac{|fg|}{\left(\int|f|^p\right)^\frac{1}{p}\left(\int|g|^q\right)^\frac{1}{q}} & \le & 
 			\frac{|f|^p}{p\int|f|^p} + \frac{|g|^q}{q\int|g|^q} = \frac{F^p}{p} + \frac{G^q}{q}\\
-		\frac{1}{\left(\int|f|^p\right)\frac{1}{p}\left(\int|g|^q\right)^\frac{1}{q}}\int |fg| & \le & 
+		\frac{1}{\left(\int|f|^p\right)^\frac{1}{p}\left(\int|g|^q\right)^\frac{1}{q}}\int |fg| & \le & 
 			\frac{1}{p\int|f|^p}\int|f|^p + \frac{1}{q\int|g|^q}\int |g|^q
 	\end{array}
 	\end{equation*}
 
-	To show that equality happens iff: 
+
+	Equal if and only if: 
+	
+	\noindent ($\Rightarrow$) Let 
+	$\int_E|fg| = \left(\int_E|f|^p\right)^\frac{1}{p}\left(\int_E|g|^q\right)^\frac{1}{q}$, 
+	and assume for contradiction that 
+	$\forall \alpha, \beta$, $\alpha|f|^p \neq \beta|g|^q$. Then 
+	\begin{equation*}
+		\frac{1}{\int_E|f|^p}|f|^p \neq \frac{1}{\int_E|g|^q}|g|^q 
+	\end{equation*}
+	So 
+	\begin{equation*}
+		F^p \neq G^q
+	\end{equation*}
+	which implies that 
+	\begin{equation*}
+	\begin{array}{rcl}
+		\int|FG| &<& \int \left(\frac{|F|^p}{p} + \frac{|G|^q}{q}\right)\\
+		\int 1 &<& \int 1
+	\end{array}
+	\end{equation*}
+	which is a contradiction. 
+
+	\noindent ($\Leftarrow$) Now, let $\alpha, \beta$ be such that $\alpha|f|^p = \beta|g|^q$, and 
+	it is not the case that $\alpha = \beta = 0$. 
+
+	Then $|f|^p = \frac{\beta}{\alpha}|g|^q$, which implies that 
+	$|f| = \left(\frac{\beta}{\alpha}\right)^\frac{1}{p}|g|^\frac{q}{p}$. 
+	So 
+	\begin{equation*}
+	\begin{array}{lccc}
+		\int_E|fg| = & \left(\frac{\beta}{\alpha}\right)^\frac{1}{p}\int_E|g|^\frac{q}{p}|g| & \le & 
+		\left(\frac{\beta}{\alpha}\right)^\frac{1}{p}\left(\int|g|^q\right)^\frac{1}{p} 
+		\left(\int|g|^q\right)^\frac{1}{q}\\
+		& \verteq & & \verteq \\
+		& \left(\frac{\beta}{\alpha}\right)^\frac{1}{p}\int|g|^q & = & \left(\frac{\beta}{\alpha}\right)^\frac{1}{p}\int|g|^q. 
+	\end{array}
+	\end{equation*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
@@ -463,13 +505,13 @@
 \begin{proof}
 	\begin{center}
 	\begin{tikzpicture}
-	\begin{axis}[legend pos=north west]
+	\begin{axis}[legend pos=north west, legend style={fill=gray!10}]
 		\addplot[color=black, forget plot] coordinates{
 			(0,0)
 			(.5, 0.0)
 			(.5, 1.0)
 			(1,1)
-		};%\addlegendentry{$n \rightarrow \infty$}
+		};
 		\addplot[color=brown] coordinates{
 			(0,0)
 			(.3333, 0.0)
@@ -500,7 +542,9 @@
 	\end{tikzpicture}
 	\end{center}
 	\begin{enumerate}[(a)]
-		\item 
+		\item For each $n$, $|f_n|_1 = \frac{1}{2}$, and $\lim\limits_{n\to\infty} |f_n| = \frac{1}{2}$  
+		\item let $p \ge 1$. 
+		\item the limit of the sequence in $L^p[0,1]$ for $1 \le p < \infty$
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
@@ -516,24 +560,67 @@
 		dense in $L^\infty[0,1]$.)
 	\end{enumerate}
 \begin{proof}
+	~
+	\begin{enumerate}[(a)]
+	\item 
+	\item 
+	\item 
+	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
 
 \begin{pblm} %141
-	$L^\infty(E)$ is a Banach space. \\
-	(Let $\{f_n\}_{n=1}^\infty$ be a Cauchy sequence in $L^\infty(E)$ and choose a representative 
-	of each $f_n$, which we still denote by $f_n$. For each positive integer $k$ there is $n_k$ 
-	so that $\|f_n - f_m\|_\infty < 2^{-k}$ whenever $m, n \ge n_k$. Consider the sequence 
-	$\{f_{nk}\}_{k=1}^\infty$. Then $\ell > k$ implies $\|f_{n\ell} - f_{nk}\| < 2^{-k}$. There is 
-	a set $A$, $m(A) = 0$, such that the series $f_{n_1}(x) + \sum\limits_{i=2}^k (f_{n_i}(x) - f_{n_{i-1}}(x))$ 
-	of real numbers converges absolutely for each $x \in E\setminus A$. The function $f$ defined as 
-	the pointwise limit of this series is in $L^\infty(E)$. Given $\epsilon > 0$ there is 
-	$n_\epsilon$ so that $m, n \ge n_\epsilon$ implies that $\|f_n - f_m\|_\infty < \epsilon$. Then 
-	for any such $f_m$ and any $x \in E\setminus A$, $|f(x) - f_m(x)| = 
-	\lim\limits_{k\to\infty}|f_{n_k}(x) - f_m(x)|\le\epsilon$.)
+	$L^\infty(E)$ is a Banach space. 
+	%\\
+	%{\scriptsize{(Let $\{f_n\}_{n=1}^\infty$ be a Cauchy sequence in $L^\infty(E)$ and choose a representative 
+	%of each $f_n$, which we still denote by $f_n$. For each positive integer $k$ there is $n_k$ 
+	%so that $\|f_n - f_m\|_\infty < 2^{-k}$ whenever $m, n \ge n_k$. Consider the sequence 
+	%$\{f_{nk}\}_{k=1}^\infty$. Then $\ell > k$ implies $\|f_{n\ell}-f_{nk}\|<2^{-k}$. There is 
+	%a set $A$, $m(A) = 0$, such that the series $f_{n_1}(x) + \sum\limits_{i=2}^k(f_{n_i}(x)-f_{n_{i-1}}(x))$ 
+	%of real numbers converges absolutely for each $x\in E\setminus A$. The function $f$ defined as 
+	%the pointwise limit of this series is in $L^\infty(E)$. Given $\epsilon > 0$ there is 
+	%$n_\epsilon$ so that $m, n \ge n_\epsilon$ implies that $\|f_n - f_m\|_\infty < \epsilon$. Then 
+	%for any such $f_m$ and any $x \in E\setminus A$, $|f(x) - f_m(x)| = 
+	%\lim\limits_{k\to\infty}|f_{n_k}(x)-f_m(x)|\le\epsilon$.)}}
 \begin{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	We already know that $L^\infty(E)$ is a normed linear space, so all that remains to be shown 
+	is that it is complete. (i.e. every Cauchy sequence converges)
+
+	Let $\{f_n\}_{n=1}^\infty$ be a Cauchy sequence in $L^\infty(E)$, choose a representation of each 
+	$f_n$, call it $f_n$. Then since $\{f_n\}_{n=1}^\infty$ is Cauchy, for any $k \in \Zp$, there is 
+	a positive integer $n_k$ such that 
+	\begin{equation*}
+		||f_n - f_m||_\infty < \frac{1}{2^k}~~~\forall m, n \ge n_k
+	\end{equation*}
+	Then consider the sequence for $k > 0$ $\{f_{n_k}\}_{k=1}^\infty$. For any $l > k$, we know that 
+	$||f_m - f_{n_l}||_\infty < \frac{1}{2^l} < \frac{1}{2^k}$ for all $m \ge n_l$, which implies that 
+	$||f_{n_l} - f_{n_k}||_\infty < \frac{1}{2^k}$. 
+
+	Then consider $F_k = f_{n_1} + \sum\limits_{n=2}^k (f_{n_i} - f_{n_{i-1}})$. Note that this is actually 
+	another way of representing each $f_{n_k}$. Note that each $(f_{n_i} - f_{n_{i-1}})$ has 
+	$||f_{n_i} - f_{n_{i-1}}||_\infty < \frac{1}{2^{i-1}}$, so 
+	\begin{equation*}
+		||F_{k+1} - F_k||_\infty < \frac{1}{2^k} ~~~\forall k
+	\end{equation*}
+	And furthermore, $||F_k||_\infty < ||f_{n_1}||_\infty + 1$ for all $k$. 
+	So $F_k$ converges absolutely a.e., and if we define 
+	\begin{equation*}
+		\lim\limits_{k\to\infty}F_k = f
+	\end{equation*}
+	Then this is a bounded function a.e., and so $f \in L^\infty(E)$. 
+
+	Now we need to show that $\{f_n\}_{n=1}^\infty$ converges to $f$. This is a Cauchy sequence, so 
+	for any $\epsilon > 0$, there is $n_\epsilon$ such that for all $m, n \ge n_\epsilon$, 
+	\begin{equation*}
+		||f_n - f_m||_\infty < \epsilon
+	\end{equation*}
+	so for any such $f_m$, 
+	\begin{equation*}
+		|f(x) - f_m(x)| = \lim\limits_{n\to\infty}|f_{n_k}(x) - f_m(x)| \le \epsilon. 
+	\end{equation*}
+	So $\{f_n\} \rightarrow f$ a.e. and $f \in L^\infty(E)$ for any Cauchy sequence inf $L^\infty(E)$. 
+	Thus $L^\infty(E)$ is a complete (and therefore Banach) space. 
 \end{proof}
 \end{pblm}
 
@@ -541,18 +628,50 @@
 	For each $1\le p < \infty$, if $\{f_n\}_{n=1}^\infty$ is a Cauchy sequence in $L^p(E)$ and 
 	if we choose a representative of each $f_n$ (we will still denote these functions by $\{f_n\}$), 
 	then there is a subsequence $\{f_{n_k}\}_{k=1}^\infty$ that converges pointwise a.e. on $E$ to 
-	a measurable function $f$ such that $\int_E|f|^p < \infty$. (For each positive integer $k$ there 
-	is $n_k$ so that $\|f_n - f_m\|_p < 2^{-k}$ whenever $m,n \ge n_k$. Why? Consider the sequence 
-	$\{f_{n_k}\}_{k=1}^\infty$. Then $\ell > k$ implies $\|f_{n_\ell} - f_{n_k}\|_p < 2^{-k}$. 
-	For each integer $k \ge 2$, set $g_k = |f_{n_1}| + \sum\limits_{i=2}^k|f_{n_i} - f_{n_{i-1}}|$. 
-	Then $\{g_k\}_{k=1}^\infty$ is a non-decreasing sequence of non-negative functions such that 
-	$\|g_k\|_p \le \|f_{n_1}\|_p + 1$ for each $k$, and the extended real-valued function 
-	$g(x) = \lim\limits_{k\to\infty}g_k(x)$ satisfies $\int_Eg^p = \lim\limits_{k\to\infty}\int_Eg^p_k < \infty$. 
-	For almost all $x \in E$, the series $f_{n_1}(x) + \sum\limits_{i=2}^\infty (f_{n_i}(x) - f_{n_{i-1}}(x))$ 
-	of real numbers converges absolutely, and so defines a measurable  function $f$ there. This 
-	function is in $L^p(E)$.)
+	a measurable function $f$ such that $\int_E|f|^p < \infty$. 
+	%{\scriptsize{(For each positive integer $k$ there 
+	%is $n_k$ so that $\|f_n - f_m\|_p < 2^{-k}$ whenever $m,n \ge n_k$. Why? Consider the sequence 
+	%$\{f_{n_k}\}_{k=1}^\infty$. Then $\ell > k$ implies $\|f_{n_\ell} - f_{n_k}\|_p < 2^{-k}$. 
+	%For each integer $k \ge 2$, set $g_k = |f_{n_1}| + \sum\limits_{i=2}^k|f_{n_i} - f_{n_{i-1}}|$. 
+	%Then $\{g_k\}_{k=1}^\infty$ is a non-decreasing sequence of non-negative functions such that 
+	%$\|g_k\|_p \le \|f_{n_1}\|_p + 1$ for each $k$, and the extended real-valued function 
+	%$g(x) = \lim\limits_{k\to\infty}g_k(x)$ satisfies $\int_Eg^p = \lim\limits_{k\to\infty}\int_Eg^p_k < \infty$. 
+	%For almost all $x \in E$, the series $f_{n_1}(x) + \sum\limits_{i=2}^\infty(f_{n_i}(x) - f_{n_{i-1}}(x))$ 
+	%of real numbers converges absolutely, and so defines a measurable  function $f$ there. This 
+	%function is in $L^p(E)$.)}}
 \begin{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Let $1 \le p < \infty$. Then if $\{f_n\}_{n=1}^\infty$ is Cauchy, then for any $k \in \Zp$, 
+	there is $n_k$ such that 
+	\begin{equation*}
+		||f_n - f_m||_p , \frac{1}{2^k} ~~ \forall m, n \ge n_k
+	\end{equation*}
+
+	Now consider the subsequence $\{f_{n_k}\}_{k=1}^\infty$ of $\{f_n\}$. As in the 
+	previous problem, for any $l > k$, $||f_{n_l} - f_{n_k}||_\infty < \frac{1}{2^k}$. 
+	Now, for each $k \ge 2$, let 
+	\begin{equation*}
+		g_k(x) = |f_{n_1}| + \sum\limits_{i=2}^k|f_{n_i} - f_{n_{i-1}}|
+	\end{equation*}
+	Then $\{g_k\}_{k=2}^\infty$ is non-decreasing, non-negative, and 
+	since for each $k$, $|g_k| \le |f_{n_1}| + 1$, then 
+	\begin{equation*}
+		||g_k||_p \le ||f_{n_1}||_p + 1
+	\end{equation*}
+	for each $k$, and setting $g = \lim\limits_{k\to\infty}g_k$, we have 
+	\begin{equation*}
+		\int_Eg^p = \lim\limits_{k\to\infty}\int_Eg^p_k < \infty
+	\end{equation*}
+
+	This sequence converges absolutely, and if we let 
+	\begin{equation*}
+		f = \lim\limits_{k\to\infty}\left\{f_{n_1} + \sum\limits_{i=2}^k(f_{n_i} - f_{n_i - 1})\right\}
+	\end{equation*}
+	then we know that this sequence converges absolutely, and as each term $f_k$ is bounded by $g_k$, we have 
+	$|f| \le g$ which implies that 
+	\begin{equation*}
+		\int_E|f|^p \le \int_Eg^p < \infty
+	\end{equation*}
+	and so $f$ is in $L^p(E)$. 
 \end{proof}
 \end{pblm}
 
@@ -560,12 +679,19 @@
 	If $\{f_n\}_{n=1}^\infty$ and $f$ are as in the preceding problem, then $f_n \rightarrow f$ in 
 	$L^p(E)$. Thus $L^p(E)$ is complete.\\
 	{\scriptsize{(Let $\epsilon > 0$ be given. For $m,n > n_\epsilon$ Then Fatou's Lemma implies 
-	\begin{equation*}
-		\int_E|f-f_m|^p \le \lim\inf\limits_{k}\int_E|f_{n_k} - f_m|^p < \epsilon^p.)
-	\end{equation*}
-	}}
+	$ \int_E|f-f_m|^p \le \lim\inf\limits_{k}\int_E|f_{n_k} - f_m|^p < \epsilon^p.) $ }}
 \begin{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Let $\{f_n\}_{n=1}^\infty$ and $f$ be as in the previous problem. Then since $\{f_n\}$ is 
+	Cauchy, for any $\epsilon > 0$, 
+	\begin{equation*}
+		||f_n - f_m||_p < \epsilon ~~~ m, n \ge n_\epsilon
+	\end{equation*}
+	so by Fatou's Lemma (\mPref{p:fatou}), 
+	\begin{equation*}
+		\int_E |f - f_m|^p \le \lim\inf\limits_{k}\int_E|f_{n_k} - f_m|^p 
+				= \lim\inf\limits_{k}||f_{n_k} - f_m||_p < \epsilon^p
+	\end{equation*}
+	and so the sequence $\{f_n\}_{n=1}^\infty$ converges to $f$. 
 \end{proof}
 \end{pblm}
 
@@ -643,7 +769,7 @@
 		\|f\|_2^2 = \sum\limits_{k=1}^\infty c_k^2  = \|\{c_n\}\|^2. 
 	\end{equation*}
 	(These turn out to be equivalent to the statement that the only element of $L^2[0,\pi]$ that 
-	is orthogonal to every e$\sin nx$ is the zero element, that is, the set $\{\sin nx\}_{n=1}^\infty$ 
+	is orthogonal to every $\sin nx$ is the zero element, that is, the set $\{\sin nx\}_{n=1}^\infty$ 
 	is \textbf{complete} (roughly, large enough to function as a basis).)
 
 	The result of all of this is that the mapping $f\rightarrow \{c_n\}$ is an isometry (linear 
