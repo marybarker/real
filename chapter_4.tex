@@ -346,8 +346,16 @@
 	\lim\limits_{n\to\infty}f_n(x)$ exists for each $x \in E$, then $f$ is an 
 	extended real-valued measurable function on $E$. 
 \begin{proof}
-	For any $\alpha \in \R$, $\{x: f_n(x) < \alpha\}_{n=1}^\infty$ is a sequence of 
-	measurable sets. 
+	Suppose $f(x) = \lim\limits_{n\to\infty} F_n(x)$ exists for each $x \in E$. Let $\alpha \in \mathbb{R}$. Then,
+
+	\begin{align*}
+		\{ x\in E : f(x) < \alpha \}
+		&= \{ x \in E : \lim\limits_{n\to\infty}f_n(x) < \alpha \} \hspace{27 pt} \text{(By definition of $f$.)} \\
+		&= \{ x \in E : \lim \sup f_n(x) < \alpha \} \hspace{19 pt} \text{(By 74)} \\
+		&= \{ x \in E : \inf\limits_n \sup f_n(x) < \alpha \} \hspace{20 pt} \text{(By definition.)}
+	\end{align*}
+	
+	By (74), $\sup f_n(x)$ is measurable, and applying (74) again, $\inf\limits_{n} \sup f_n(x)$ is measurable, so $f$ is measurable.
 \end{proof}
 \end{pblm}
 

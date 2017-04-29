@@ -507,12 +507,9 @@
 	{\scriptsize{(If not, then for some $n$, there is $B, m(B) > 0$ and $|f(x)|\ge\|f\|_\infty + \frac{1}{n}$ 
 	on $B$.)}}
 \begin{proof}
-	Assume otherwise. Then there is some $B$ such that $|f| > \|f\|_\infty$ on $B$ and 
-	$m(B) > 0$. So for some $\frac{1}{n}$, 
-	\begin{equation*}
-		|f| \ge \|f\|_\infty + \frac{1}{n}
-	\end{equation*}
-	so 
+	Suppose otherwise. That is, suppose $\|f\|_{\infty}$ is finite and there is no desired subset $A$. Let $B$ be a subset of $E$ such that $|f(x)|>\|f\|_{\infty}$. Then by our hypothesis, $m(B)>0$ (since $\|f(x)\| \leq \|f\|_{\infty}$ for all $x \in E\setminus B$). 
+	
+	Moreover, there exists $n$ such that for all $x \in B$, $|f(x)| \geq \|f\|_{\infty} + 1/n$. But $B$ has nonzero measure, so $\|f\|_{\infty}$ is not the $\inf$, which is a contradiction.
 \end{proof}
 \end{pblm}
 
