@@ -145,40 +145,71 @@
 	``mirror image'' of the graph of $\phi$, so you can find $\Psi(b)$ as an area between 
 	the $y$-axis and the graph of $\phi$. This result is called Young's Inequality.)}}
 \begin{proof}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	Note first that since $\phi$ is non-decreasing, and is a well-defined function such 
 	that its inverse is $\psi$, then $\psi$ is also non-decreasing. 
 
-	Case 1: $ a \le b$ or $\phi(a) \le \phi(b)$
-
-	$ab = a^2 + (b - a) a = \Phi(a) + \Psi(\phi(a)) + a(b - \phi(a) )$
+	\begin{itemize}
+	\item $\psi(b) = a$: Then since $\psi$, $\phi$ are inverses, this means that $\phi(a) = b$, and 
+	so $ab = \Phi(a) + \Psi(b)$
 	\begin{center}
 	\resizebox{0.3\textwidth}{!}{
-	\begin{tikzpicture}
-	\begin{axis}[
-			xmin = -5.5, xmax = 15.5, ymin = -5.5, ymax = 15.5, 
-			grid = both, axis lines = middle, 
-			grid style={line width=.1pt, draw=gray!30}, 
-			xticklabels={,,},
-			yticklabels={,,},
-			minor tick num=1,
-			major grid style={line width=.2pt, draw=gray!60} 
-		]
-		\addplot[name path=xaxis, draw=none, domain=0:26,samples=10]{0};
-		\addplot[name path=yaxis, draw=none, ] coordinates{(0.0, 0.0) (9.0, 0.0)};
-		\addplot[name path=phi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=red]{2.0 * sqrt(x)};
-		\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
-		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
-		\draw (axis cs:7,15.0) node[color=blue] {$\varPsi$};
-		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:4}];
-		\addplot[fill=blue,opacity=0.3]fill  between[of=psi and yaxis, soft clip={domain=0:6.0}];
-		\draw (axis cs:4,-.6) node[color=red] {$a$};
-		\draw (axis cs:6,-.5) node[color=blue] {$b$};
-	\end{axis}
-	\end{tikzpicture}
+		\begin{tikzpicture}
+		\begin{axis}[
+				xmin = -5.5, xmax = 5.5, ymin = -5.5, ymax = 5.5, 
+				grid = both, axis lines = middle, 
+				grid style={line width=.1pt, draw=gray!30}, 
+				xticklabels={,,},
+				yticklabels={,,},
+				minor tick num=1,
+				major grid style={line width=.2pt, draw=gray!60} 
+			]
+			\addplot[name path=xaxis, draw=none, domain=0:26,samples=10]{0};
+			\addplot[name path=yaxis, draw=none, ] coordinates{(0.0, 4.0) (4.0, 4.0)};
+			\addplot[name path=phi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=red]{2.0 * sqrt(x)};
+			\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
+			\draw (axis cs:5.2,4.3) node[color=red] {$\phi$};
+			\draw (axis cs:4.3,5.2) node[color=blue] {$\varPsi$};
+		\end{axis}
+		\end{tikzpicture}
 	}
 	~
 	\resizebox{0.3\textwidth}{!}{
+		\begin{tikzpicture}
+		\begin{axis}[
+				xmin = -5.5, xmax = 5.5, ymin = -5.5, ymax = 5.5, 
+				grid = both, axis lines = middle, 
+				grid style={line width=.1pt, draw=gray!30}, 
+				xticklabels={,,},
+				yticklabels={,,},
+				minor tick num=1,
+				major grid style={line width=.2pt, draw=gray!60} 
+			]
+			\addplot[name path=xaxis, draw=none, domain=0:26,samples=10]{0};
+			\addplot[name path=yaxis, draw=none, ] coordinates{(0.0, 4.0) (4.0, 4.0)};
+			\addplot[name path=phi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=red]{2.0 * sqrt(x)};
+			\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
+			\draw (axis cs:5.2,4.3) node[color=red] {$\phi$};
+			\draw (axis cs:4.3,5.2) node[color=blue] {$\varPsi$};
+			\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:4}];
+			\addplot[fill=blue,opacity=0.3]fill  between[of=phi and yaxis, soft clip={domain=0:4.0}];
+			\draw (axis cs:4,-.6) node[color=red] {$a$};
+			\draw (axis cs:-.5,4) node[color=blue] {$b$};
+			\draw (axis cs:-1.4,4) node[color=red ] {$\phi(a)$};
+			\draw (axis cs:4,-1.4) node[color=blue] {$\psi(b)$};
+			\draw[fill, pattern=north east lines, pattern color=black, draw=none,opacity=0.5] (axis cs:0,0) rectangle (axis cs:4,4);
+			\draw (axis cs:2.5,3) node[color=black,opacity=0.8] {$ab$};
+		\end{axis}
+		\end{tikzpicture}
+	}
+	\end{center}
+
+\pagebreak
+	\item $\psi(b) < a$: Note that this implies that $\phi(a) > b$, and so (using both facts), 
+	$\Phi(a) - \Phi(\psi(b)) > b(a - \psi(b))$. 
+
+	$ab = \Phi(\psi(b)) + \Psi(b) + b(a - \psi(b))$
+	\begin{center}
+	\resizebox{0.28\textwidth}{!}{
 	\begin{tikzpicture}
 	\begin{axis}[
 			xmin = -5.5, xmax = 15.5, ymin = -5.5, ymax = 15.5, 
@@ -191,48 +222,32 @@
 		]
 		\addplot[name path=xaxis, draw=none, domain=0:26,samples=10]{0};
 		\addplot[name path=yaxis, draw=none, ] coordinates{(0.0, 6.0) (9.0, 6.0)};
-		\addplot[name path=phi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=red]{2.0 * sqrt(x)};
-		\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
-		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
-		\draw (axis cs:7,15.0) node[color=blue] {$\varPsi$};
-		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:4}];
-		\addplot[fill=blue,opacity=0.3]fill  between[of=phi and yaxis, soft clip={domain=0:9.0}];
-		\draw (axis cs:4,-.6) node[color=red] {$a$};
-		\draw (axis cs:-.5,6) node[color=blue] {$b$};
-		\draw[fill, pattern=north east lines, pattern color=black, draw=none,opacity=0.5] (axis cs:0,0) rectangle (axis cs:4,6);
-		\draw (axis cs:2.5,3) node[color=black,opacity=0.8] {$ab$};
-	\end{axis}
-	\end{tikzpicture}
-	}
-	\end{center}
-	Case 2: 
-	\begin{center}
-	\resizebox{0.3\textwidth}{!}{
-	\begin{tikzpicture}
-	\begin{axis}[
-			xmin = -5.5, xmax = 15.5, ymin = -5.5, ymax = 15.5, 
-			grid = both, axis lines = middle, 
-			grid style={line width=.1pt, draw=gray!30}, 
-			xticklabels={,,},
-			yticklabels={,,},
-			minor tick num=1,
-			major grid style={line width=.2pt, draw=gray!60} 
-		]
-		\addplot[name path=xaxis, draw=none, domain=0:26,samples=10]{0};
-		\addplot[name path=yaxis, draw=none, ] coordinates{(0.0, 0.0) (9.0, 0.0)};
-		\addplot[name path=phi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=red]{2.0 * sqrt(x)};
-		\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=blue]{ 0.25 * x*x };
-		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
-		\draw (axis cs:7,15.0) node[color=blue] {$\varPsi$};
-		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:12}];
-		\addplot[fill=blue,opacity=0.3]fill  between[of=psi and yaxis, soft clip={domain=0:6.0}];
+		\addplot[name path=phi,line width=0.5pt,domain=0.0:25.5,samples=500,mark=none,color=black]{2.0 * sqrt(x)};
+		%
+		\draw (axis cs:15,7.0) node[color=black] {$\phi$};
 		\draw (axis cs:12,-.6) node[color=red] {$a$};
-		\draw (axis cs:6,-.5) node[color=blue] {$b$};
+		\draw (axis cs:-.5,6) node[color=blue] {$b$};
+		\draw (axis cs:9,-.6) node[color=blue] {$\psi(b)$};
+		%
+		\addplot [dashed,color=blue] coordinates { (9, 6) (9, 0) };
+		\addplot[pattern=north west lines, pattern color=blue,opacity=0.5] fill between[of=yaxis and phi,soft clip={domain=0:9}];
+		\addplot[pattern=north east lines, pattern color=blue,opacity=0.5] fill between[of=phi and xaxis,soft clip={domain=0:9}];
+		\addplot[color=black,opacity=0.5] fill between[of=phi and xaxis,soft clip={domain=9:12}];
+		\draw[fill,pattern=grid, pattern color=red,opacity=0.5] (axis cs:9,0) rectangle (axis cs:12,6);
+		\draw[fill=none,color=blue] (axis cs:0,0) rectangle(axis cs:9,6);
+		\draw[fill=none,color=red] (axis cs:9,0) rectangle(axis cs:12,6);
+		%
+		\draw (axis cs:0.5,-3) node[color=blue] {$\Phi(\psi(b)) + \Psi(b)$};
+		\draw (axis cs:11.0,-3) node[color=red] {$b(a - \psi(b))$};
+		\draw (axis cs:8.0,10) node[color=black] {$\Phi(a) - \Phi(\psi(b))$};
+		\draw [->, blue  ] (axis cs:0.5, -2) -- (axis cs:1.0, -.2);
+		\draw [->, red   ](axis cs:11.0, -2) -- (axis cs:10.5, -.2);
+		\draw [->, black ](axis cs:7.5, 9.2) -- (axis cs:10.5, 6.5);
 	\end{axis}
 	\end{tikzpicture}
 	}
 	~
-	\resizebox{0.3\textwidth}{!}{
+	\resizebox{0.28\textwidth}{!}{
 	\begin{tikzpicture}
 	\begin{axis}[
 			xmin = -5.5, xmax = 15.5, ymin = -5.5, ymax = 15.5, 
@@ -246,20 +261,87 @@
 		\addplot[name path=xaxis, draw=none, domain=0:26,samples=10]{0};
 		\addplot[name path=yaxis, draw=none, ] coordinates{(0.0, 6.0) (9.0, 6.0)};
 		\addplot[name path=phi,line width=0.5pt,domain=0.0:25.5,samples=500,mark=none,color=red]{2.0 * sqrt(x)};
-		\addplot[name path=psi,line width=0.5pt,domain=0.0:25.5,samples=500,mark=none,color=blue]{ 0.25 * x*x };
 		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
-		\draw (axis cs:7,15.0) node[color=blue] {$\varPsi$};
 		\addplot[fill=red ,opacity=0.3]fill between[of=phi and xaxis,soft clip={domain=0:12}];
 		\addplot[fill=blue,opacity=0.3]fill between[of=phi and yaxis,soft clip={domain=0:9.0}];
 		\draw (axis cs:12,-.6) node[color=red] {$a$};
 		\draw (axis cs:-.5,6) node[color=blue] {$b$};
-		\draw[fill,pattern=north east lines,pattern color=black,draw=none,opacity=0.5] (axis cs:0,0) rectangle (axis cs:12,6);
+		\draw[fill,pattern=grid,pattern color=black,opacity=0.5] (axis cs:0,0) rectangle (axis cs:12,6);
 		\draw (axis cs:6,3) node[color=black,opacity=0.8] {$ab$};
 	\end{axis}
 	\end{tikzpicture}
 	}
 	\end{center}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\item $\psi(b) > a$: Note that this implies that $\phi(a) < b$, and so (similarly to the case above), 
+	$\Psi(b) - \Psi(\phi(a)) > a(b - \phi(a))$. 
+
+	\begin{center}
+	\resizebox{0.27\textwidth}{!}{
+	\begin{tikzpicture}
+	\begin{axis}[
+			xmin = -5.5, xmax = 15.5, ymin = -5.5, ymax = 15.5, 
+			grid = both, axis lines = middle, 
+			grid style={line width=.1pt, draw=gray!30}, 
+			xticklabels={,,},
+			yticklabels={,,},
+			minor tick num=1,
+			major grid style={line width=.2pt, draw=gray!60} 
+		]
+		\addplot[name path=xaxis, draw=none, domain=0:26,samples=10]{0};
+		\addplot[name path=yaxis, draw=none, ] coordinates{(0.0, 6.0) (9.0, 6.0)};
+		\addplot[name path=yaxis2, draw=none, ] coordinates{(0.0, 4.0) (4.0, 4.0)};
+		\addplot[name path=psi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=black]{ 2.0 * sqrt(x)};%0.25 * x*x };
+		%
+		\draw (axis cs:15.0,7) node[color=black] {$\Phi$};
+		\draw (axis cs:4,-.6) node[color=red] {$a$};
+		\draw (axis cs:-1.5,6) node[color=blue] {$b$};
+		\draw (axis cs:-1.5,4) node[color=red] {$\phi(a)$};
+		%
+		\addplot[color=black,opacity=0.5] fill between[of=yaxis and psi,soft clip={domain=4:9}];
+		\draw[fill, color=black, opacity=0.5] (axis cs:0,4) rectangle(axis cs:4, 6);
+		\addplot[pattern = north east lines, pattern color=red,opacity=0.5] fill between[of=yaxis2 and psi,soft clip={domain=0:4}];
+		\addplot[pattern = north west lines, pattern color=red,opacity=0.5] fill between[of=xaxis and psi,soft clip={domain=0:4}];
+		\draw[fill, pattern=grid, pattern color=blue, opacity=0.8] (axis cs:0,4) rectangle (axis cs:4,6);
+		\draw[fill=none,color=blue] (axis cs:0,4) rectangle(axis cs:4,6);
+		\draw[fill=none,color=red] (axis cs:0,0) rectangle(axis cs:4,4);
+		%
+		\draw (axis cs:11.0,-1.5)node[color=red  ] {$\Phi(a) + \Psi(\phi(a))$};
+		\draw (axis cs:3.0,10   )node[color=blue ] {$a(b - \phi(a))$};
+		\draw (axis cs:11.0, 3.5)node[color=black] {$\Psi(b) - \Psi(\phi(a))$};
+		\draw [->, red   ] (axis cs: 6 ,-1.5) -- (axis cs:4.5, 1.5);
+		\draw [->, blue  ] (axis cs:3.0, 9.2) -- (axis cs:2.5, 6.5);
+		\draw [->, black ] (axis cs: 7 , 3.5) -- (axis cs:5.5, 4.5);
+	\end{axis}
+	\end{tikzpicture}
+	}
+	~
+	\resizebox{0.27\textwidth}{!}{
+	\begin{tikzpicture}
+	\begin{axis}[
+			xmin = -5.5, xmax = 15.5, ymin = -5.5, ymax = 15.5, 
+			grid = both, axis lines = middle, 
+			grid style={line width=.1pt, draw=gray!30}, 
+			xticklabels={,,},
+			yticklabels={,,},
+			minor tick num=1,
+			major grid style={line width=.2pt, draw=gray!60} 
+		]
+		\addplot[name path=xaxis, draw=none, domain=0:26,samples=10]{0};
+		\addplot[name path=yaxis, draw=none, ] coordinates{(0.0, 6.0) (9.0, 6.0)};
+		\addplot[name path=phi, line width=0.5pt,domain=0.0:25.5,samples=500, mark=none,color=red]{2.0 * sqrt(x)};
+		\draw (axis cs:15,7.0) node[color=red] {$\phi$};
+		\addplot[fill=red ,opacity=0.3]fill  between[of=phi and xaxis, soft clip={domain=0:4}];
+		\addplot[fill=blue,opacity=0.3]fill  between[of=phi and yaxis, soft clip={domain=0:9.0}];
+		\draw (axis cs:4,-.6) node[color=red] {$a$};
+		\draw (axis cs:-.5,6) node[color=blue] {$b$};
+		\draw[fill, pattern=grid, pattern color=black, opacity=0.5] (axis cs:0,0) rectangle (axis cs:4,6);
+		\draw (axis cs:2.5,3) node[color=black,opacity=0.8] {$ab$};
+	\end{axis}
+	\end{tikzpicture}
+	}
+	\end{center}
+	\end{itemize}
 \end{proof}
 \end{pblm}
 
