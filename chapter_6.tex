@@ -591,7 +591,7 @@
 \begin{proof}
 	\begin{enumerate}[(a)]
 		\item For each $n, m$, without loss of generality, let $m > n$, then 
-			the difference (in blue in the plot) is given by 
+			the difference (shaded in the plot below) is given by 
 			\begin{equation*}||f_n - f_m||_1 < \frac{2}{n}\left(\frac{1}{2} - 
 			\frac{n}{2m}\right) = \frac{1}{n} - \frac{1}{m}.\end{equation*}
 			Thus for any $\epsilon > 0$, we can choose $n = 1/\epsilon, m = 2/\epsilon$ 
@@ -632,7 +632,8 @@
 			\end{tikzpicture}
 			}
 			\end{center}
-		\item 
+		\item $\left(\int_0^1|f_n - f_m|^p\right) \le \int_0^1|f_n - f_m|$, and so $\left(\int_0^1|f_n - f_m|^p\right)^\frac{1}{p} \le \left(\int_0^1|f_n - f_m|\right)^\frac{1}{p}$ for all $n, m$ and all $1 < p < \infty$. Therefore 
+			$f_n$ is a Cauchy sequence. 
 		\item The limit of the sequence in $L^p[0,1]$ for $1 \le p < \infty$ is going to be the 
 			step function 
 			\begin{equation*}
