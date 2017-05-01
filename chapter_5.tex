@@ -80,7 +80,7 @@
 	\begin{equation*}
 		c_{i}m[E_{i}] = c_{i}\sum_{k=1}^{l}m[A_{k}]	.
 	\end{equation*}
-	This turns into:
+	This turns ( using Definition \ref{d:integral} ) into:
 	\begin{equation*}
 		\int s = \sum_{j=1}^{n}c_{j}m[A_{j}]
 	\end{equation*}
@@ -217,7 +217,7 @@
 \begin{rmk} %93
 	The moral of the preceding problem is that, unlike the situation with the Riemann 
 	integral, we do not need to consider both upper integrals and lower integrals because 
-	we already have the correct class of functinos, the measurable functions. Thus we can 
+	we already have the correct class of functions, the measurable functions. Thus we can 
 	say, forget about lower integrals and just approximate from above. (This is analagous 
 	to not needing inner measure to help define Lebesgue measure.)
 \end{rmk}
@@ -233,12 +233,16 @@
 	If $A$ is a measurable subset of $E$, we define $\int_A f = \int f\chi_A$. 
 \end{defn}
 
+\pagebreak
 \begin{pblm}%95
 	Let $f$ be a bounded function defined on $[a,b]$. If $f$ is Riemann integrable 
 	on $[a,b]$, then $f$ is measurable and the Riemann integral $R\int_a^b f =\int_a^b f$. \\
 	(A step function is a simple function.)
 \begin{proof}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	If $f$ is Riemann Integrable on $[a,b]$, then 
+	\begin{equation*}
+		R\int_a^b f = \sup\left\{\int_a^b r\right\} = \inf\left\{\int_a^b s \right\} = \int_a^b f
+	\end{equation*}
 \end{proof}
 \end{pblm}
 
@@ -258,12 +262,65 @@
 	manipulation of infs. You may also find \mPref{p:infinteqsupint} useful.) For (2) you can 
 	show $f \le 0$ a.e. implies $\int_E f \le 0.$ (3), (4), and (5) follow from previous parts.)}}
 \begin{proof}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+~
+\begin{enumerate}
+	\item If $\alpha > 0$ and $f$ is integrable, then 
+		\begin{equation*}
+			\int \alpha f = \inf\limits_{s\ge\alpha f} \int s = 
+			\underbrace{\alpha \inf\limits_{s/\alpha \ge f}\int \frac{s}{\alpha} = 
+				    \alpha \inf\limits_{s\ge f} \int s}_
+					{\text{since }\inf\text{ is over all simple functions }s} = 
+			\alpha \int f
+		\end{equation*}
+		If on the other hand, $\alpha < 0$, then (using \ref{p:infinteqsupint}), 
+		\begin{equation*}
+			\int \alpha f = \inf\limits_{s\ge\alpha f} \int s = 
+			\alpha \sup\limits_{r/\alpha\le f}\int \frac{r}{\alpha} = 
+			\alpha \int f
+		\end{equation*}
+		note that $\alpha = 0$ satisfies $\int \alpha f = \alpha \int f$ trivially. 
+
+		Now, let $f, g$ both be integrable functions. For all $r \ge f$ and $s \ge g$, 
+		\begin{equation*}
+		\begin{array}{rcl}
+			\int (f + g) &\le& \int (r + s) = \int r + \int s\\
+			\int (f + g) &\le&\inf\limits_{r\ge f, g \ge s} \int (r + s) = 
+				\inf\limits_{r\ge f}\int r + \inf\limits_{s\ge g}\int s = \int f + \int g. 
+		\end{array}
+		\end{equation*}
+		On the other hand, for all simple functions $r \ge f$ and $s \ge g$,  by \mPref{p:infinteqsupint}, 
+		\begin{equation*}
+		\begin{array}{rcl}
+			\int f + \int g & \le & \int r + \int s = \int (r + s)\\
+			\int f + \int g & \le & \inf\limits_{r\ge f, s\ge g}\int (r + s) 
+			\le \inf\limits_{r+s\ge f+g}\int (r + s)= \int (f + g). 
+		\end{array}
+		\end{equation*}
+
+	\item if $f \le 0$ a.e. then $\int f = \inf\limits_{s\ge f}\int s \le \int 0$ since the simple function 
+		$0 \ge f$ a.e. Therefore if $f \le g$ a.e., then $(f - g) \le 0$ a.e., and so 
+		$\int( f - g) = \int f - \int g  \le 0$, and so $\int f \le \int g$. 
+
+	\item If $f = g$ a.e., then $0 = \int_E (f - g) = \int_E f - \int_E g$, and so $\int_E f = \int_E g$. 
+
+	\item if $\alpha \le f(x) \le \beta$ for almost all $x \in E$, then by part 2, 
+		\begin{equation*}\int_E \alpha \le \int_E f \le \int_E \beta\end{equation*} which is 
+		\begin{equation*}\alpha \, m(E) \le \int_E f \le \beta \, m(E). \end{equation*} 
+
+	\item if $A$ and $B$ are disjoint measurable subsets of $E$, then $f = f \chi_A + f\chi_B$ over 
+		the set $A \cup B$, and so 
+		\begin{equation*}
+			\int_{A\cup B} f = 
+			\int_{A\cup B} (f\chi_A + f\chi_B) = 
+			\int_{A\cup B} f\chi_A + \int_{A \cup B} f\chi_B = 
+			\int_A f + \int_B f
+		\end{equation*}
+\end{enumerate}
 \end{proof}
 \end{pblm}
 
 \begin{rmk}%97
-	It follows from part (3) and the previous prbolem about measurability of functions equal 
+	It follows from part (3) and the previous problem about measurability of functions equal 
 	almost everywhere that changing the values of a function in a bounded way on a countable 
 	subset of $E$ does not affect $\int_E f$. Thus the Dirichlet example of a non-Riemann 
 	integrable function (the characteristic function of the set $\Q_0$ of rationals in $[0,1]$) 
@@ -280,6 +337,7 @@
 		\int_E f = \lim\limits_{n\to\infty}\int_E f_n.
 	\end{equation*}
 	(Use \mPref{p:approxfunwithsteporsimple} or Egoroff's Thm \mPref{p:egoroff}). 
+\pagebreak
 \begin{proof}
 	If $\lim\limits_{n\to\infty}f_n$ exists a.e. on $E$, then $f = \lim\limits_{n\to\infty} f_n$ 
 	is measurable by \mPref{p:ext_real_val_seq}, and $|f| \le M$ a.e. 
@@ -342,10 +400,38 @@
 		$f \ge 0$ a.e. then $\int_E f \ge 0$. 
 	\end{enumerate}
 \begin{proof}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+~
+\begin{enumerate}
+	\item If $\alpha = 0$, then $\int_E \alpha f = \int_E 0 = 0 = 0\int_E f = \alpha \int_E f$. 
+		Now assume $\alpha > 0$. Then 
+		$\int_E \alpha f = \sup\limits_{h\le \alpha f}\int h$, and since this is over all 
+		bounded measurable functions $h\le f$. Then since $\alpha > 0$, taking the supremum 
+		over $h \le \alpha f$ is the same as taking the supremum over $h / \alpha \le f$. 
+		Thus this becomes 
+		\begin{equation*}\sup\limits_{h/\alpha \le f} \int \alpha \frac{h}{\alpha} = \sup\limits_{h/\alpha\le f} \alpha \int h/\alpha = \sup\limits_{h\le f} \alpha \int h\end{equation*}
+	\item $\int_E (f + g) \ge \int(h + k) = \int h = \int k$ for all $h, k \le f, g$ respectively. 
+		Therefore 
+		\begin{equation*}\int_E (f + g) \ge \sup\int_E h + \sup\int_E g = \int_E f + \int_E g.\end{equation*} 
+		Also, $\int_E f + \int_E g \ge \int_E h + \int_E k = \int_E(h + k)$ for all $h, k \le f, g$ respectively. 
+		So $\int_E f + \int_E g \ge \sup\int_E(h+k)$. 
+		Thus \begin{equation*}\int_E f + \int_E g = \int_E (f + g).\end{equation*} 
+	\item If $f \ge 0$ a.e., then for any non-negative $h \le f$, let $h_f = min\{f, h\}$ and $h_g = h - h_f$. 
+		Thus $h_f$ is non-negative (as the minimum of two non-negative functions), and $h_g$ is also non-negative since 
+		it is bounded below by  $f - f$ whenever $f \le h$ and $f - h$ whenever $h < f$. 
+		Note that $h_g + h_f = h$, and $\int_E f = \sup\limits_{h\le f}\int_E h = \sup\limits_{h\le f}\int h_g+h_f$. 
+		and since both $h_g$ and $h_f$ are bounded, non-negatice and measurable and vanish outside of 
+		$A = \{x: h(x) \neq 0\}$ which has finite measure, then by \mPref{p:lebesguelotsofuseful}, the integral 
+		is non-negative. Thus 
+		\begin{equation*}
+			\int_Ef = \sup\limits_{h\le f}\int_Eh_g+h_f \ge 0
+		\end{equation*}
+		and this, together with the additivity of part (2) gives us for any non-negative measurable $g \le f$, 
+		$\int_E g \le \int_E f$. 
+\end{enumerate}
 \end{proof}
 \end{pblm}
 
+\pagebreak
 \begin{pblm}\label{p:fatou}%102
 	Let $\{f_n\}_{n=1}^\infty$ be a sequence of non-negative measurable functions on a 
 	measurable set $E$ such that $f(x) = \lim\limits_{n\to\infty}f_n(x)$ exists for almost 
@@ -354,10 +440,31 @@
 		\int_E f \le \lim\inf\int_E f_n.
 	\end{equation*}
 \begin{proof}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	For any $h \le f$ s.t. $h$ vanishes outside a set $A$ of finite measure, 
+	let $h_n = min\{h, f_n\}$. %Each $h_n$ is measurable by \mPref{p:minmaxmeasurable}. 
+	Then since $\lim\limits_{n\to\infty} f_n = f$ a.e.  
+	for any $\epsilon > 0$, there is $N \in \Zp$ such that for all $n \ge N$, 
+	$|f_n - f| < \epsilon$. Consider the $N \in \Zp$ such that 
+	$|f_n - f| \le |h - f|$ whenever $n \ge N$. Then 
+	since $f_n \le f$ and $h \le f$, and since $|f_n - f| \le |h - f|$, 
+	\begin{equation*}
+		h_n = min\{h, f_n\} = h  ~~~ \forall n \ge N
+	\end{equation*}
+	Thus $\lim\limits_{n\to\infty}h_n = h$ a.e.. Therefore by \mPref{p:intofsequenceeqlimint}, 
+	$ \int_E h = \lim\limits_{n\to\infty}\int_E h_n $ 
+	and so since for all $n$, $h_n \le f_n$, we have 
+	\begin{equation*}
+		\int_E h = \lim\limits_{n\to\infty}\int_E h_n \le \lim\inf\int_E f_n
+	\end{equation*}
+	Therefore 
+	\begin{equation*}
+		\int_E f = \sup\limits_{h\le f}\int_E h \le \lim\inf\int_E f_n
+	\end{equation*}
 \end{proof}
 \end{pblm}
 
+\marginnote{Think about $f_n(x) = \chi_{[n,n+1]}(x)$. The limit $f$ is just the zero function, 
+	but each $f_n$ has integral equal to $1$.}
 \begin{rmk}%103
 	The preceding problem is known as Fatou's Lemma. You should be sure that you know of an 
 	example where equality does not hold. 
@@ -372,20 +479,15 @@
 	\end{equation*}
 	where it is possible that both sides of the equation are $+\infty$. 
 \begin{proof}
-	consider $g = f - f_n$. Then $g$ is positive and $ g \le f$. 
-
-	WTS:
-	$\lim\limits_{n\to\infty}\int_E f_n \le \int_E f$ and $\lim\limits_{n\to\infty}\int_E f_n \ge \int_E f$. 
-
-	$f_n \le f$ for all $n$, and so 
+	%WTS: $\lim\limits_{n\to\infty}\int_E f_n \le \int_E f$ and $\lim\limits_{n\to\infty}\int_E f_n \ge \int_E f$. 
+	We have $f_n \le f$ for all $n$, and so 
 	\begin{equation*}
 		\lim\limits_{n\to\infty}\int_E f_n \le \int_E f
 	\end{equation*}
-
 	On the other hand, using Fatou's Lemma, we have 
-	\begin{equation*}
+	$%\begin{equation*}
 		\int_E f \le \lim\inf \int_E f_n = \lim\limits_{n\to\infty} \int_E f_n
-	\end{equation*}
+	$ %\end{equation*}
 	and so 
 	\begin{equation*}
 		\int_E f = \lim\limits_{n\to\infty}\int_E f_n
@@ -502,9 +604,7 @@
 	\begin{array}{rcl}
 		\int_E (f - f_n) & = & \int_E f - \int_E f_n \\
 		& = & \int_E f - \int_E (f - f\chi_{B_n}) \\
-		& = & \int_E f - \int_E f + \int_E f\chi_{B_n}\\
-		& = & \int_E f\chi_{B_n} \\
-		& = & \int_{B_n} f
+		& = & \int_E f - \int_E f + \int_E f\chi_{B_n} = \int_E f\chi_{B_n} = \int_{B_n} f
 	\end{array}
 	\end{equation*}
 	and so 
@@ -531,6 +631,7 @@
 \end{rmk}
 
 \begin{defn}%111
+	~
 	\begin{enumerate}
 	\item A non-negative extended real-valued measurable function $f$ defined on a 
 	measurable function $f$ defined on a measurable set $E$ is \textbf{integrable over} 
@@ -546,6 +647,7 @@
 \end{defn}
 
 \begin{rmk}%112
+~
 \begin{enumerate}
 	\item An integrable extended real-valued function $f$ must have finite values 
 	almost everywhere. 
@@ -611,6 +713,7 @@
 \end{proof}
 \end{pblm}
 
+\pagebreak
 \begin{pblm}\label{p:lebesguedominatedconvergence}%114
 	Let $g$ be a non-negative integrable function on $E$, and let $\{f_n\}_{n=1}^\infty$ 
 	be a sequence of measurable functions such that $|f_n| \le g$ a.e. on $E$ for each 

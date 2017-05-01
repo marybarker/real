@@ -45,6 +45,7 @@
 	of these. 
 \end{rmk}
 
+\pagebreak
 \begin{ex}~%121
 	\begin{enumerate}
 	\item Any non-empty subset of $\R^n$ together with the usual Euclidean distance 
@@ -92,6 +93,7 @@
 	vector space in its own right with the same operations as $V$. 
 \end{defn}
 
+\pagebreak
 \begin{ex}~ %124
 	\begin{enumerate}
 	\item Once again $\R^n$ with the obvious component-wise operations is the 
@@ -144,6 +146,7 @@
 	$\phi$. For $\Psi(b)$ you will need to remember that the graph of $\varPsi$ is the 
 	``mirror image'' of the graph of $\phi$, so you can find $\Psi(b)$ as an area between 
 	the $y$-axis and the graph of $\phi$. This result is called Young's Inequality.)}}
+\pagebreak
 \begin{proof}
 	Note first that since $\phi$ is non-decreasing, and is a well-defined function such 
 	that its inverse is $\psi$, then $\psi$ is also non-decreasing. 
@@ -203,7 +206,6 @@
 	}
 	\end{center}
 
-\pagebreak
 	\item $\psi(b) < a$: Note that this implies that $\phi(a) > b$, and so (using both facts), 
 	$\Phi(a) - \Phi(\psi(b)) > b(a - \psi(b))$. 
 
@@ -345,6 +347,7 @@
 \end{proof}
 \end{pblm}
 
+\pagebreak
 \begin{pblm}\label{p:130}%130 
 	Let $p > 1$. If $\phi(x) = x^{p-1}$, then the preceding inequality takes the form 
 	\begin{equation*}
@@ -396,6 +399,7 @@
 	\end{array}
 	\end{equation*}
 
+\pagebreak
 	Now suppose that $\int |f|^p + \int|g|^q = 1$, then let 
 	$F = \frac{|f|}{\left(\int_E|f|^p\right)^\frac{1}{p}}$, 
 	$G = \frac{|g|}{\left(\int_E|g|^q\right)^\frac{1}{q}}$.  
@@ -507,9 +511,12 @@
 	{\scriptsize{(If not, then for some $n$, there is $B, m(B) > 0$ and $|f(x)|\ge\|f\|_\infty + \frac{1}{n}$ 
 	on $B$.)}}
 \begin{proof}
-	Suppose otherwise. That is, suppose $\|f\|_{\infty}$ is finite and there is no desired subset $A$. Let $B$ be a subset of $E$ such that $|f(x)|>\|f\|_{\infty}$. Then by our hypothesis, $m(B)>0$ (since $\|f(x)\| \leq \|f\|_{\infty}$ for all $x \in E\setminus B$). 
+	Suppose otherwise. That is, suppose $\|f\|_{\infty}$ is finite and there is no desired subset 
+	$A$. Let $B$ be a subset of $E$ such that $|f(x)|>\|f\|_{\infty}$. Then by our hypothesis, 
+	$m(B)>0$ (since $\|f(x)\| \leq \|f\|_{\infty}$ for all $x \in E\setminus B$). 
 	
-	Moreover, there exists $n$ such that for all $x \in B$, $|f(x)| \geq \|f\|_{\infty} + 1/n$. But $B$ has nonzero measure, so $\|f\|_{\infty}$ is not the $\inf$, which is a contradiction.
+	Moreover, there exists $n$ such that for all $x \in B$, $|f(x)| \geq \|f\|_{\infty} + 1/n$. 
+	But $B$ has nonzero measure, so $\|f\|_{\infty}$ is not the $\inf$, which is a contradiction.
 \end{proof}
 \end{pblm}
 
@@ -582,53 +589,108 @@
 			Justify your conclusion. 
 	\end{enumerate}
 \begin{proof}
-	\begin{center}
-	\begin{tikzpicture}
-	\begin{axis}[legend pos=north west, legend style={fill=gray!10}]
-		\addplot[color=black, forget plot] coordinates{
-			(0,0)
-			(.5, 0.0)
-			(.5, 1.0)
-			(1,1)
-		};
-		\addplot[color=brown] coordinates{
-			(0,0)
-			(.3333, 0.0)
-			(.6666, 1.0)
-			(1,1)
-		};\addlegendentry{$n = 6$};
-		\addplot[color=green] coordinates{
-			(0,0)
-			(.3, 0.0)
-			(.7, 1.0)
-			(1,1)
-		};\addlegendentry{$n = 5$};
-		\addplot[color=blue] coordinates{
-			(0,0)
-			(.25, 0.0)
-			(.75, 1.0)
-			(1,1)
-		};\addlegendentry{$n = 4$};
-		\addplot[color=red] coordinates{
-			(0,0)
-			(.166666, 0.0)
-			(.833333, 1.0)
-			(1,1)
-		};\addlegendentry{$n = 3$};
-		\draw (axis cs:0.44, 0.15) node {$\dots$};
-		\draw (axis cs:0.57, 0.85) node {$\dots$};
-	\end{axis}
-	\end{tikzpicture}
-	\end{center}
 	\begin{enumerate}[(a)]
-		\item For each $n$, $|f_n|_1 = \frac{1}{2}$, and $\lim\limits_{n\to\infty} |f_n| = \frac{1}{2}$  
-		\item let $p \ge 1$. 
-		\item the limit of the sequence in $L^p[0,1]$ for $1 \le p < \infty$
+		\item For each $n, m$, without loss of generality, let $m > n$, then 
+			the difference (in blue in the plot) is given by 
+			\begin{equation*}||f_n - f_m||_1 < \frac{2}{n}\left(\frac{1}{2} - 
+			\frac{n}{2m}\right) = \frac{1}{n} - \frac{1}{m}.\end{equation*}
+			Thus for any $\epsilon > 0$, we can choose $n = 1/\epsilon, m = 2/\epsilon$ 
+			such that \begin{equation*}||f_n - f_m||_1 < \frac{1}{n} - \frac{1}{m} = \epsilon. \end{equation*}
+			and so this sequence is a Cauchy sequence. 
+			\begin{center}
+			\resizebox{0.38\textwidth}{!}{
+			\begin{tikzpicture}
+			\begin{axis}[legend pos=north west, legend style={fill=gray!10}, ytick={0, 1},xtick={0,0.5,1}]
+				\addplot[dashed,black]coordinates{
+					(0.5,0.0) (0.5, 1.0)
+				};
+				\addplot[fill=blue,opacity=0.3] coordinates{
+				(.1666, 0.0)
+ 	 	 		(.38  , 0.31)
+ 	 	 		(.5, 0.0)
+ 	 	 		(.1666, 0.0)
+				};
+				\addplot[fill=blue,opacity=0.3] coordinates{
+				(.8333, 1.0)
+ 	 	 		(.62  , 0.69)
+ 	 	 		(.5, 1.0)
+ 	 	 		(.8333, 1.0)
+				};
+				\addplot[color=blue] coordinates{
+					(0,0)
+					(.38  , 0.0)
+					(.62  , 1.0)
+					(1,1)
+				};
+				\addplot[color=red] coordinates{
+					(0,0)
+					(.166666, 0.0)
+					(.833333, 1.0)
+					(1,1)
+				};
+			\end{axis}
+			\end{tikzpicture}
+			}
+			\end{center}
+		\item 
+		\item The limit of the sequence in $L^p[0,1]$ for $1 \le p < \infty$ is going to be the 
+			step function 
+			\begin{equation*}
+				f(x) = \left\{
+					\begin{matrix} 
+						0, & 0 \le x \le 0.5 \\ 
+						1, & 0.5 \le x \le 1 
+					\end{matrix}
+					\right.
+			\end{equation*} 
+			(note that, being non-continuous, this limit is not 
+			actually in the space $L^p$, but it is the limit of a sequence whose elements are in $L^p$) 
+			\begin{center}
+			\resizebox{0.38\textwidth}{!}{
+			\begin{tikzpicture}
+			\begin{axis}[legend pos=north west, legend style={fill=gray!10}]
+				\addplot[color=black, forget plot] coordinates{
+					(0,0)
+					(.5, 0.0)
+					(.5, 1.0)
+					(1,1)
+				};
+				\addplot[color=brown] coordinates{
+					(0,0)
+					(.3333, 0.0)
+					(.6666, 1.0)
+					(1,1)
+				};\addlegendentry{$n = 6$};
+				\addplot[color=green] coordinates{
+					(0,0)
+					(.3, 0.0)
+					(.7, 1.0)
+					(1,1)
+				};\addlegendentry{$n = 5$};
+				\addplot[color=blue] coordinates{
+					(0,0)
+					(.25, 0.0)
+					(.75, 1.0)
+					(1,1)
+				};\addlegendentry{$n = 4$};
+				\addplot[color=red] coordinates{
+					(0,0)
+					(.166666, 0.0)
+					(.833333, 1.0)
+					(1,1)
+				};\addlegendentry{$n = 3$};
+				\draw (axis cs:0.44, 0.15) node {$\dots$};
+				\draw (axis cs:0.57, 0.85) node {$\dots$};
+			\end{axis}
+			\end{tikzpicture}
+			}
+			\end{center}
 	\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
 
+\pagebreak
 \begin{pblm}~ %140
 	\begin{enumerate}[(a)]
 	\item Show that the sequence $\{f_n\}_{n=3}^\infty$ of the preceding problem is not 
@@ -641,14 +703,43 @@
 \begin{proof}
 	~
 	\begin{enumerate}[(a)]
-	\item 
-	\item 
-	\item 
+	\item Note that this part relies on part (b). 
+		As the limit $f$ from the previous problem satisfies $\|f - f_n\|_\infty = 1/2$ for 
+		all $n$, then for any $0 < \epsilon < 0.5$, for all $n$, $$\|f - f_n\| > \epsilon.$$ Thus 
+		this sequence is not Cauchy in $L^\infty[0,1]$. 
+	\item in $L^\infty[0,1]$, for each $n$, the value of $f_n$ at 0.5 is 0.5, and so 
+		$\|f - f_n\|_\infty\ge 0.5$, but since this is the point at which 
+		$f_n$ is furthest from $f$, we have $\|f - f_n\|_\infty = 0.5$ for all $n$. 
+		\begin{center}
+		\resizebox{0.38\textwidth}{!}{
+		\begin{tikzpicture}
+		\begin{axis}[legend pos=north west, legend style={fill=gray!10}, ytick={0, 1},xtick={0,0.5,1}]
+			\addplot[color=black] coordinates{
+				(0,0)
+				(0.5, 0.0)
+				(0.5, 1.0)
+				(1,1)
+			};
+			\addplot[color=red] coordinates{
+				(0,0)
+				(.166666, 0.0)
+				(.833333, 1.0)
+				(1,1)
+			};
+		\end{axis}
+		\end{tikzpicture}
+		}
+		\end{center}
+	\item For any $g \in \C[0,1]$, we know that $\|f - g\|_\infty \le \frac{1}{2}$ in $[0, 0.5)$ implies that 
+		$g(a) < \frac{1}{2}$ for at least one value $a \in [0,0.5)$, and similarly, 
+		there is $b \in (0.5, 1]$ such that $g(b) > \frac{1}{2}$, and therefore by the intermediate value 
+		theorem, there is some $a < c < b$ such that $g(c) = \frac{1}{2}$, and thus, since $f$ only takes values 
+		$0$ and $1$ on the interval $[0,1]$, $\|f - g\|_\infty = \frac{1}{2}$
 	\end{enumerate}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{proof}
 \end{pblm}
 
+\pagebreak
 \begin{pblm} %141
 	$L^\infty(E)$ is a Banach space. 
 	%\\

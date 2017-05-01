@@ -105,28 +105,28 @@
 	If $f$ is measurable with domain $E$, and $c \in \R$, then $cf$ and 
 	$f + c$ are measurable. 
 \begin{proof}
-	If $c > 0$, then For any $\alpha \in \R$, $\alpha /c \in \R$, and 
+	If $c > 0$, then for any $\alpha \in \R$, $\alpha /c \in \R$, and 
 	\begin{equation*}
-		\{x \in E: cf(x) > \alpha\} = \{x \in E: f(x) > \alpha/c\}
+		\{x \in E: cf(x) < \alpha\} = \{x \in E: f(x) < \alpha/c\}
 	\end{equation*}
 	is measurable, since $f$ is measurable. Therefore $cf$ is measurable for all 
 	$c > 0$. 
 
 	If $c = 0$, then for any $\alpha \in R$, 
-	the set $\{x \in E: cf(x) > \alpha\}$ is either $\R\cap E$ 
-	(if $\alpha \le 0$), which is measurable, or else $\emptyset$ (if $\alpha > 0$), 
+	the set $\{x \in E: cf(x) < \alpha\}$ is either $\R\cap E$ 
+	(if $\alpha \ge 0$), which is measurable, or else $\emptyset$ (if $\alpha < 0$), 
 	which is also measurable. 
 
-	If $c < 0$, then for any $\alpha \in \R$, the set $\{x \in E: cf(x) > \alpha\} = 
-	\{x \in E: f(x) \le \alpha / c\}$ which is measurable, since $f$ is measurable. 
+	If $c < 0$, then for any $\alpha \in \R$, the set $\{x \in E: cf(x) < \alpha\} = 
+	\{x \in E: f(x) \ge \alpha / c\}$ which is measurable since $f$ is measurable. 
 
 	Thus $cf(x)$ is measurable for all $c \in \R$.
 
 	Now, if $f$ is measurable over $E$, then for any $c \in \R$, for all $\alpha \in \R$, 
 	\begin{equation*}
-		\{x \in E: f(x) + c > \alpha\} = \{x \in E: f(x) > \alpha - c\}
+		\{x \in E: f(x) + c < \alpha\} = \{x \in E: f(x) < \alpha - c\}
 	\end{equation*}
-	which is measurable, since $f$ is measurable. 
+	which is measurable since $f$ is measurable. 
 
 	Therefore $f(x) + c$ is measurable. 
 \end{proof}
@@ -161,7 +161,7 @@
 \end{proof}
 \end{pblm}
 
-\begin{pblm}%63
+\begin{pblm}\label{p:minmaxmeasurable}%63
 	if $f$ and $g$ are measurable with domain $E$, then $\max\{f,g\}$ and 
 	$\min\{f,g\}$ are measurable.
 \begin{proof}
@@ -261,7 +261,7 @@
 	bounded.'') \\ (Remember \mPref{p:osouseful})
 \begin{proof}
 	Let $E_k = \{x \in E: |f(x)| > k\}$. Each of these sets is 
-	measurable, and $m(E_{k+1}) \ge m(e_k) \ge ...$ for all $k$. Therefore 
+	measurable, and $m(E_{k+1}) \ge m(E_k) \ge ...$ for all $k$. Therefore 
 	for any $\epsilon > 0$, there is some $k$ such that 
 	\begin{equation*}
 		m(E_k) < \epsilon
@@ -277,8 +277,8 @@
 	Is it necessary to assume in the previous problem that the set $E$ is 
 	bounded? 
 
-	sort of answer: We need the measure of each of those $E$ not to be infinite 
-	in the previous example, else \mPref{p:osouseful}  not apply. 
+	We need the measure of each of those $E$ not to be infinite 
+	in the previous example, else \mPref{p:osouseful} need not apply. 
 \end{pblm}
 
 \begin{pblm}%72
@@ -311,7 +311,7 @@
 	same as the limit of this sequence. 
 \end{defn}
 
-\begin{pblm}%74
+\begin{pblm}\label{p:limeqliminfeqlimsup}%74
 	For any sequence $\{a_k\}_{k=1}^\infty$ of real numbers, $\lim\sup a_k 
 	\ge \lim\inf a_k$. $\lim\sup a_k = \lim\inf a_k$ if and only if the 
 	sequence $\{a_k\}_{k=1}^\infty$ converges. 
@@ -346,7 +346,7 @@
 	\lim\limits_{n\to\infty}f_n(x)$ exists for each $x \in E$, then $f$ is an 
 	extended real-valued measurable function on $E$. 
 \begin{proof}
-	Suppose $f(x) = \lim\limits_{n\to\infty} F_n(x)$ exists for each $x \in E$. Let $\alpha \in \mathbb{R}$. Then,
+	Suppose $f(x) = \lim\limits_{n\to\infty} f_n(x)$ exists for each $x \in E$. Let $\alpha \in \mathbb{R}$. Then,
 
 	\begin{align*}
 		\{ x\in E : f(x) < \alpha \}
@@ -355,7 +355,9 @@
 		&= \{ x \in E : \inf\limits_n \sup f_n(x) < \alpha \} \hspace{20 pt} \text{(By definition.)}
 	\end{align*}
 	
-	By (74), $\sup f_n(x)$ is measurable, and applying (74) again, $\inf\limits_{n} \sup f_n(x)$ is measurable, so $f$ is measurable.
+	By \mPref{p:limeqliminfeqlimsup}, $\sup f_n(x)$ is measurable, 
+	and applying \mPref{p:limeqliminfeqlimsup} again, $\inf\limits_{n} \sup f_n(x)$ 
+	is measurable, so $f$ is measurable.
 \end{proof}
 \end{pblm}
 
@@ -385,6 +387,7 @@
 	$E_j = s^{-1} (a_j)$ for the distinct values $a_j$ in the range of $s$.)
 \end{defn}
 
+\pagebreak
 \begin{pblm}\label{p:contalmostsimple}%78
 	Let $f$ be an extended real-valued measurable function defined on an 
 	interval $[a,b]$. Let $M > 0$. For any $\epsilon > 0$ there is a simple 
@@ -549,6 +552,7 @@
 	in the next problem. 
 \end{defn}
 
+\pagebreak
 \begin{pblm}\label{p:egoroff}%85 
 	Let $E$ be a measurable set of finite measure. Suppose that $f$ and 
 	$\{f_n\}_{n=1}^\infty$ are measurable functions defined on $E$ so that 
